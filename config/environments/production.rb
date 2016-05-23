@@ -73,4 +73,7 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Session
+  config.session_store :redis_store, servers: ENV["REDIS_URL"], expire_in: 1.day
 end

@@ -30,6 +30,7 @@ module Ezhouse
     # config.i18n.default_locale = :de
 
     # Cache
-    config.cache_store = :redis_store, 'redis://127.0.0.1:6379/1/cache', { expires_in: 90.minutes }
+    uri = ENV["REDIS_URL"] || 'redis://127.0.0.1:6379/1/cache'
+    config.cache_store = :redis_store, uri, { expires_in: 90.minutes }
   end
 end
