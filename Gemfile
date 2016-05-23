@@ -33,7 +33,7 @@ gem 'slim-rails'
 gem 'kaminari'
 
 # Database
-gem 'mongoid', '~> 4.0.0'
+gem 'mongoid', '~> 5.0'
 gem 'bson_ext'
 #gem 'mongoid_search'
 gem 'redis'
