@@ -1,106 +1,106 @@
 .container#main-container
   .row.bg[style='margin-top:-20px']
     .row[style='margin-top:120px']
-      .col-xs-offset-3.col-xs-6
+      .col-md-offset-3.col-md-6
         font[color='white']
           center
             h1 为您找到最优秀的经纪人
     .row[style='margin:24px auto 224px auto']
-      .col-xs-offset-3.col-xs-6
+      .col-md-offset-3.col-md-6
         .input-group
           input#address.form-control[type='text' placeholder='区域，商圈，小区名称' required]
           span.input-group-btn
             button#btn_search.btn.btn-success[type='button' data-loading-text='加载中...']
               = icon :search
   .row[style='margin-top:24px']
-    .col-xs-4
+    .col-xs-12.col-md-3
       center
         .row[style='margin-bottom:12px']
           = image_tag('http://agentace.com/images/v2/components/how-find-the-best-agent.svg', class:'img-responsive')
         .row
           h4 搜索
-        .row.text-justify
-          | 输入想要买卖或租赁的房屋所在区域，商圈或小区名称
-    .col-xs-4
+        .row
+          | 告诉我们您的基本信息。买房还是卖方？求租还是出租？什么地方？什么价位？
+    .col-xs-12.col-md-offset-1.col-md-4
       center
         .row[style='margin-bottom:12px']
           = image_tag('http://agentace.com/images/v2/components/how-agent-specialist-decision.svg', class:'img-responsive')
         .row
           h4 匹配
-        .row.text.justify
-          | 结合大数据与用户点评筛选出最优秀，最匹配的经纪人
-    .col-xs-4
+        .row
+          | 大数据帮您选出最优秀，最匹配的经纪人。我们有最严格的反刷单机制。
+    .col-xs-12.col-md-offset-1.col-md-3
       center
         .row[style='margin-bottom:12px']
           = image_tag('http://agentace.com/images/v2/components/how-agent-specialist-introduction.svg', class:'img-responsive')
         .row
           h4 服务
-        .row.text.justify
-          | 为您提供经纪人的联系方式，让其为您提供最优质的服务
+        .row
+          | 用户使用完全免费。您也可以点评满意的经纪人，让更多朋友享受他的服务。
   .row
     hr.devider
   .row
     .row
-      .col-xs-6
+      .col-xs-6.col-md-6
         .buyer
-          .col-xs-offset-9.col-xs-3[style='padding-right:0;margin-top:24px']
+          .col-xs-offset-9.col-xs-3.col-md-offset-9.col-md-3[style='padding-right:0;margin-top:24px']
             .text-center[style='padding:22px 0 22px 0; background-color:rgba(255,255,255,0.8)']
               h4[style='color:#2488c9'] 买家 租客
-      .col-xs-6[style='background-color:#2488c9;height:360px']
+      .col-xs-6.col-md-6[style='background-color:#2488c9;height:360px']
         dl.text-center[style='color:white; line-height:24px; padding-top:46px']
           dt
             h4 更方便
-          dd 优秀经纪人经验丰富，推荐最合适的房源，节省你宝贵的时间
+          dd 一站式找房服务，节省宝贵时间
           dt
             h4 更有效
-          dd 优秀经纪人可以在交易过程中帮您看家，让您拿到更多实惠
+          dd 绕过虚假房源，拿到更多实惠
           dt
             h4 更安全
-          dd 我们不会泄露您的联系方式。交易的主动权掌握在您手上
+          dd 避免电话骚扰，主动掌握交易权
     .row[style='margin-top:15px']
-      .col-xs-6[style='height:360px']
+      .col-xs-6.col-md-6[style='height:360px']
         dl.text-center[style='color:#2488c9; line-height:24px; padding-top:46px']
           dt
             h4 更快捷
-          dd 优秀经纪人可以显著缩短交易周期，优先推荐他们录入的房源
+          dd 专人委托房源，缩短交易周期
           dt
             h4 更精准
-          dd 优秀经纪人可以更准确地为您定价，多卖5%-20%的价格
+          dd 前瞻市场行情，精准定价房源
           dt
             h4 更省心
-          dd 您与经纪人单点接触，一站式服务，避免不必要的骚扰
-      .col-xs-6[style='padding-left:0;padding-right:0']
+          dd 一键多方委托，单点接触经纪人
+      .col-xs-6.col-md-6[style='padding-left:0;padding-right:0']
         .seller
-          .col-xs-3[style='padding-left:0;margin-top:24px']
+          .col-xs-3.col-md-3[style='padding-left:0;margin-top:24px']
             .text-center[style='padding:22px 0 22px 0; background-color:#2488c9']
               h4[style='color:white'] 卖家 房东
     .row
       hr.devider
   .row.marketing[style="margin-top:24px"]
-    .col-xs-4.text-center
+    center.col-md-4
       = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,q_90,w_320/v1/9344/6ce25f384bac4901a236287d48eb3c80_lfgwyb.jpg', class:'img-circle img-responsive')
       h4.text-muted
         | 张雪琴
       h5.text-primary
         | 卖房：北京市 海淀区
       p.text-justify
-        | “我家在华清嘉园有一套三居，想出手有一阵了。米尺网推荐了我爱我家的杨店长。杨店长在海淀这片有十几年的的买卖经验。杨店长认为我定价过于保守，在他的建议下我们把出售价多加了40万，因为现在是卖家市场。杨店长的店面重点主打我的户型，三周内就以非常理想的价格卖出了！”
-    .col-xs-4.text-center
+        | “我家在华清嘉园有一套三居，想出手有一阵了。易房好介网推荐了我爱我家的杨店长。杨店长在海淀这片有十几年的的买卖经验。杨店长认为我定价过于保守，在他的建议下我们把出售价多加了40万，因为现在是卖家市场。杨店长的店面重点主打我的户型，三周内就以非常理想的价格卖出了！”
+    center.col-md-4
       = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,w_320/v1/9344/u_3231927390_1752915971_fm_11_gp_0_y2uvwr.jpg', class:'img-circle img-responsive')
       h4.text-muted
         | 许天
       h5.text-primary
         | 买房：北京市 海淀区
       p.text-justify
-        | “我一直想买一套魏公村附近的房子，因为孩子马上就要在附近上初中。在网上找了好几个月，但是到处都是假房源，所以效率很低。米尺网推荐了链家魏公村店的小王。一有什么好的房源，小王就会用微信第一时间跟进。终于在一个月后我们买到了称心的两室。感谢小王，感谢米尺网！”
-    .col-xs-4.text-center
+        | “我一直想买一套魏公村附近的房子，因为孩子马上就要在附近上初中。在网上找了好几个月，但是到处都是假房源，所以效率很低。易房好介网推荐了链家魏公村店的小王。一有什么好的房源，小王就会用微信第一时间跟进。终于在一个月后我们买到了称心的两室。感谢小王，感谢易房好介网！”
+    center.col-md-4
       = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,q_90,w_320/v1/9344/Img423785208_foh5cj.jpg', class:'img-circle img-responsive')
       h4.text-muted
         | 白雪
       h5.text-primary
         | 租房：北京市 朝阳区
       p.text-justify
-        | “最近刚搬来望京，在外企上班，平常很忙，没时间找房。在网上看了一些房子，但也只能零零星星地晚上下班去看，很没效率。米尺网推荐了麦田的胡月小姐。在我们电话沟通后，她一个周六就带我看了8套房子。我第二天就跟房东签约了。省了我不少时间！”
+        | “最近刚搬来望京，在外企上班，平常很忙，没时间找房。在网上看了一些房子，但也只能零零星星地晚上下班去看，很没效率。易房好介网推荐了麦田的胡月小姐。在我们电话沟通后，她一个周六就带我看了8套房子。我第二天就跟房东签约了。省了我不少时间！”
   .row
     hr.devider
 

@@ -1,105 +1,147 @@
 .container#main-container
-  .panel.panel-default
-    .panel-body
+  - case @agent ? @agent.company : ''
+    - when '链家'
       .row
-        ui.nav.nav-pills[style="display:inline-block"]
-          li.disabled
-            a[href="#" role="presentation"]
-              b 区域：
-          li.active
-            a[href="#" role="presentation"]
-              | 不限
-          li
-            a[href="#" role="presentation"]
-              | 东城
-          li
-            a[href="#" role="presentation"]
-              | 西城
-          li
-            a[href="#" role="presentation"]
-              | 朝阳
-          li
-            a[href="#" role="presentation"]
-              | 海淀
-          li
-            a[href="#" role="presentation"]
-              | 丰台
-          li
-            a[href="#" role="presentation"]
-              | 石景山
-          li
-            a[href="#" role="presentation"]
-              | 通州
-          li
-            a[href="#" role="presentation"]
-              | 昌平
-          li
-            a[href="#" role="presentation"]
-              | 大兴
-          li
-            a[href="#" role="presentation"]
-              | 亦庄
-          li
-            a[href="#" role="presentation"]
-              | 顺义
-          li
-            a[href="#" role="presentation"]
-              | 房山
-          li
-            a[href="#" role="presentation"]
-              | 门头沟
-          li
-            a[href="#" role="presentation"]
-              | 平谷
-          li
-            a[href="#" role="presentation"]
-              | 怀柔
-          li
-            a[href="#" role="presentation"]
-              | 密云
-          li
-            a[href="#" role="presentation"]
-              | 延庆
-          li
-            a[href="#" role="presentation"]
-              | 燕郊
-      .row
-        hr.devider
-      .row
-        ui.nav.nav-pills[style="display:inline-block"]
-          li.disabled
-            a[href="#" role="presentation"]
-              b 排序：
-          li.active
-            a[href="#" role="presentation"]
-              | 默认
-          li
-            a[href="#" role="presentation"]
-              | 按好评度排序
-          li
-            a[href="#" role="presentation"]
-              | 按成交量排序
-          li
-            a[href="#" role="presentation"]
-              | 按看房率排序
-  center.panel.panel-default
-    .panel-body
-      | 共有
-      font[color='red']
-        b = @agents.total_count
-      | 名经纪人
+        center.col-xs-3
+          = image_tag(@agent.tx, size:'160x160', class:'img-responsive')
+        .col-xs-9
+          .row
+            .col-xs-2.text-justify
+              | 姓名：
+              = @agent.name
+            .col-xs-3.text-justify
+              | 联系电话：
+              = @agent.mobile
+            .col-xs-offset-1.col-xs-3.text-justify
+              | 公司：
+              = @agent.company
+            .col-xs-3.text-justify
+              | 职位：
+              = @agent.position
+          .row
+            .col-xs-2.text-justify
+              | 地区：
+              = @agent.city + ' ' + @agent.district
+            .col-xs-2.text-justify
+              | 板块：
+              = @agent.region
+            .col-xs-8.text-justify
+              | 小区：
+              = @agent.community
+          .row
+            .col-xs-2.text-justify
+              | 成交：
+              = @agent.commissions
+            .col-xs-2.text-justify
+              | 委托：
+              = @agent.transactions
+            .col-xs-2.text-justify
+              | 30天带看：
+              = @agent.visits
+          .row
+            .col-xs-6
+              | 标签：
+              = @agent.label
+            .col-xs-3
+              | 好评率：
+              = @agent.rates
+              | %
+            .col-xs-3
+              | 评论数量：
+              = @agent.comments
       hr.devider
-      - @agents.each do |agent|
-        .row
-          .col-xs-3
-            = image_tag(agent.photo)
-          .col-xs-2
-            = agent.name
-          .col-xs-2
-            = agent.mobile
-          .col-xs-2
-            = agent.region
-          .col-xs-3
-            h1 = agent.score
-        hr.devider
-      = paginate @agents
+    - when '我爱我家'
+      .row
+        center.col-xs-3
+          = image_tag(@agent.tx, size:'160x160', class:'img-responsive')
+        .col-xs-9
+          .row
+            .col-xs-2.text-justify
+              | 姓名：
+              = @agent.name
+            .col-xs-3.text-justify
+              | 联系电话：
+              = @agent.mobile
+            .col-xs-offset-1.col-xs-3.text-justify
+              | 公司：
+              = @agent.company
+          .row
+            .col-xs-2.text-justify
+              | 地区：
+              = @agent.city + ' ' + @agent.district
+            .col-xs-2.text-justify
+              | 板块：
+              = @agent.region
+            .col-xs-8.text-justify
+              | 小区：
+              = @agent.community
+          .row
+            .col-xs-2.text-justify
+              | 售房：
+              = @agent.sales
+            .col-xs-2.text-justify
+              | 租房：
+              = @agent.rents
+          .row
+            .col-xs-6
+              | 关注：
+              = @agent.followers
+            .col-xs-3
+              | 点击量：
+              = @agent.clicks
+      hr.devider
+    - when '麦田'
+      .row
+        center.col-xs-3
+          = image_tag(@agent.tx, size:'160x160', class:'img-responsive')
+        .col-xs-9
+          .row
+            .col-xs-2.text-justify
+              | 姓名：
+              = @agent.name
+            .col-xs-3.text-justify
+              | 联系电话：
+              = @agent.mobile
+            .col-xs-offset-1.col-xs-3.text-justify
+              | 公司：
+              = @agent.company
+          .row
+            .col-xs-2.text-justify
+              | 地区：
+              = @agent.city + ' ' + @agent.district
+            .col-xs-2.text-justify
+              | 板块：
+              = @agent.region
+            .col-xs-8.text-justify
+              | 小区：
+              = @agent.community
+          .row
+            .col-xs-2.text-justify
+              | 成交：
+              = @agent.commissions
+            .col-xs-2.text-justify
+              | 待售：
+              = @agent.sales
+            .col-xs-2.text-justify
+              | 待租：
+              = @agent.rents
+            .col-xs-2.text-justify
+              | 从业年限：
+              = @agent.career
+            .col-xs-2.text-justify
+              | 顾客数：
+              = @agent.customers
+          .row
+            .col-xs-6
+              | 标签：
+              = @agent.label
+            .col-xs-3
+              | 星级：
+              = @agent.stars
+            .col-xs-3
+              | 关注：
+              = @agent.followers
+      hr.devider
+    - else
+      center.row
+        h4.text-danger 未匹配到任何结果！

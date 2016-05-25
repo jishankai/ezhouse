@@ -11,4 +11,12 @@ class AgentsController < ApplicationController
       format.json { render json: { 'lianjia' => @lianjia_agent, 'wawj' => @wawj_agent, 'maitian' => @maitian_agent } }
     end
   end
+
+  def asearch
+    @agent = Agent.or( {mobile: params[:arg]}, {name: params[:arg]} ).first
+
+    respond_to do |format|
+      format.html
+    end
+  end
 end
