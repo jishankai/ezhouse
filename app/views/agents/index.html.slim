@@ -87,4 +87,10 @@ javascript:
   $('#btn_search').on('click', function () {
       var $arg = $('#arg').val();
       window.open('/agents/asearch?arg='+$arg, '_blank');
-  })
+  });
+
+  $('input#arg').keypress(function(e){
+    if(e.which == 13){
+      $('#btn_search').click();
+    }
+  });

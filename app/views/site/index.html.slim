@@ -128,3 +128,8 @@ javascript:
       //   }
       // });
   });
+  $('input#address').keypress(function(e){
+    if(e.which == 13){
+      $('#btn_search').click();
+    }
+  });
