@@ -1,0 +1,7 @@
+.container
+  .col-md-offset-4.col-md-4
+    = form_for(resource, as: resource_name, url: password_path(resource_name), layout: :horizontal, html: { method: :post }) do |f|
+      = devise_error_messages!
+      = f.email_field :email, autofocus: true, use_label: false, placeholder: "邮箱"
+      = f.submit "重置密码"
+      = render "users/shared/links"

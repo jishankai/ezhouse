@@ -1,0 +1,10 @@
+p
+  | 您好 
+  = @resource.email
+  | !
+p
+  | 因为尝试登录错误次数过多，您的账号已被锁定。
+p
+  | 点击以下链接解锁账户。
+p
+  = link_to '解锁账户', unlock_url(@resource, unlock_token: @token)

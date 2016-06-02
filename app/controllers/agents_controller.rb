@@ -19,4 +19,8 @@ class AgentsController < ApplicationController
       format.html
     end
   end
+
+  def show
+    @agent = Agent.first
+  end
 end

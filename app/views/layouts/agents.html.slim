@@ -31,6 +31,9 @@ html
         = nav class: 'navbar-right' do
           = link_to '买卖/租赁', root_path
           = link_to '经纪人', agents_path
+          - if current_user
+            = link_to('登出', destroy_user_session_path, :method => :delete)
+            = link_to('修改密碼', edit_registration_path(:user))
     = yield
     .container#footer-container
       .footer
