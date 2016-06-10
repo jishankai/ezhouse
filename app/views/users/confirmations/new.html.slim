@@ -1,7 +1,0 @@
-.container
-  .col-md-offset-4.col-md-4
-    = form_for(resource, as: resource_name, url: confirmation_path(resource_name), layout: :horizontal,  html: { method: :post }) do |f|
-      = devise_error_messages!
-      = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
-      = f.submit "重发确认邮件"
-    = render "users/shared/links"

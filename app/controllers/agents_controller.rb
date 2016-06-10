@@ -1,5 +1,9 @@
+# coding: utf-8
 class AgentsController < ApplicationController
+  def intro
+  end
   def index
+    @agents = params[:agents]
   end
   def search
     @lianjia_agent = Agent.lianjia.or( {city: params[:address]}, {district: params[:address]}, {region: params[:address]}, {community: /.*#{params[:address]}.*/} ).order_by(:percentile => -1).first
@@ -13,14 +17,28 @@ class AgentsController < ApplicationController
   end
 
   def asearch
-    @agent = Agent.or( {mobile: params[:arg]}, {name: params[:arg]} ).first
+    @agents = Agent.or( {mobile: params[:arg]}, {name: params[:arg]} )
 
-    respond_to do |format|
-      format.html
+    if @agents.size == 1
+      redirect_to agent_path(@agents.first)
+    else
+      respond_to do |format|
+        format.html
+      end
+    end
+  end
+
+  def update
+    if current_user.agent.update_attributes(params[:agent])
+      flash[:success] = "更新成功！"
+      redirect_to user_path
+    else
+      flash[:error] = "更新失败！"
+      redirect_to user_path
     end
   end
 
   def show
-    @agent = Agent.first
+    @agent = Agent.find(params[:id])
   end
 end

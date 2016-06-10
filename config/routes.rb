@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -9,15 +8,27 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get 'agents/search' => 'agents#search'
-  get 'agents/asearch' => 'agents#asearch'
+  match 'users/sign_in' => 'users#login', via: [:get, :post]
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :agents
+  resources :agents do
+    collection do
+      get 'search'
+      get 'asearch'
+      get 'intro'
+    end
+  end
+  resources :users do
+    collection do
+      post 'sms'
+      get  'logout'
+    end
+    resources :agents
+  end
 
   # Example resource route with options:
   #   resources :products do

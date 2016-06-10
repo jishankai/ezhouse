@@ -1,0 +1,99 @@
+.container#main-container
+  .row.bg_agents[style='margin-top:-20px']
+    .row[style='margin-top:120px']
+      .col-md-offset-3.col-md-6
+        font[color='white']
+          center
+            h1[style='text-shadow:1px 1px black'] 为您创造更好的职业生涯
+            footer 易房好介帮你成为房地产一方豪杰
+            - if current_user.nil?
+              .col-md-offset-4.col-md-4[style='margin-top:12px']
+                a.btn.btn-primary.btn-block.btn-xs[href=users_sign_in_path role='button'] 经纪人注册／登录
+    .row[style='margin:24px auto 224px auto']
+      .col-md-offset-3.col-md-6
+        .input-group
+          input#arg.form-control[type='text' placeholder='姓名，手机号码' required]
+          span.input-group-btn
+            button.btn.btn-success#btn_search[type='button']
+              = icon :search
+  .row[style='margin-top:24px']
+    .col-xs-12.col-md-3.text-center
+      = icon 'comment-o', library: :font_awesome, class: 'fa-4x'
+      h4.text-primary
+        | 建立威望
+      p.text-justify
+        | 积攒声誉：带看房？买卖房？服务好？完事让客户在微信上点个赞！经验都是积少成多。
+    .col-xs-12.col-md-3.text-center
+      = icon 'line-chart', library: :font_awesome, class: 'fa-4x'
+      h4.text-primary
+        | 增加客源
+      p.text-justify
+        | 主动出击：还在迷茫地找客户吗？建立好自己的线上简历，让顾客主动找到勤快的你！
+    .col-xs-12.col-md-3.text-center
+      = icon :refresh, library: :font_awesome, class: 'fa-4x'
+      h4.text-primary
+        | 高转换率
+      p.text-justify
+        | 去伪存真： 李逵还是李贵？客户有时难辨真假，但是直接找经纪人的客户都是做好了交易的准备！
+    .col-xs-12.col-md-3.text-center
+      = icon 'hand-spock-o', library: :font_awesome, class: 'fa-4x'
+      h4.text-primary
+        | 达成交易
+      p.text-justify
+        | 以诚为本：干脆利落，顺利签约。如果客户满意你的服务，自然会介绍朋友做回头客生意。
+  .row
+    hr.devider
+  .row.agents[style="margin-top:24px"]
+    .col-md-4.text-center
+      center
+        = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,w_320/v1/9344/10087809_1453100786.jpg.120x160_tjeswc.jpg', class:'img-circle img-responsive')
+      h4.text-muted
+        | 梁杰
+      h5.text-primary
+        | 链家 北京市 都市馨园店
+      h5
+        | 销售王：107套成交历史
+      h5
+        | 好评王：49条好评100%五星
+      p.text-justify
+        | 客户评价：“ 非常专业，之前在他这成交过房子，办理过程很好，很专业，所有注意事项和准备资料提前告知，流程很熟悉，帮助把控风险，整个过程很舒服值得托付买卖房子的事情。”
+    .col-md-4.text-center
+      center
+        = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,w_320/v1/9344/9370518ce8374a95ab22f5c1cf300923_155X209_idmyha.jpg', class:'img-circle img-responsive')
+      h4.text-muted
+        | 赵鸿飞
+      h5.text-primary
+        | 麦田 北京 当代家园店
+      h5
+        | 销售王：75套成交历史
+      h5
+        | 好评王：60条好评99%五星
+      p.text-justify
+        | 自我评价：“通过近5年的工作经验促成了不少买卖单量也让我获得了不少的荣誉和高评价与赞同。我会用我的真诚与用心，站在买卖双方的角度去考虑问题尽最大的能力去做到公平公正，不偏不向。大家挣得都是辛苦钱不容易，请相信我。”
+    .col-md-4.text-center
+      center
+        = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,w_320/v1/9344/20017170_1452412449.jpg.120x160_ute5f9.jpg', class:'img-circle img-responsive')
+      h4.text-muted
+        | 章雪
+      h5.text-primary
+        | 我爱我家：北京 十里堡店
+      h5
+        | 销售王：125套成交历史
+      h5
+        | 好评王：80条好评99%五星
+      p.text-justify
+        | 客户评价：“章小姐，人特别好，很专业，微笑服务，让人很暖心，买房跟卖房都是个累活儿，但是章小姐陪我们逛了很久。服务真的很周到。小区，个人比较看好东里，居住环境舒适，有幼儿园，得房率高，户型方正。”
+  .row
+    hr.devider
+
+javascript:
+  $('#btn_search').on('click', function () {
+      var $arg = $('#arg').val();
+      window.open('/agents/asearch?arg='+$arg, '_blank');
+  });
+
+  $('input#arg').keypress(function(e){
+    if(e.which == 13){
+      $('#btn_search').click();
+    }
+  });

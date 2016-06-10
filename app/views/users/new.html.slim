@@ -1,0 +1,44 @@
+.container
+  .col-md-offset-4.col-md-4
+    = form_for(@user, layout: :horizontal, url: "/users") do |f|
+      = f.phone_field :mobile, id: 'mobile', use_label: false, autofocus: true, placeholder: "手机号码"
+      = f.text_field :code, use_label: false, autofocus: true, placeholder: "验证码"
+      = f.password_field :password, use_label: false, autocomplete: "off", placeholder: "密码（至少6个字符）"
+      = f.password_field :password_confirmation, use_label: false, autocomplete: "off", placeholder: "确认密码"
+      = f.submit "注册"
+      = link_to "登录", users_sign_in_path
+  .col-md-4
+    = button context: :info, id:"btn_verify", disabled: true, data:{'loading-text':'发送中...'} do
+      | 发送验证码
+
+javascript:
+
+  var regexp=/^1[358]\d{9}$/
+  $('#btn_verify').on('click', function () {
+    var $mobile = $('#mobile').val();
+    $.ajax({
+      type: 'POST',
+      url: '/users/sms',
+      beforeSend: function() {
+        $(this).button('loading')
+      },
+      complete: function() {
+        $(this).button('reset')
+      },
+      data: {mobile:$mobile},
+      dataType: 'json',
+      success: function(response) {
+        alert(JSON.stringify(response));
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert(textStatus+' '+errorThrown);
+      }
+    });
+  });
+  $('input#mobile').keyup(function(){
+    if($('#btn_verify').is(':disabled') && regexp.test($(this).val())) {
+      $('#btn_verify').prop('disabled', false);
+    } else if(!$('#btn_verify').is(':disabled')) {
+      $('#btn_verify').prop('disabled', true);
+    }
+  });

@@ -1,6 +1,6 @@
 .container
   .col-md-8
-    = panel heading: '个人档案' do
+    = panel
       .panel-body
         .col-md-3
           = image_tag(@agent.tx, size:'160x160', class:'img-responsive')
@@ -25,10 +25,14 @@
               = @agent.region
             .col-md-6
               = @agent.community
+          - if current_user
+            .row
+              .col-md-2
+                a.btn.btn-success.btn-block[href=edit_user_path role='button'] 编辑
+          hr.devider
           .row
             .col-md-12
               = @agent.label
-          hr.devider
           .row
             .col-md-3
               | 成交：

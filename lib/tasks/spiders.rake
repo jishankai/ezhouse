@@ -3,8 +3,9 @@ require 'csv'
 
 namespace :spiders do
   desc "获取链家中介信息"
-  task :lfetch, [:url] => :environment do |t, args|
-    i = *(1..100)
+  task :lfetch, [:url, :n] => :environment do |t, args|
+    n = args[:n].to_i
+    i = *(1..n)
     urls = i.map { |x| args[:url] + x.to_s }
     @sheet = []
 
@@ -56,8 +57,9 @@ namespace :spiders do
   end
 
   desc "获取我爱我家中介信息"
-  task :wfetch, [:url] => :environment do |t, args|
-    i = *(1..100)
+  task :wfetch, [:url, :n] => :environment do |t, args|
+    n = args[:n].to_i
+    i = *(1..n)
     urls = i.map { |x| args[:url] + x.to_s }
     @sheet = []
     Anemone.crawl(urls, {:user_agent => "AnemoneCrawler/0.0.1", :delay => 1, :depth_limit => 0}) do |anemone|

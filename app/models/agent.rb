@@ -2,18 +2,23 @@
 class Agent
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Attributes::Dynamic
   #include Mongoid::Search
+
+  belongs_to :user
 
   store_in collection: "agents"
 
   field :tx, type: String
   field :name, type: String
-  field :mobile, type: String
+  field :mobile, type: Integer
   field :company, type: String
   field :city, type: String
   field :district, type: String
   field :region, type: String
   field :percentile, type: Integer
+
+  field :user_id, type: String
 
   # 链家
   field :position, type: String

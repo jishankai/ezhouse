@@ -48,6 +48,9 @@
           .col-xs-3
             | 评论数量：
             = @lianjia_agent.comments
+        .row
+          .col-xs-2.text-justify
+            = link_to '详细资料...', agent_path(@lianjia_agent.id)
     hr.devider
   - if @wawj_agent
     .row
@@ -88,6 +91,9 @@
           .col-xs-3
             | 点击量：
             = @wawj_agent.clicks
+        .row
+          .col-xs-2.text-justify
+            = link_to '详细资料...', agent_path(@wawj_agent.id)
     hr.devider
   - if @maitian_agent
     .row
@@ -140,4 +146,7 @@
           .col-xs-3
             | 关注：
             = @maitian_agent.followers
+        .row
+          .col-xs-2.text-justify
+            = link_to '详细资料...', agent_path(@maitian_agent.id)
     hr.devider
