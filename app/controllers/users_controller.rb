@@ -1,5 +1,9 @@
+# coding: utf-8
 class UsersController < ApplicationController
   def login
+    set_meta_tags title: '登录'
+    set_meta_tags default_meta_tags
+
     if request.post?
       @user = User.find_by mobile: params[:user][:mobile], password: params[:user][:password]
     end
@@ -22,6 +26,9 @@ class UsersController < ApplicationController
   end
 
   def new
+    set_meta_tags title: '注册'
+    set_meta_tags default_meta_tags
+
     @user = User.new
   end
 

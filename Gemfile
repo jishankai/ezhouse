@@ -50,6 +50,13 @@ gem 'bh', '~> 1.3'
 # SMS
 gem 'alidayu_sms'
 
+# SEO
+gem 'meta-tags'
+gem 'sitemap_generator'
+
+# Schedule
+gem 'whenever', :require => false
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

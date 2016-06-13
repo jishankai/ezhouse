@@ -11,7 +11,7 @@ namespace :spiders do
 
     Anemone.crawl(urls, {:user_agent => "AnemoneCrawler/0.0.1", :delay => 1, :depth_limit => 1}) do |anemone|
       #anemone.storage = Anemone::Storage.Redis
-      PATTERN = %r[#{args[:url]+'\d+'}]
+      PATTERN = %r[#{args[:url]+'\\d+'}]
       anemone.focus_crawl do |page|
         page.links.keep_if { |link|
           link.to_s.match(PATTERN)
