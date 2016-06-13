@@ -43,13 +43,14 @@ namespace :spiders do
           row[:rates] = r.search('.high-praise span.num').text
           row[:votes] = r.search('.comment-num').text
           row[:mobile] = r.search('.col-3 h2').text
+          row[:url] = page.url.to_s
           @sheet.push(row)
         end
       end
     end
     f = "/Users/jishankai/Desktop/链家经纪人_utf8.csv"
     CSV.open(f, "wb") do |csv|
-      csv << ["照片", "姓名", "职位", "主营板块", "数据", "标签", "好评率", "评论数量", "电话"]
+      csv << ["照片", "姓名", "职位", "主营板块", "数据", "标签", "好评率", "评论数量", "电话", "链接"]
       @sheet.each do |hash|
         csv << hash.values
       end
@@ -93,6 +94,8 @@ namespace :spiders do
           row[:rates] = r.search('dl.leftfuwusty dd.pinglunxin b').count
           row[:followers] = r.search('dl.leftfuwusty dd.guanzhudu span').first.text
           row[:clicks] = r.search('dl.leftfuwusty dd.guanzhudu span').last.text
+          row[:url] = page.url.to_s
+
           @sheet.push(row)
           #byebug
         end
@@ -100,7 +103,7 @@ namespace :spiders do
     end
     f = "/Users/jishankai/Desktop/我爱我家经纪人.csv"
     CSV.open(f, "wb") do |csv|
-      csv << ["照片", "姓名", "电话", "商圈", "小区", "售", "租", "好评度", "关注度", "点击量"]
+      csv << ["照片", "姓名", "电话", "商圈", "小区", "售", "租", "好评度", "关注度", "点击量", "链接"]
       @sheet.each do |hash|
         csv << hash.values
       end
@@ -142,13 +145,15 @@ namespace :spiders do
           row[:deal] = r.search('.four_title dd span')[2].text
           row[:followers] = r.search('.four_title dd span').last.text
           row[:stars] = r.search('.agent_man dd label').count
+          row[:url] = page.url.to_s
+
           @sheet.push(row)
         end
       end
     end
     f = "/Users/jishankai/Desktop/麦田经纪人.csv"
     CSV.open(f, "wb") do |csv|
-      csv << ["照片", "姓名", "电话", "商圈", "售", "租", "标签", "从业年限", "客户数", "近期成交", "粉丝数", "星级"]
+      csv << ["照片", "姓名", "电话", "商圈", "售", "租", "标签", "从业年限", "客户数", "近期成交", "粉丝数", "星级", "链接"]
       @sheet.each do |hash|
         csv << hash.values
       end

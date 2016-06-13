@@ -53,6 +53,7 @@ gem 'alidayu_sms'
 # SEO
 gem 'meta-tags'
 gem 'sitemap_generator'
+gem 'mongoid-slug'
 
 # Schedule
 gem 'whenever', :require => false
