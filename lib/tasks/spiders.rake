@@ -43,7 +43,8 @@ namespace :spiders do
           row[:rates] = r.search('.high-praise span.num').text
           row[:votes] = r.search('.comment-num').text
           row[:mobile] = r.search('.col-3 h2').text
-          row[:url] = page.url.to_s
+          row[:url] = r.search('.agent-name a').attribute('href').value
+          #byebug
           @sheet.push(row)
         end
       end
@@ -94,7 +95,6 @@ namespace :spiders do
           row[:rates] = r.search('dl.leftfuwusty dd.pinglunxin b').count
           row[:followers] = r.search('dl.leftfuwusty dd.guanzhudu span').first.text
           row[:clicks] = r.search('dl.leftfuwusty dd.guanzhudu span').last.text
-          row[:url] = page.url.to_s
 
           @sheet.push(row)
           #byebug
@@ -103,7 +103,7 @@ namespace :spiders do
     end
     f = "/Users/jishankai/Desktop/我爱我家经纪人.csv"
     CSV.open(f, "wb") do |csv|
-      csv << ["照片", "姓名", "电话", "商圈", "小区", "售", "租", "好评度", "关注度", "点击量", "链接"]
+      csv << ["照片", "姓名", "电话", "商圈", "小区", "售", "租", "好评度", "关注度", "点击量"]
       @sheet.each do |hash|
         csv << hash.values
       end
@@ -188,15 +188,17 @@ namespace :spiders do
     #     s.push(u)
     #   end
     # end
-    f = "/Users/jishankai/Desktop/链家经纪人_链接.csv"
+    f = "/Users/jishankai/Desktop/" + args[:url] + ".csv"
     # CSV.open(f, "wb") do |csv|
     #   s.each do |arr|
     #     csv << arr
     #   end
     # end
 
-    arr_of_arrs = CSV.read(f)
-    urls_of_agents = arr_of_arrs.flatten(1)
+    arr_of_arrs = CSV.read(f, :headers=>true)
+    # urls_of_agents = arr_of_arrs.flatten(1)
+    urls_of_agents = arr_of_arrs['链接']
+    byebug
     @sheet = []
     f = "/Users/jishankai/Desktop/链家经纪人_手机.csv"
     # CSV.open(f, "wb") do |csv|
