@@ -1,15 +1,22 @@
-.container
-  .col-md-offset-4.col-md-4
-    = form_for(@user, layout: :horizontal, url: "/users") do |f|
-      = f.phone_field :mobile, id: 'mobile', use_label: false, autofocus: true, placeholder: "手机号码"
-      = f.text_field :code, use_label: false, autofocus: true, placeholder: "验证码"
-      = f.password_field :password, use_label: false, autocomplete: "off", placeholder: "密码（至少6个字符）"
-      = f.password_field :password_confirmation, use_label: false, autocomplete: "off", placeholder: "确认密码"
-      = f.submit "注册"
+= form_for(@user, layout: :basic, url: "/users") do |f|
+  center
+    .form-group
+      .input-group
+        input.form-control#mobile[name='mobile' placeholder='手机号码' autofocus=true]
+        span.input-group-btn
+          = button context: :info, id:"btn_verify", disabled: true, data:{'loading-text':'发送中...'} do
+            | 发送验证码
+  center
+    = f.text_field :code, use_label: false, autofocus: true, placeholder: "验证码"
+  center
+    = f.password_field :password, use_label: false, autocomplete: "off", placeholder: "密码（至少6个字符）"
+  center
+    = f.password_field :password_confirmation, use_label: false, autocomplete: "off", placeholder: "确认密码"
+  center
+    = f.submit "注册", class:'btn-success btn-block'
+  .footer[style='margin:2% auto']
+    p.pull-right
       = link_to "登录", users_sign_in_path
-  .col-md-4
-    = button context: :info, id:"btn_verify", disabled: true, data:{'loading-text':'发送中...'} do
-      | 发送验证码
 
 javascript:
 
