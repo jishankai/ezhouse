@@ -3,7 +3,7 @@ require 'csv'
 
 namespace :spiders do
   desc "获取链家中介信息"
-  task :lfetch, [:url, :n] => :environment do |t, args|
+  task :lfetch, [:url, :n, :region] => :environment do |t, args|
     n = args[:n].to_i
     i = *(1..n)
     urls = i.map { |x| args[:url] + x.to_s }
@@ -49,7 +49,7 @@ namespace :spiders do
         end
       end
     end
-    f = "/Users/jishankai/Desktop/链家经纪人_utf8.csv"
+    f = "/Users/jishankai/Desktop/链家经纪人_"+args[:region]+"_"+@sheet.size.to_s+"_utf8.csv"
     CSV.open(f, "wb") do |csv|
       csv << ["照片", "姓名", "职位", "主营板块", "数据", "标签", "好评率", "评论数量", "电话", "链接"]
       @sheet.each do |hash|
@@ -59,7 +59,7 @@ namespace :spiders do
   end
 
   desc "获取我爱我家中介信息"
-  task :wfetch, [:url, :n] => :environment do |t, args|
+  task :wfetch, [:url, :n, :region] => :environment do |t, args|
     n = args[:n].to_i
     i = *(1..n)
     urls = i.map { |x| args[:url] + x.to_s }
@@ -95,15 +95,16 @@ namespace :spiders do
           row[:rates] = r.search('dl.leftfuwusty dd.pinglunxin b').count
           row[:followers] = r.search('dl.leftfuwusty dd.guanzhudu span').first.text
           row[:clicks] = r.search('dl.leftfuwusty dd.guanzhudu span').last.text
+          row[:url] = r.search('dl.leftfuwusty dt a').attribute('href').value
 
           @sheet.push(row)
           #byebug
         end
       end
     end
-    f = "/Users/jishankai/Desktop/我爱我家经纪人.csv"
+    f = "~/Desktop/我爱我家经纪人_"+args[:region]+"_"+@sheet.size.to_s+"_utf8.csv"
     CSV.open(f, "wb") do |csv|
-      csv << ["照片", "姓名", "电话", "商圈", "小区", "售", "租", "好评度", "关注度", "点击量"]
+      csv << ["照片", "姓名", "电话", "商圈", "小区", "售", "租", "好评度", "关注度", "点击量", "链接"]
       @sheet.each do |hash|
         csv << hash.values
       end
@@ -145,7 +146,6 @@ namespace :spiders do
           row[:deal] = r.search('.four_title dd span')[2].text
           row[:followers] = r.search('.four_title dd span').last.text
           row[:stars] = r.search('.agent_man dd label').count
-          row[:url] = page.url.to_s
 
           @sheet.push(row)
         end
@@ -153,7 +153,7 @@ namespace :spiders do
     end
     f = "/Users/jishankai/Desktop/麦田经纪人.csv"
     CSV.open(f, "wb") do |csv|
-      csv << ["照片", "姓名", "电话", "商圈", "售", "租", "标签", "从业年限", "客户数", "近期成交", "粉丝数", "星级", "链接"]
+      csv << ["照片", "姓名", "电话", "商圈", "售", "租", "标签", "从业年限", "客户数", "近期成交", "粉丝数", "星级"]
       @sheet.each do |hash|
         csv << hash.values
       end
@@ -162,10 +162,12 @@ namespace :spiders do
 
   desc "删除中介信息"
   task erase: :environment do
+    puts `ponysay ERASE`
   end
 
   desc "更新链家中介信息"
-  task :lupdate, [:url] => :environment do |t, args|
+  task :lupdate, [:url, :split] => :environment do |t, args|
+    AGENTPATTERN = %r[http://\d+.dianpu.lianjia.com]
     # i = *(1..100)
     # urls = i.map { |x| args[:url] + x.to_s }
     # s = []
@@ -188,55 +190,71 @@ namespace :spiders do
     #     s.push(u)
     #   end
     # end
-    f = "/Users/jishankai/Desktop/" + args[:url] + ".csv"
-    # CSV.open(f, "wb") do |csv|
-    #   s.each do |arr|
-    #     csv << arr
-    #   end
-    # end
+    begin
+      f = "/Users/jishankai/Desktop/ehero/链家各地经纪人/链家经纪人_" + args[:url] + ".csv"
+      # CSV.open(f, "wb") do |csv|
+      #   s.each do |arr|
+      #     csv << arr
+      #   end
+      # end
 
-    arr_of_arrs = CSV.read(f, :headers=>true)
-    # urls_of_agents = arr_of_arrs.flatten(1)
-    urls_of_agents = arr_of_arrs['链接']
-    byebug
-    @sheet = []
-    f = "/Users/jishankai/Desktop/链家经纪人_手机.csv"
-    # CSV.open(f, "wb") do |csv|
-    #   csv << ["姓名", "手机", "小区", "链接"]
-    # end
-    # byebug
-    Anemone.crawl(urls_of_agents, {:user_agent => "AnemoneCrawler/0.0.1", :delay => 1, :depth_limit => 0, :discard_page_bodies => true}) do |anemone|
-      #anemone.storage = Anemone::Storage.Redis
-      AGENTPATTERN = %r[http://\d+.dianpu.lianjia.com]
-      anemone.focus_crawl do |page|
-        page.links.keep_if { |link|
-          link.to_s.match(AGENTPATTERN)
-        }
+      arr_of_arrs = CSV.read(f, :headers=>true)
+      # urls_of_agents = arr_of_arrs.flatten(1)
+
+      f = "/Users/jishankai/Desktop/ehero/链家各地经纪人/链家经纪人_手机_"+args[:url]+".csv"
+      if File.exists?(f)
+        offset = `wc -l #{f}`.to_i
+      else
+        offset = 0
       end
-      i = 0
-      anemone.on_every_page do |page|
-        puts page.url
-        row = {}
-        row[:name] = page.doc.search('.agent-name a h1').text
-        row[:mobile] = page.doc.at('title').inner_html.gsub!(/\D/, "")
-        row[:community] = ""
-        page.doc.search('.info_bottom p').last.search('a').each do |r|
-          row[:community] += r.text
-          row[:community] += " "
+      urls_of_agents = arr_of_arrs['链接'].drop(offset)
+      @sheet = []
+
+      # CSV.open(f, "wb") do |csv|
+      #   csv << ["姓名", "手机", "小区", "链接"]
+      # end
+      # byebug
+      Anemone.crawl(urls_of_agents, {:user_agent => "AnemoneCrawler/0.0.1", :delay => 1, :depth_limit => 0, :discard_page_bodies => true}) do |anemone|
+        #anemone.storage = Anemone::Storage.Redis(:url=>'redis://127.0.0.1:6379/2/anemone')
+        anemone.focus_crawl do |page|
+          page.links.keep_if { |link|
+            link.to_s.match(AGENTPATTERN)
+          }
         end
-        row[:url] = page.url.to_s
-        # byebug
-        @sheet.push(row)
-        i += 1
-        CSV.open(f, "ab") do |csv|
-          @sheet.each do |hash|
-            csv << hash.values
+        i = 0
+        anemone.on_every_page do |page|
+          puts page.url
+          @url = page.url
+          row = {}
+          row[:name] = page.doc.xpath('/html/body/div[6]/div/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/h1').text
+          row[:mobile] = page.doc.xpath('/html/head/title').text.gsub!(/\D/, "")
+          raise "302" if row[:mobile] == "302"
+          #row[:name] = page.doc.search('.agent-name a h1').text
+          #row[:mobile] = page.doc.at('title').inner_html.gsub!(/\D/, "")
+          row[:community] = ""
+          #page.doc.search('.info_bottom p').last.search('a').each do |r|
+          page.doc.xpath('/html/body/div[6]/div/div[1]/div[1]/div[2]/p[3]').search('a').each do |r|
+            row[:community] += r.text
+            row[:community] += " "
           end
-          @sheet.clear
-        end if i % 30 == 0
+          row[:url] = page.url.to_s
+          # byebug
+          @sheet.push(row)
+          i += 1
+          CSV.open(f, "ab") do |csv|
+            @sheet.each do |hash|
+              csv << hash.values
+            end
+            @sheet.clear
+          end if i % args[:split].to_i == 0 or i == urls_of_agents.size
+        end
       end
+    rescue => e
+      Rails.logger.error { "#{@url} #{e.message} \n" }
+      retry
     end
 
+    puts `ponysay #{args[:url]} GAMEOVER`
   end
 
 end

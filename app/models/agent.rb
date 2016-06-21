@@ -2,6 +2,7 @@
 class Agent
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Slug
   include Mongoid::Attributes::Dynamic
   #include Mongoid::Search
 
@@ -17,6 +18,8 @@ class Agent
   field :district, type: String
   field :region, type: String
   field :percentile, type: Integer
+
+  slug :name
 
   field :user_id, type: String
 
@@ -48,4 +51,10 @@ class Agent
   scope :districted, ->(district){ where(district: district) }
 
   #search_in :city, :district, :region, :community
+
+  #create a block that takes the current object as an argument
+  #and returns the slug.
+  slug do |cur_object|
+    cur_object.slug_builder.to_url
+  end
 end
