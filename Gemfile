@@ -24,6 +24,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'autoprefixer-rails'
+gem 'bootstrap-select-rails'
 
 # HTML&CSS
 gem 'html2slim'

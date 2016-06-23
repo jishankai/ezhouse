@@ -52,6 +52,7 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-select-rails (1.6.3)
     bson (4.1.1)
     bson_ext (1.5.1)
     builder (3.2.2)
@@ -231,6 +232,7 @@ DEPENDENCIES
   autoprefixer-rails
   bh (~> 1.3)
   bootstrap-sass (~> 3.3.0)
+  bootstrap-select-rails
   bson_ext
   byebug
   coffee-rails (~> 4.1.0)

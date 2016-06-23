@@ -10,11 +10,10 @@ html
   body
     = navbar position: :static do
       = vertical do
-        = image_tag('brand.png', size:'80x32', style:'margin:9px auto')
+        = image_tag('brand.png', size:'32x32', style:'margin:9px auto')
       = horizontal do
         = nav class: 'navbar-left' do
           = link_to ('#') do
-            = icon 'map-marker', library: :font_awesome
             |  北京
           / li.dropdown[role="presentation"]
           /   a.dropdown-toggle[data-target="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"]

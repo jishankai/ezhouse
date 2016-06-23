@@ -1,147 +1,44 @@
 .container#main-container
-  - case @agent ? @agent.company : ''
-    - when '链家'
-      .row
-        center.col-xs-3
-          = image_tag(@agent.tx, size:'160x160', class:'img-responsive')
-        .col-xs-9
-          .row
-            .col-xs-2.text-justify
-              | 姓名：
-              = @agent.name
-            .col-xs-3.text-justify
-              | 联系电话：
-              = @agent.mobile
-            .col-xs-offset-1.col-xs-3.text-justify
-              | 公司：
-              = @agent.company
-            .col-xs-3.text-justify
-              | 职位：
-              = @agent.position
-          .row
-            .col-xs-2.text-justify
-              | 地区：
-              = @agent.city + ' ' + @agent.district
-            .col-xs-2.text-justify
-              | 板块：
-              = @agent.region
-            .col-xs-8.text-justify
-              | 小区：
-              = @agent.community
-          .row
-            .col-xs-2.text-justify
-              | 成交：
-              = @agent.commissions
-            .col-xs-2.text-justify
-              | 委托：
-              = @agent.transactions
-            .col-xs-2.text-justify
-              | 30天带看：
-              = @agent.visits
-          .row
-            .col-xs-6
-              | 标签：
-              = @agent.label
-            .col-xs-3
-              | 好评率：
-              = @agent.rates
-              | %
-            .col-xs-3
-              | 评论数量：
-              = @agent.comments
-      hr.devider
-    - when '我爱我家'
-      .row
-        center.col-xs-3
-          = image_tag(@agent.tx, size:'160x160', class:'img-responsive')
-        .col-xs-9
-          .row
-            .col-xs-2.text-justify
-              | 姓名：
-              = @agent.name
-            .col-xs-3.text-justify
-              | 联系电话：
-              = @agent.mobile
-            .col-xs-offset-1.col-xs-3.text-justify
-              | 公司：
-              = @agent.company
-          .row
-            .col-xs-2.text-justify
-              | 地区：
-              = @agent.city + ' ' + @agent.district
-            .col-xs-2.text-justify
-              | 板块：
-              = @agent.region
-            .col-xs-8.text-justify
-              | 小区：
-              = @agent.community
-          .row
-            .col-xs-2.text-justify
-              | 售房：
-              = @agent.sales
-            .col-xs-2.text-justify
-              | 租房：
-              = @agent.rents
-          .row
-            .col-xs-6
-              | 关注：
-              = @agent.followers
-            .col-xs-3
-              | 点击量：
-              = @agent.clicks
-      hr.devider
-    - when '麦田'
-      .row
-        center.col-xs-3
-          = image_tag(@agent.tx, size:'160x160', class:'img-responsive')
-        .col-xs-9
-          .row
-            .col-xs-2.text-justify
-              | 姓名：
-              = @agent.name
-            .col-xs-3.text-justify
-              | 联系电话：
-              = @agent.mobile
-            .col-xs-offset-1.col-xs-3.text-justify
-              | 公司：
-              = @agent.company
-          .row
-            .col-xs-2.text-justify
-              | 地区：
-              = @agent.city + ' ' + @agent.district
-            .col-xs-2.text-justify
-              | 板块：
-              = @agent.region
-            .col-xs-8.text-justify
-              | 小区：
-              = @agent.community
-          .row
-            .col-xs-2.text-justify
-              | 成交：
-              = @agent.commissions
-            .col-xs-2.text-justify
-              | 待售：
-              = @agent.sales
-            .col-xs-2.text-justify
-              | 待租：
-              = @agent.rents
-            .col-xs-2.text-justify
-              | 从业年限：
-              = @agent.career
-            .col-xs-2.text-justify
-              | 顾客数：
-              = @agent.customers
-          .row
-            .col-xs-6
-              | 标签：
-              = @agent.label
-            .col-xs-3
-              | 星级：
-              = @agent.stars
-            .col-xs-3
-              | 关注：
-              = @agent.followers
-      hr.devider
-    - else
-      center.row
-        h4.text-danger 未匹配到任何结果！
+  - @agents.each do |agent|
+    .row.card
+      center.col-xs-3
+        = image_tag(agent.tx, size:'160x160', class:'img-responsive')
+      .col-xs-3.text-justify
+        .row
+          | 姓名：
+          = agent.name
+        .row
+          | 职位：
+          = agent.position
+        .row
+          | 从业：
+          = agent.career
+          | 年
+        .row
+          | 公司：
+          = agent.company
+        .row
+          | 地区：
+          = agent.city + ' ' + agent.district
+        .row
+          | 板块：
+          = agent.region
+        .row
+          | 小区：
+          = agent.community
+      .col-xs-3.text-justify
+        .row[style="margin:20% auto"]
+          | 好评率：
+          = agent.rates
+          | %
+        .row[style="margin:20% auto"]
+          | 评论数量：
+          = agent.comments
+      .col-xs-3.text-justify
+        .row[style="margin:20% auto"]
+          = agent.mobile
+        .row[style="margin:20% auto"]
+          = link_to '详细资料...', agent_path(agent.id)
+  - if @agents.nil?
+    center.row
+      h4.text-danger 未匹配到任何结果！
