@@ -237,6 +237,11 @@ namespace :spiders do
             row[:community] += r.text
             row[:community] += " "
           end
+          if (page.doc.xpath('/html/body/div[6]/div/div[1]/div[2]/div/ul/li[4]').nil?)
+            row[:type] = '租赁'
+          else
+            row[:type] = '买卖'
+          end
           row[:url] = page.url.to_s
           # byebug
           @sheet.push(row)
