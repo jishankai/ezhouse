@@ -1,44 +1,45 @@
 .container#main-container
-  - @agents.each do |agent|
-    .row.card
-      center.col-xs-3
-        = image_tag(agent.tx, size:'160x160', class:'img-responsive')
-      .col-xs-3.text-justify
-        .row
-          | 姓名：
-          = agent.name
-        .row
-          | 职位：
-          = agent.position
-        .row
-          | 从业：
-          = agent.career
-          | 年
-        .row
-          | 公司：
-          = agent.company
-        .row
-          | 地区：
-          = agent.city + ' ' + agent.district
-        .row
-          | 板块：
-          = agent.region
-        .row
-          | 小区：
-          = agent.community
-      .col-xs-3.text-justify
-        .row[style="margin:20% auto"]
-          | 好评率：
-          = agent.rates
-          | %
-        .row[style="margin:20% auto"]
-          | 评论数量：
-          = agent.comments
-      .col-xs-3.text-justify
-        .row[style="margin:20% auto"]
-          = agent.mobile
-        .row[style="margin:20% auto"]
-          = link_to '详细资料...', agent_path(agent.id)
   - if @agents.nil?
     center.row
       h4.text-danger 未匹配到任何结果！
+  - else
+    - @agents.each do |agent|
+      .row.card
+        center.col-xs-3
+          = image_tag(agent.tx, size:'160x160', class:'img-responsive')
+        .col-xs-3.text-justify
+          .row
+            | 姓名：
+            = agent.name
+          .row
+            | 职位：
+            = agent.position
+          .row
+            | 从业：
+            = agent.career
+            | 年
+          .row
+            | 公司：
+            = agent.company
+          .row
+            | 地区：
+            = agent.city + ' ' + agent.district
+          .row
+            | 板块：
+            = agent.region
+          .row
+            | 小区：
+            = agent.community
+        .col-xs-3.text-justify
+          .row[style="margin:20% auto"]
+            | 好评率：
+            = agent.rates
+            | %
+          .row[style="margin:20% auto"]
+            | 评论数量：
+            = agent.comments
+        .col-xs-3.text-justify
+          .row[style="margin:20% auto"]
+            = agent.mobile
+          .row[style="margin:20% auto"]
+            = link_to '详细资料...', agent_path(agent.id)

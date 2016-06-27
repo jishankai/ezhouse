@@ -15,7 +15,7 @@ class AgentsController < ApplicationController
     wawj_agent = Agent.wawj.or( {city: params[:address]}, {district: params[:address]}, {region: params[:address]}, {community: /.*#{params[:address]}.*/} ).order_by(:percentile => -1).first
     maitian_agent = Agent.maitian.or( {city: params[:address]}, {district: params[:address]}, {region: params[:address]}, {community: /.*#{params[:address]}.*/} ).order_by(:percentile => -1).first
 
-    @agents = [lianjia_agent, wawj_agent, maitian_agent]
+    @agents = [lianjia_agent, wawj_agent, maitian_agent].compact
 
     respond_to do |format|
       format.html
