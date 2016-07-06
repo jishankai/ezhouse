@@ -31,6 +31,9 @@ Rails.application.routes.draw do
     resources :agents
   end
 
+  resources :helper do
+  end
+
   # Example resource route with options:
   #   resources :products do
   #     member do
