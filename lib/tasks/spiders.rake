@@ -102,7 +102,7 @@ namespace :spiders do
         end
       end
     end
-    f = "~/Desktop/我爱我家经纪人_"+args[:region]+"_"+@sheet.size.to_s+"_utf8.csv"
+    f = "/Users/jishankai/Desktop/我爱我家经纪人_"+args[:region]+"_"+@sheet.size.to_s+".csv"
     CSV.open(f, "wb") do |csv|
       csv << ["照片", "姓名", "电话", "商圈", "小区", "售", "租", "好评度", "关注度", "点击量", "链接"]
       @sheet.each do |hash|
@@ -111,8 +111,8 @@ namespace :spiders do
     end
   end
 
-  desc "获取麦田中介信息"
-  task :mfetch, [:url, :n] => :environment do |t, args|
+  desc "获取我爱我家中介信息"
+  task :wfetch2, [:url, :n, :region] => :environment do |t, args|
     n = args[:n].to_i
     i = *(1..n)
     urls = i.map { |x| args[:url] + x.to_s }
@@ -128,36 +128,180 @@ namespace :spiders do
 
       anemone.on_every_page do |page|
         puts page.url
-        page.doc.search('.list_wrap .clearfix').each do |r|
+        page.doc.search('ul.agentlist').each do |r|
           row = {}
-          row[:image] = r.search('.agent_man dt img').attribute('src').value
-          row[:name] = r.search('.agent_man ol li.top a').text
-          row[:mobile] = r.search('.agent_man ol li.top kbd').text
-          row[:plate] = r.search('.agent_man ol li')[1].text.gsub!(/\s/, " ")
-          row[:sale] = r.search('.agent_man ol li')[1].search('a').first.text
-          row[:rent] = r.search('.agent_man ol li')[1].search('a').last.text
+          row[:image] = r.search('li.agent-left img').attribute('src').value
+          row[:name] = r.search('li.agent-content li.agentname a').text
+          row[:mobile] = r.search('li.phoneno p').text
+          row[:plate] = ""
+          r.search('li.shangquan').first.search('a').each do |p|
+            row[:plate] += p.text
+            row[:plate] += " "
+          end
+          row[:community] = ""
+          r.search('li.shuxixq a').each do |c|
+            row[:community] += c.text
+            row[:community] += " "
+          end
+          row[:sale] = r.search('li.agent-content ul li.f-neme').text
+          #row[:rent] = r.search('dl.leftfuwusty dd.shouzu span.fcf0').text
+          row[:rates] = r.search('li.comments img').count
+          row[:followers] = r.search('li.shangquan span').first.text
+          row[:clicks] = r.search('li.shangquan span').last.text
+          row[:url] = r.search('li.agent-content li.agentname a').attribute('href').value
+
+          @sheet.push(row)
+          #byebug
+        end
+      end
+    end
+    f = "/Users/jishankai/Desktop/我爱我家经纪人_"+args[:region]+"_"+@sheet.size.to_s+".csv"
+    CSV.open(f, "wb") do |csv|
+      csv << ["照片", "姓名", "电话", "商圈", "小区", "售租", "好评度", "关注度", "点击量", "链接"]
+      @sheet.each do |hash|
+        csv << hash.values
+      end
+    end
+  end
+
+  desc "获取麦田中介信息"
+  task :mfetch, [:url, :n, :region] => :environment do |t, args|
+    n = args[:n].to_i
+    i = *(1..n)
+    urls = i.map { |x| args[:url] + x.to_s }
+    @sheet = []
+    Anemone.crawl(urls, {:user_agent => "AnemoneCrawler/0.0.1", :delay => 1, :depth_limit => 0}) do |anemone|
+      #anemone.storage = Anemone::Storage.Redis
+      PATTERN = %r[#{args[:url]+"\\d+"}]
+      anemone.focus_crawl do |page|
+        page.links.keep_if { |link|
+          link.to_s.match(PATTERN)
+        }
+      end
+
+      anemone.on_every_page do |page|
+        puts page.url
+        page.doc.search('ul.bj_agent_list li.clearfix').each do |r|
+          row = {}
+          row[:image] = r.search('img').attribute('src').value
+          row[:name] = r.search('.sale_points_author h6 a').text
+          row[:mobile] = r.search('.sale_points_author h6 span').text
+          row[:plate] = r.search('.sale_points_author p').first.search('span').text.gsub!(/\s/, "")
+          row[:sale] = r.search('.sale_points_author p')[1].search('span a').first.text
+          row[:rent] = r.search('.sale_points_author p')[1].search('span a').last.text
           row[:label] = ""
-          r.search('.agent_man ol li.characteristics label span').each do |l|
+          r.search('dl dd mark').each do |l|
             row[:label] += l.text
             row[:label] += " "
           end
-          row[:years] = r.search('.four_title dd span').first.text
-          row[:customers] = r.search('.four_title dd span')[1].text
-          row[:deal] = r.search('.four_title dd span')[2].text
-          row[:followers] = r.search('.four_title dd span').last.text
-          row[:stars] = r.search('.agent_man dd label').count
+          row[:years] = r.search('.sale_points_list p span').first.text
+          row[:customers] = r.search('.sale_points_list p span')[1].text
+          row[:deal] = r.search('.sale_points_list p span')[2].text
+          row[:followers] = r.search('.sale_points_list p span').last.text
+          row[:stars] = r.search('.agent_star_box em.agent_star_light').count
 
           @sheet.push(row)
         end
       end
     end
-    f = "/Users/jishankai/Desktop/麦田经纪人.csv"
+    f = "/Users/jishankai/Desktop/ehero/麦田经纪人_"+args[:region]+"_"+@sheet.size.to_s+".csv"
     CSV.open(f, "wb") do |csv|
       csv << ["照片", "姓名", "电话", "商圈", "售", "租", "标签", "从业年限", "客户数", "近期成交", "粉丝数", "星级"]
       @sheet.each do |hash|
         csv << hash.values
       end
     end
+
+    puts `ponysay #{args[:url]} GAMEOVER`
+  end
+
+  desc "获取麦田中介信息"
+  task :mfetch2, [:url, :n, :region] => :environment do |t, args|
+    n = args[:n].to_i
+    i = *(1..n)
+    urls = i.map { |x| args[:url] + x.to_s }
+    @sheet = []
+    Anemone.crawl(urls, {:user_agent => "AnemoneCrawler/0.0.1", :delay => 1, :depth_limit => 0}) do |anemone|
+      #anemone.storage = Anemone::Storage.Redis
+      PATTERN = %r[#{args[:url]+"\\d+"}]
+      anemone.focus_crawl do |page|
+        page.links.keep_if { |link|
+          link.to_s.match(PATTERN)
+        }
+      end
+
+      anemone.on_every_page do |page|
+        puts page.url
+        page.doc.search('.list_wrap li.clearfix').each do |r|
+          row = {}
+          row[:image] = r.search('img').attribute('src').value
+          row[:name] = r.search('.sale_points_author h6 a').text
+          row[:mobile] = r.search('.sale_points_author h6 span').text
+          row[:plate] = r.search('.sale_points_author p').first.search('span').last.text.gsub!(/\s/, "")
+          row[:community] = r.search('.sale_points_author p')[1].search('span').last.text
+          row[:label] = ""
+          r.search('dl dd mark').each do |l|
+            row[:label] += l.text
+            row[:label] += " "
+          end
+          row[:sale] = r.search('.sale_points_list p span').first.text
+          row[:visits] = r.search('.sale_points_list p span')[1].text
+          row[:followers] = r.search('.sale_points_list p span').last.text
+          row[:stars] = r.search('.agent_star_box em.agent_star_light').count
+          @sheet.push(row)
+        end
+      end
+    end
+    f = "/Users/jishankai/Desktop/ehero/麦田经纪人_"+args[:region]+"_"+@sheet.size.to_s+".csv"
+    CSV.open(f, "wb") do |csv|
+      csv << ["照片", "姓名", "电话", "商圈", "小区", "标签", "待售", "近期带看", "粉丝数", "星级"]
+      @sheet.each do |hash|
+        csv << hash.values
+      end
+    end
+
+    puts `ponysay #{args[:url]} GAMEOVER`
+  end
+
+  desc "获取21世纪不动产中介信息"
+  task :cfetch, [:url, :n, :region] => :environment do |t, args|
+    n = args[:n].to_i
+    i = *(1..n)
+    urls = i.map { |x| args[:url] + x.to_s }
+    @sheet = []
+    Anemone.crawl(urls, {:user_agent => "AnemoneCrawler/0.0.1", :delay => 1, :depth_limit => 0}) do |anemone|
+      #anemone.storage = Anemone::Storage.Redis
+      PATTERN = %r[#{args[:url]+"\\d+"}]
+      anemone.focus_crawl do |page|
+        page.links.keep_if { |link|
+          link.to_s.match(PATTERN)
+        }
+      end
+
+      anemone.on_every_page do |page|
+        puts page.url
+        page.doc.search('.agent_list li.cur').each do |r|
+          row = {}
+          row[:image] = r.search('.agent_img img').attribute('src').value
+          row[:name] = r.search('.agent_txt .agent_name b a').text
+          row[:mobile] = r.search('.agent_txt p span').text
+          row[:shop] = r.search('.agent_txt p').first.text
+          row[:plate] = r.search('.agent_txt p a').text
+          row[:stars] = r.search('.agent_txt .agent_name img').attribute('src').value
+          row[:url] = r.search('.agent_txt .agent_name b a').attribute('href').value
+          @sheet.push(row)
+        end
+      end
+    end
+    f = "/Users/jishankai/Desktop/ehero/21世纪经纪人_"+args[:region]+"_"+@sheet.size.to_s+".csv"
+    CSV.open(f, "wb") do |csv|
+      csv << ["照片", "姓名", "电话", "店名", "地区", "星级", "链接"]
+      @sheet.each do |hash|
+        csv << hash.values
+      end
+    end
+
+    puts `ponysay #{args[:url]} GAMEOVER`
   end
 
   desc "删除中介信息"

@@ -57,8 +57,18 @@ class UsersController < ApplicationController
 
   def sms
     mobile = params[:mobile]
-    # result = Alidayu::Sms.send_code_for_sign_up(mobile, {code: '1314520'}, '')
 
+    options = {
+      mobiles: '18611715161',
+      sign_name: '注册验证',
+      template_code: 'SMS_11440195',
+      params: {
+        code: '1220',
+        product: '易房好介'
+      }
+    }
+
+    r = Alidayu::Sms.send(options)
     respond_to do |format|
       format.html
       format.json { render json: {'result' => 1 }}

@@ -49,7 +49,11 @@ gem 'anemone'
 gem 'bh', '~> 1.3'
 
 # SMS
-gem 'alidayu_sms'
+gem 'alidayu_api', require: "alidayu"
+# Wechat
+gem 'wechat'
+# DoubleCall
+gem 'yuntongxun_api'
 
 # SEO
 gem 'meta-tags'
@@ -58,6 +62,9 @@ gem 'mongoid-slug'
 
 # Schedule
 gem 'whenever', :require => false
+
+# Settings
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
