@@ -1,5 +1,7 @@
 # coding: utf-8
 class AgentsController < ApplicationController
+  def_param_group :agent do
+  end
   def intro
     set_meta_tags title: '经纪人'
     set_meta_tags default_meta_tags
@@ -7,6 +9,8 @@ class AgentsController < ApplicationController
   def index
     @agents = params[:agents]
   end
+  api :GET, "/agents/search", "搜索地区"
+  param :address, String
   def search
     set_meta_tags title: '推荐经纪人'
     set_meta_tags default_meta_tags
@@ -22,6 +26,8 @@ class AgentsController < ApplicationController
     end
   end
 
+  api :GET, "/agents/asearch", "搜索经纪人"
+  param :arg, String
   def asearch
     set_meta_tags title: '搜索经纪人'
     set_meta_tags default_meta_tags
@@ -37,6 +43,7 @@ class AgentsController < ApplicationController
     end
   end
 
+  api!
   def update
     if current_user.agent.update_attributes(params[:agent])
       flash[:success] = "更新成功！"
@@ -47,6 +54,7 @@ class AgentsController < ApplicationController
     end
   end
 
+  api!
   def show
     set_meta_tags title: '经纪人资料'
     set_meta_tags default_meta_tags

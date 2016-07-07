@@ -1,5 +1,14 @@
 # coding: utf-8
 class UsersController < ApplicationController
+  def_param_group :user do
+    param :user, Hash do
+      param :mobile, String
+      param :password, String
+    end
+  end
+
+  api :POST, "/users/login", "登录"
+  param_group :user
   def login
     set_meta_tags title: '登录'
     set_meta_tags default_meta_tags
@@ -17,6 +26,7 @@ class UsersController < ApplicationController
     end
   end
 
+  api!
   def logout
     if session[:user_id]
       session[:user_id] = nil
@@ -43,7 +53,8 @@ class UsersController < ApplicationController
       end
     end
   end
-
+  api :POST, "/users/create", "创建用户"
+  param_group :user
   def create
     @user = User.new(user_params)
     @user.save

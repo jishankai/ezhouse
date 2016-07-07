@@ -1,0 +1,33 @@
+# More option see https://github.com/Eric-Guo/wechat#menu-create
+button:
+ -
+  type: "view"
+  name: "中介搜索"
+  url:  "http://ehero.cc"
+ -
+  type: "view"
+  name: "免扰电话"
+  url:  "http://ehero.cc/helper"
+ -
+  name: "其他功能"
+  sub_button:
+   -
+    type: "click"
+    name: "锦囊"
+    key:  "GUIDES"
+   -
+    type: "click"
+    name: "微信群"
+    key:  "GROUPS"
+   -
+    type: "view"
+    name: "评价"
+    url:  "http://ehero.cc/comment"
+   -
+    type: "click"
+    name: "帮助"
+    key:  "HELP"
+   -
+    type: "click"
+    name: "关于我们"
+    key:  "ABOUTUS"
