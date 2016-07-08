@@ -69,6 +69,9 @@ gem 'figaro'
 # Documention
 gem 'apipie-rails'
 
+# Analytics
+gem 'google-analytics-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
