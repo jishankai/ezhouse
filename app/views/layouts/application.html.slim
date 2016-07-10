@@ -8,7 +8,7 @@ html
     = csrf_meta_tags
     = analytics_init if GoogleAnalytics.valid_tracker?
     meta name='viewport' content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-  body
+  body.bg
     = navbar position: :static do
       = vertical do
         = image_tag('brand.png', size:'32x32', style:'margin:9px auto')
@@ -34,11 +34,17 @@ html
             = link_to '个人资料', user_path(current_user)
             = link_to '注销', logout_users_path
     = yield
-    .container#footer-container
+    .container#footer-container[style='background-color:#373F53;']
       .footer
-        p.pull-right
+        p.pull-right[style='color:#808CAB']
           | © 2016 北京三岔口信息技术有限公司
         p
-          ul.list-inline
-            li 关于我们
-            li 加入我们
+          ul.list-inline[style='color:#4BB7FC']
+            li
+              = link_to "关于我们", site_aboutus_path
+            li
+              = link_to "联系我们", site_contactus_path
+            li
+              = link_to "加入我们", site_career_path
+            li
+              = link_to "法律声明", site_privacy_path
