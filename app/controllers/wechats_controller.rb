@@ -2,9 +2,9 @@
 class WechatsController < ActionController::Base
   wechat_responder
 
-  on :text do |request, content|
-    request.reply.text "#{content}" # Just echo
-  end
+  # on :text do |request, content|
+  #   request.reply.text "#{content}" # Just echo
+  # end
 
   on :event, with: 'subscribe' do |request|
     request.reply.text "谢谢您关注我们的公众号！
