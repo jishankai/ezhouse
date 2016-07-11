@@ -11,39 +11,40 @@
         .input-group
           .input-group-btn
             select.selectpicker.show-menu-arrow[title="意向" data-width="auto"]
-              option = '求租'
               option = '出租'
-              option = '买房'
-              option = '卖房'
+              option = '买卖'
           input#address.form-control[type='text' placeholder='区域，商圈，小区名称' required]
           span.input-group-btn
             button#btn_search.btn.btn-success[type='button' data-loading-text='加载中...']
               = icon :search
   .row[style='margin-top:24px']
-    .col-xs-12.col-md-3
-      center
+    .col-xs-12.col-md-4
+      center.card_wrapper
         .row[style='margin-bottom:12px']
           = image_tag('http://theopenhouse.com/images/v2/components/how-find-the-best-agent.svg', class:'img-responsive')
         .row
           h4 搜索
-        .row
-          | 告诉我们您的基本信息。买房还是卖方？求租还是出租？什么地方？什么价位？
-    .col-xs-12.col-md-offset-1.col-md-4
-      center
+        .row-justify.text-justify
+          | 告诉我们您的基本信息。
+          | 买房还是卖方？求租还是出租？什么地方？什么价位？
+    .col-xs-12.col-md-4
+      center.card_wrapper
         .row[style='margin-bottom:12px']
           = image_tag('http://theopenhouse.com/images/v2/components/how-agent-specialist-decision.svg', class:'img-responsive')
         .row
           h4 匹配
-        .row
-          | 大数据帮您选出最优秀，最匹配的经纪人。我们有最严格的反刷单机制。
-    .col-xs-12.col-md-offset-1.col-md-3
-      center
+        .row-justify.text-justify
+          | 大数据帮您选出最优秀，最匹配的经纪人。
+          | 我们有最严格的反刷单机制。
+    .col-xs-12.col-md-4
+      center.card_wrapper
         .row[style='margin-bottom:12px']
           = image_tag('http://theopenhouse.com/images/v2/components/how-agent-specialist-introduction.svg', class:'img-responsive')
         .row
           h4 服务
-        .row
-          | 用户使用完全免费。您也可以点评满意的经纪人，让更多朋友享受他的服务。
+        .row-justify.text-justify
+          | 用户使用完全免费。
+          | 您可以点评满意的经纪人，让更多朋友享受他的服务。
   .row
     hr.devider
   .row
