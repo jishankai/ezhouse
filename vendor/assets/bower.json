@@ -3,7 +3,6 @@
   "dependencies": {
     "jquery-ujs": "latest",
     "jquery-migrate": "latest",
-    "coverflow": "latest",
-    "paper-card": "latest"
+    "coverflow": "latest"
   }
 }
