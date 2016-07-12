@@ -23,6 +23,9 @@ class AgentsController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.json {
+        render :json => @agents.to_json
+      }
     end
   end
 
@@ -39,6 +42,9 @@ class AgentsController < ApplicationController
     else
       respond_to do |format|
         format.html
+        format.json {
+          render :json => @agents.to_json
+        }
       end
     end
   end
