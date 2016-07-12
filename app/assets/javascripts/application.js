@@ -11,8 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+//= require jquery-ujs
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-select
+// Bower packages
+//= require jquery-ui/jquery-ui
+//= require jquery-migrate/jquery-migrate
+//= require coverflow/jquery.coverflow
 //= require_tree .

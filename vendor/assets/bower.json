@@ -1,0 +1,9 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "jquery-ujs": "latest",
+    "jquery-migrate": "latest",
+    "coverflow": "latest",
+    "paper-card": "latest"
+  }
+}
