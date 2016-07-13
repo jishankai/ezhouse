@@ -4,3 +4,4 @@
 asset 'jquery-ujs'
 asset 'jquery-migrate'
 asset 'coverflow'
+asset 'sweetalert'

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   #   resources :products
   resources :agents do
     collection do
+      post 'call'
       get 'search'
       get 'asearch'
       get 'intro'

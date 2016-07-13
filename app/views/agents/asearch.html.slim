@@ -40,6 +40,45 @@
             = agent.comments
         .col-xs-3.text-justify
           .row[style="margin:20% auto"]
-            = agent.mobile
+            a.btn.btn-success.btn-block.btn-xs.agentcall[href='#' role='button' value='#{agent.id}']
+              | 免骚扰电话
           .row[style="margin:20% auto"]
             = link_to '详细资料...', agent_path(agent.id)
+javascript:
+
+  $('.agentcall').on('click', function () {
+    var $agent_id = $(this).attr('value');
+    swal({
+      title: '防骚扰电话',
+      text: '请输入您的电话号码',
+      type: 'input',
+      showCancelButton: true,
+      closeOnConfirm: true,
+      animation: 'slide-from-top',
+      inputPlaceholder: '请输入您的电话号码'
+    },
+    function(inputValue){
+     if (inputValue === false) return false;
+     if (inputValue === "") {
+       swal.showInputError("号码不能为空！");
+       return false;
+     }
+     $.ajax({
+       type: 'POST',
+       url: '/agents/call',
+       data: {from:inputValue,id:$agent_id},
+       dataType: 'json',
+       success: function(response) {
+         if (response.success) {
+           swal('呼叫成功', '正在接通您和经纪人的电话……', "success")
+         } else {
+           swal(response.errorCode,response.errorMsg,"warning")
+         }
+       },
+       error: function(XMLHttpRequest, textStatus, errorThrown) {
+         alert(textStatus+' '+errorThrown);
+       }
+     });
+    }
+    );
+  });

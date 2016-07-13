@@ -19,4 +19,5 @@
 //= require jquery-ui/jquery-ui
 //= require jquery-migrate/jquery-migrate
 //= require coverflow/jquery.coverflow
+//= require sweetalert
 //= require_tree .

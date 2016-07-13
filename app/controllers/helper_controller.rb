@@ -6,6 +6,7 @@ class HelperController < ApplicationController
     @helper = Helper.new(helper_params)
     r = @helper.double_call
   end
+
   private
 
   def helper_params

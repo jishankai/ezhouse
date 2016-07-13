@@ -3,6 +3,7 @@
   "dependencies": {
     "jquery-ujs": "latest",
     "jquery-migrate": "latest",
-    "coverflow": "latest"
+    "coverflow": "latest",
+    "sweetalert": "latest"
   }
 }

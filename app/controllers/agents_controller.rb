@@ -67,4 +67,15 @@ class AgentsController < ApplicationController
 
     @agent = Agent.find(params[:id])
   end
+
+  def call
+    agent = Agent.find(params[:id])
+    @helper = Helper.new(:from=>params[:from], :to=>agent.mobile)
+    r = @helper.double_call
+    if r['statusCode'] == '000000'
+      render :json => {:success => true}
+    else
+      render :json => {:errorCode => r['statusCode'], :errorMsg => r['statusMsg'], :success => false}
+    end
+  end
 end
