@@ -53,9 +53,12 @@ javascript:
       text: '请输入您的电话号码',
       type: 'input',
       showCancelButton: true,
-      closeOnConfirm: true,
+      closeOnConfirm: false,
       animation: 'slide-from-top',
-      inputPlaceholder: '请输入您的电话号码'
+      inputPlaceholder: '请输入您的电话号码',
+      confirmButtonText: "确认",
+      cancelButtonText: "取消",
+      showLoaderOnConfirm: true,
     },
     function(inputValue){
      if (inputValue === false) return false;
