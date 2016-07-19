@@ -76,6 +76,10 @@ gem 'bower-rails'
 # Loading
 gem 'pace-rails'
 
+# PDF&ZIP
+gem 'rubyzip'
+gem 'kristin'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

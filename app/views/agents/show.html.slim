@@ -17,7 +17,8 @@
           | 年
         .col-md-offset-2.col-md-3
           a.btn.btn-block.btn-xs#agentcall[href='#' role='button' value='#{@agent.id}']
-            = icon :phone, library: :font_awesome, style: 'color:white'
+            /= icon :phone, library: :font_awesome, style: 'color:white'
+            = icon :earphone, style: 'color:white'
       hr.devider
       .row
         .col-md-12
@@ -36,20 +37,22 @@
         .col-md-9
           .blue
             | 标签：
-            - @agent.label.split(/ /).each do |label|
-              span.border
-                = label
+            - if @agent.label.present?
+              - @agent.label.split(/ /).each do |label|
+                span.border
+                  = label
         - if current_user
           .col-md-3
             a.btn.info.btn-block[href=edit_user_path role='button'] 编辑
   .row.card_wrapper[style='padding-bottom: 0px']
     ul.list-inline
-      - @agent.community.split(/ /).each do |community|
-        - if community != ""
-          li
-            .community
-             .text-center
-               = community
+      - if @agent.community.present?
+        - @agent.community.split(/ /).each do |community|
+          - if community != ""
+            li
+              .community
+                .text-center
+                  = community
   .row.card_wrapper
     = progress_bar percentage:@agent.percentile, label:"综合评分#{@agent.percentile}", id:'percentile'
     hr.devider
