@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .bg_agents {
-    background:url('http://static1.ljcdn.com/pc/asset/img/home/bannerV2.jpg') no-repeat center scroll;
+    background:image-url('success.jpg') no-repeat center scroll;
     background-size:cover
 }
 
@@ -11,4 +11,67 @@
     margin: auto auto 2% auto;
     padding: 2% 2%;
     box-shadow: 0 1px 14px rgba(0, 0, 0, 0.3);
+}
+
+.jobtitle {
+    background: #eef5fa;
+    color: #4bb7fc;
+    line-height: 2;
+}
+.vdevider {
+    color: #4bb7fc;
+    line-height: 2;
+    font-size: 12px;
+}
+
+.blue {
+    color: #4bb7fc;
+    line-height: 2;
+}
+
+.region {
+    background: #4bb7fc;
+    color: white;
+    line-height: 2;
+    margin: auto 12px;
+    padding: auto 12px;
+}
+
+.border {
+    border: 2px solid #4bb7fc;
+    margin: auto 12px;
+    padding: auto 12px;
+}
+
+#percentile {
+    background-color: #4bb7fc;
+}
+
+.agentcall {
+    background-color: #4bb7fc;
+}
+
+#agentcall {
+    background-color: #4bb7fc;
+}
+
+.community {
+    color: #4bb7fc;
+    z-index: 0;
+}
+
+.community::before {
+    content: "";
+    z-index: -1;
+    filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
+    display: block;
+    background:url('http://placehold.it/220x160');
+    width: 220px;
+    height: 160px;
+    -webkit-filter: blur(1px); /* Chrome, Opera */
+    -moz-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
 }

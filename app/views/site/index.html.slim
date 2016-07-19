@@ -5,17 +5,17 @@
         font[color='white']
           center
             h1[style='text-shadow:1px 1px black'] 为您找到最优秀的经纪人
-            footer 让一方豪杰带你去看房
+            footer[style='text-shadow:1px 1px black'] 让一方豪杰带你去看房
     .row[style='margin:24px auto 224px auto']
       .col-md-offset-3.col-md-6
         .input-group
-          .input-group-btn
-            select.selectpicker.show-menu-arrow[title="意向" data-width="auto"]
-              option = '出租'
-              option = '买卖'
+          / .input-group-btn
+          /   select.selectpicker.show-menu-arrow[title="意向" data-width="auto"]
+          /     option = '出租'
+          /     option = '买卖'
           input#address.form-control[type='text' placeholder='区域，商圈，小区名称' required]
           span.input-group-btn
-            button#btn_search.btn.btn-success[type='button' data-loading-text='加载中...']
+            button#btn_search.btn.btn-success[type='button' data-loading-text='加载中...' style='background:#4bb7fc']
               = icon :search
   .row[style='margin-top:24px']
     .col-xs-12.col-md-4
@@ -53,8 +53,8 @@
         .buyer
           .col-xs-offset-9.col-xs-3.col-md-offset-9.col-md-3[style='padding-right:0;margin-top:24px']
             .text-center[style='padding:22px 0 22px 0; background-color:rgba(255,255,255,0.8)']
-              h4[style='color:#2488c9'] 买家 租客
-      .col-xs-6.col-md-6[style='background-color:#2488c9;height:240px']
+              h4[style='color:#4bb7fc'] 买家 租客
+      .col-xs-6.col-md-6[style='background-color:#4bb7fc;height:240px']
         dl.text-center[style='color:white; line-height:24px; padding-top:16px']
           dt
             h4 更方便
@@ -67,7 +67,7 @@
           dd 避免电话骚扰，主动掌握交易权
     .row.card_wrapper[style='margin-top:15px']
       .col-xs-6.col-md-6[style='height:240px']
-        dl.text-center[style='color:#2488c9; line-height:24px; padding-top:16px']
+        dl.text-center[style='color:#4bb7fc; line-height:24px; padding-top:16px']
           dt
             h4 更快捷
           dd 专人委托房源，缩短交易周期
@@ -80,7 +80,7 @@
       .col-xs-6.col-md-6[style='padding-left:0;padding-right:0']
         .seller
           .col-xs-3.col-md-3[style='padding-left:0;margin-top:24px']
-            .text-center[style='padding:22px 0 22px 0; background-color:#2488c9']
+            .text-center[style='padding:22px 0 22px 0; background-color:#4bb7fc']
               h4[style='color:white'] 卖家 房东
     .row
       hr.devider

@@ -3,38 +3,38 @@
     .row
       - if current_user.nil?
         .col-xs-offset-4.col-xs-4.col-md-offset-9.col-md-3[style='margin-top:12px']
-          a.btn.btn-primary.btn-block.btn-xs[href=users_sign_in_path role='button'] 经纪人注册／登录
-    .row[style='margin-top:120px']
+          a.btn.btn-primary.btn-block.btn-xs[href=users_sign_in_path role='button' style='background:#4bb7fc'] 经纪人注册／登录
+    .row[style='margin-top:84px']
       .col-md-offset-3.col-md-6
         font[color='white']
           center
             h1[style='text-shadow:1px 1px black'] 为您创造更好的职业生涯
-            footer 易房好介帮你成为房地产一方豪杰
+            footer[style='text-shadow:1px 1px black'] 易房好介帮你成为房地产一方豪杰
     .row[style='margin:24px auto 224px auto']
       .col-md-offset-3.col-md-6
         .input-group
           input#arg.form-control[type='text' placeholder='姓名，手机号码' required]
           span.input-group-btn
-            button.btn.btn-success#btn_search[type='button']
+            button.btn.btn-success#btn_search[type='button' style='background:#4bb7fc']
               = icon :search
   .row.card_wrapper
     .col-xs-12.col-md-3.text-center
-      h4.text-primary
+      h4[style='color:#4bb7fc']
         | 建立威望
       p.text-justify
         | 积攒声誉：带看房？买卖房？服务好？完事让客户在微信上点个赞！经验都是积少成多。
     .col-xs-12.col-md-3.text-center
-      h4.text-primary
+      h4[style='color:#4bb7fc']
         | 增加客源
       p.text-justify
         | 主动出击：还在迷茫地找客户吗？建立好自己的线上简历，让顾客主动找到勤快的你！
     .col-xs-12.col-md-3.text-center
-      h4.text-primary
+      h4[style='color:#4bb7fc']
         | 高转换率
       p.text-justify
         | 去伪存真： 李逵还是李贵？客户有时难辨真假，但是直接找经纪人的客户都是做好了交易的准备！
     .col-xs-12.col-md-3.text-center
-      h4.text-primary
+      h4[style='color:#4bb7fc']
         | 达成交易
       p.text-justify
         | 以诚为本：干脆利落，顺利签约。如果客户满意你的服务，自然会介绍朋友做回头客生意。

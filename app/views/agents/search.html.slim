@@ -4,53 +4,57 @@
       h4.text-danger 未匹配到任何结果！
   - else
     - @agents.each do |agent|
-      .row.card
-        center.col-xs-3
-          = image_tag(agent.tx, size:'160x160', class:'img-responsive')
-        .col-xs-3.text-justify
+      .row.card_wrapper
+        .col-md-2
+          = image_tag(agent.tx, size:'120x160', class:'img-responsive')
+        .col-md-10
           .row
-            | 姓名：
-            = agent.name
+            .col-md-2[style='font-size:18px']
+              = agent.name
+            .col-md-2
+              span.jobtitle
+                = agent.position
+            .col-md-offset-5.col-md-3
+              a.btn.btn-block.btn-xs.agentcall[href='#' role='button' value='#{agent.id}']
+                = icon :phone, library: :font_awesome, style: 'color:white'
+
+          hr.devider
           .row
-            | 职位：
-            = agent.position
+            .col-md-9
+              .blue
+                | 公司：
+                span[style='color:black']
+                  strong[style='margin:auto 12px; padding:auto 12px'] = agent.company
+            .col-md-3
+              .blue
+                | 公司内排名：
+                span[style='color:black']
+                  strong[style='margin:auto 12px; padding:auto 12px'] = agent.percentile
+                  | %
           .row
-            | 从业：
-            = agent.career
-            | 年
+            .col-md-12
+              .blue
+                | 板块：
+                - agent.region.split(/ /).each do |region|
+                  span.region
+                    = region
           .row
-            | 公司：
-            = agent.company
-          .row
-            | 地区：
-            = agent.city + ' ' + agent.district
-          .row
-            | 板块：
-            = agent.region
-          .row
-            | 小区：
-            = agent.community
-        .col-xs-3.text-justify
-          .row[style="margin:20% auto"]
-            | 好评率：
-            = agent.rates
-            | %
-          .row[style="margin:20% auto"]
-            | 评论数量：
-            = agent.comments
-        .col-xs-3.text-justify
-          .row[style="margin:20% auto"]
-            a.btn.btn-success.btn-block.btn-xs.agentcall[href='#' role='button' value='#{agent.id}']
-              | 免骚扰电话
-          .row[style="margin:20% auto"]
-            = link_to '详细资料...', agent_path(agent.id)
+            .col-md-9
+              .blue
+                | 小区：
+                - if agent.community.present?
+                  - agent.community.split(/ /).each do |community|
+                    span.region
+                      = community
+            .col-md-3.text-justify
+              = link_to '详细信息...', agent_path(agent.id)
 javascript:
 
   $('.agentcall').on('click', function () {
     var $agent_id = $(this).attr('value');
     swal({
       title: '防骚扰电话',
-      text: '请输入您的电话号码',
+      text: '经纪人手机将显示随机座机号码，看不到您的手机号',
       type: 'input',
       showCancelButton: true,
       closeOnConfirm: false,

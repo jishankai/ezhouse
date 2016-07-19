@@ -1,81 +1,85 @@
 .container
-  .col-md-12
-    = panel
-      .panel-body
-        .col-md-3
-          = image_tag(@agent.tx, size:'160x160', class:'img-responsive')
+  .row.card_wrapper
+    .col-md-2
+      = image_tag(@agent.tx, size:'120x160', class:'img-responsive')
+    .col-md-10
+      .row
+        .col-md-2[style='font-size:18px']
+          = @agent.name
+        .col-md-2
+          span.jobtitle
+            = @agent.position
+        .col-md-1.vdevider
+          | |
+        .col-md-2[style='line-height:2']
+          | 从业:
+          = @agent.career.nil? ? '未知' : @agent.career
+          | 年
+        .col-md-offset-2.col-md-3
+          a.btn.btn-block.btn-xs#agentcall[href='#' role='button' value='#{@agent.id}']
+            = icon :phone, library: :font_awesome, style: 'color:white'
+      hr.devider
+      .row
+        .col-md-12
+          .blue
+            | 公司：
+            span[style='color:black']
+              strong[style='margin:auto 12px; padding:auto 12px'] = @agent.company
+      .row
+        .col-md-12
+          .blue
+            | 板块：
+            - @agent.region.split(/ /).each do |region|
+              span.region
+                = region
+      .row
         .col-md-9
-          .row
-            .col-md-2
-              = @agent.name
-          .row
-            .col-md-2
-              a.btn.btn-success.btn-block.btn-xs.agentcall[href='#' role='button' value='#{@agent.id}']
-                | 免骚扰电话
-          .row
-            .col-md-2
-              = @agent.company
-            .col-md-2
-              = @agent.position
-          .row
-            .col-md-2
-              = @agent.city
-            .col-md-2
-              = @agent.district
-            .col-md-2
-              = @agent.region
-            .col-md-6
-              = @agent.community
-          - if current_user
-            .row
-              .col-md-2
-                a.btn.btn-success.btn-block[href=edit_user_path role='button'] 编辑
-          hr.devider
-          .row
-            .col-md-12
-              = @agent.label
-          .row
-            .col-md-3
-              | 成交：
-              = @agent.commissions
-            .col-md-3
-              | 委托：
-              = @agent.transactions
-            .col-md-3
-              | 带看：
-              = @agent.visits
-    = panel
+          .blue
+            | 标签：
+            - @agent.label.split(/ /).each do |label|
+              span.border
+                = label
+        - if current_user
+          .col-md-3
+            a.btn.info.btn-block[href=edit_user_path role='button'] 编辑
+  .row.card_wrapper[style='padding-bottom: 0px']
+    ul.list-inline
+      - @agent.community.split(/ /).each do |community|
+        - if community != ""
+          li
+            .community
+             .text-center
+               = community
+  .row.card_wrapper
+    = progress_bar percentage:@agent.percentile, label:"综合评分#{@agent.percentile}", id:'percentile'
+    hr.devider
+    .row
       = nav layout: :justified do
         = link_to '好评', '#nice', 'aria-controls':"nice", role:"tab", 'data-toggle':"tab"
         = link_to '中评', '#common', 'aria-controls':"common", role:"tab", 'data-toggle':"tab"
         = link_to '差评', '#bad', 'aria-controls':"bad", role:"tab", 'data-toggle':"tab"
       .tab-content
         .tab-pane.active#nice[role='tabpanel']
-          .row
-            .col-md-4.text-center
-              = @agent.mobile
-            .col-md-8
-              | Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+          .row.text-center
+            | 暂无评价
         .tab-pane#common[role='tabpanel']
-          .row
-            .col-md-4.text-center
-              | 18611715161
-            .col-md-8
-              | Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+          .row.text-center
+            | 暂无评价
+          /   .col-md-4.text-center
+          /     | 18611715161
+          /   .col-md-8
+          /     | 一般！
         .tab-pane#bad[role='tabpanel']
-          .row
-            .col-md-4.text-center
-              | 13817654678
-            .col-md-8
-              | Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.
+          .row.text-center
+            | 暂无评价
 
 javascript:
 
-  $('.agentcall').on('click', function () {
+  $('#agentcall').on('click', function () {
     var $agent_id = $(this).attr('value');
     swal({
-      title: '防骚扰电话',
-      text: '请输入您的电话号码',
+      title: '免骚扰电话',
+      text: '经纪人手机将显示随机座机号码，看不到您的手机号',
       type: 'input',
       showCancelButton: true,
       closeOnConfirm: false,
