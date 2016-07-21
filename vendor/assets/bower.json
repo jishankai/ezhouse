@@ -2,7 +2,7 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "jquery-ujs": "latest",
-    "jquery-migrate": "latest",
+    "jquery-migrate": "~1.4.0",
     "coverflow": "latest",
     "sweetalert": "latest",
     "fontawesome": "latest"

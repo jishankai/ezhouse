@@ -2,7 +2,7 @@
 # Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
 
 asset 'jquery-ujs'
-asset 'jquery-migrate'
+asset 'jquery-migrate', "~1.4.0"
 asset 'coverflow'
 asset 'sweetalert'
 asset 'fontawesome'

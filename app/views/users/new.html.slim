@@ -20,18 +20,12 @@
 
 javascript:
 
-  var regexp=/^1[358]\d{9}$/
+  var regexp=/^1[358]\d{9}$/;
   $('#btn_verify').on('click', function () {
     var $mobile = $('#mobile').val();
     $.ajax({
       type: 'POST',
       url: '/users/sms',
-      beforeSend: function() {
-        $(this).button('loading')
-      },
-      complete: function() {
-        $(this).button('reset')
-      },
       data: {mobile:$mobile},
       dataType: 'json',
       success: function(response) {

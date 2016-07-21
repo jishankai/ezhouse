@@ -1,10 +1,15 @@
+# coding: utf-8
 class Helper
   include Mongoid::Document
 
   field :from, type: String
+  field :code, type: String
   field :to, type: String
 
   def double_call
+    if code.present? && code!=session[:code]
+      return {'statusCode'=>'-1', 'statusMsg'=>'验证码不正确'}
+    end
     params = {
       :from => from,
       :to => to

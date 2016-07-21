@@ -67,19 +67,23 @@ class UsersController < ApplicationController
   end
 
   def sms
-    mobile = params[:mobile]
-
-    options = {
-      mobiles: '18611715161',
-      sign_name: '注册验证',
-      template_code: 'SMS_11440195',
-      params: {
-        code: '1220',
-        product: '易房好介'
+    if session[:verify_time].nil? || Time.now - session[:verify_time] > 60
+      mobile = params[:mobile]
+      code = (1000+rand(8999)).to_s
+      session[:code] = code
+      session[:verify_time] = Time.now
+      options = {
+        mobiles: '18611715161',
+        sign_name: '注册验证',
+        template_code: 'SMS_11440195',
+        params: {
+          code: code,
+          product: '易房好介'
+        }
       }
-    }
 
-    r = Alidayu::Sms.send(options)
+      r = Alidayu::Sms.send(options)
+    end
     respond_to do |format|
       format.html
       format.json { render json: {'result' => 1 }}
