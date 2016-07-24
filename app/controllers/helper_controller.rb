@@ -5,10 +5,22 @@ class HelperController < ApplicationController
 
   def create
     @helper = Helper.new(helper_params)
-    if @helper.code.present? && session[:verify_time].present? && Time.now - session[:verify_time] <= 60 && @helper.code==session[:code]
+    if session[:customer_mobile].present?
+      @helper.from = session[:customer_mobile]
       r = @helper.double_call
     else
-      r = {'statusCode'=>'100001', 'statusMsg'=>'验证码不正确'}
+      if @helper.code.present? && session[:verify_time].present? && Time.now - session[:verify_time] <= 60 && @helper.code==session[:code]
+        c = Customer.find_by mobile: params[:helper][:from]
+        if c.nil?
+          c = Customer.new( :mobile => params[:helper][:from] )
+          c.save
+        end
+        session[:customer_id] = c.id
+        session[:customer_mobile] = c.mobile
+        r = @helper.double_call
+      else
+        r = {'statusCode'=>'100001', 'statusMsg'=>'验证码不正确'}
+      end
     end
     if r['statusCode'] == '000000'
       render :json => {:success => true}

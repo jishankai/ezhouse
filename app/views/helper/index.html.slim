@@ -1,19 +1,28 @@
-center
-  .form-group
-    .input-group
-      input.form-control#mobile[name='from' placeholder='我的号码' autofocus=true]
-      span.input-group-btn
-        = button context: :info, id:"btn_verify", disabled: true, data:{'loading-text':'发送中...'} do
-          | 发送验证码
-= form_for(:helper, layout: :basic, url: "/helper", remote: true) do |f|
+- if session[:customer_mobile].nil?
   center
-    = f.hidden_field :from, id:"from"
-  center
-    = f.text_field :code, use_label: false, autofocus: true, placeholder: "验证码", id:"code"
-  center
-    = f.text_field :to, use_label: false, placeholder: "对方号码", id:"to"
-  center
-    = f.submit "呼叫", class: 'btn-success btn-block'
+    .form-group
+      .input-group
+        input.form-control#mobile[name='from' placeholder='我的号码' autofocus=true]
+        span.input-group-btn
+          = button context: :info, id:"btn_verify", disabled: true, data:{'loading-text':'发送中...'} do
+            | 发送验证码
+  = form_for(:helper, layout: :basic, url: "/helper", remote: true) do |f|
+    center
+      = f.hidden_field :from, id:"from"
+    center
+      = f.text_field :code, use_label: false, autofocus: true, placeholder: "验证码", id:"code"
+    center
+      = f.text_field :to, use_label: false, placeholder: "对方号码", id:"to"
+    center
+      = f.submit "呼叫", class: 'btn-success btn-block'
+- else
+  = form_for(:helper, layout: :basic, url: "/helper", remote: true) do |f|
+    center
+      = f.hidden_field :from, id:"from"
+    center
+      = f.text_field :to, use_label: false, placeholder: "对方号码", id:"to"
+    center
+      = f.submit "呼叫", class: 'btn-success btn-block'
 
 javascript:
 
