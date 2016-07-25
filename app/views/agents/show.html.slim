@@ -30,9 +30,10 @@
         .col-md-12
           .blue
             | 板块：
-            - @agent.region.split(/ /).each do |region|
-              span.region
-                = region
+            - @agent.region.present?
+              - @agent.region.split(/ /).each do |region|
+                span.region
+                  = region
       .row
         .col-md-9
           .blue

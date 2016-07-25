@@ -34,8 +34,11 @@ Rails.application.routes.draw do
     collection do
       post 'sms'
       get  'logout'
+      get  'check_user'
       get  'check_mobile'
       get  'check_code'
+      get  'reset'
+      put  'reset'
     end
     resources :agents
   end

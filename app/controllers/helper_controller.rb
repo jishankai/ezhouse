@@ -1,6 +1,8 @@
 # coding: utf-8
 class HelperController < ApplicationController
   def index
+    set_meta_tags title: '免扰电话'
+    set_meta_tags default_meta_tags
   end
 
   def create

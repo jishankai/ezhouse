@@ -6,5 +6,6 @@
   center
     = f.submit "登录", class: 'btn-success btn-block'
   .footer[style='margin:2% auto']
-    p.pull-right
-      = link_to "注册", new_user_path
+    ul.pull-right.list-unstyled
+      li = link_to "注册", new_user_path
+      li = link_to "重置密码", reset_users_path

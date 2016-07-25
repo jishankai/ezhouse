@@ -67,6 +67,21 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def reset
+    set_meta_tags title: '登录'
+    set_meta_tags default_meta_tags
+
+    if request.put?
+      @user = User.find_by mobile: params[:user][:mobile]
+      @user.update(user_params)
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => { :success => true } }
+    end
+  end
+
   def sms
     if session[:verify_time].nil? || Time.now - session[:verify_time] > 60
       mobile = params[:mobile]
@@ -100,6 +115,14 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: {'result' => 1 }}
+    end
+  end
+
+  def check_user
+    @user = User.find_by mobile: params[:user][:mobile]
+
+    respond_to do |format|
+      format.json { render :json => !!@user }
     end
   end
 
