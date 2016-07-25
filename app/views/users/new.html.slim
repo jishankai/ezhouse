@@ -44,7 +44,7 @@ javascript:
     $.ajax({
       type: 'POST',
       url: '/users/sms',
-      data: {mobile: mobile},
+      data: {mobile: mobile, type:'register'},
       dataType: 'json',
       success: function(response) {
         $('#submit').prop('disabled', false);

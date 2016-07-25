@@ -130,7 +130,7 @@ javascript:
   });
   $('#btn_search').on('click', function () {
       var $address = $('#address').val();
-      window.open('/agents/search?address='+$address, '_blank');
+      window.location.assign('/agents/search?address='+$address);
       // $.ajax({
       //   type: 'POST',
       //   url: '/agents/search',

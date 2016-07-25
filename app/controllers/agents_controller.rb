@@ -69,8 +69,27 @@ class AgentsController < ApplicationController
   end
 
   def call
-    agent = Agent.find(params[:id])
-    @helper = Helper.new(:from=>params[:from], :to=>agent.mobile)
+    if session[:customer_mobile].present?
+      agent = Agent.find(params[:id])
+      @helper = Helper.new(:from=>session[:customer_mobile], :to=>agent.mobile)
+      r = @helper.double_call
+    else
+      if params[:code].present? && session[:verify_time].present? && Time.now - session[:verify_time] <= 60 && params[:code]==session[:code]
+        c = Customer.find_by mobile: params[:mobile]
+        if c.nil?
+          c = Customer.new( :mobile => params[:mobile] )
+          c.save
+        end
+        session[:customer_id] = c.id
+        session[:customer_mobile] = c.mobile
+        agent = Agent.find(params[:id])
+        @helper = Helper.new(:from=>session[:customer_mobile], :to=>agent.mobile)
+        r = @helper.double_call
+      else
+        r = {'statusCode'=>'100001', 'statusMsg'=>'验证码不正确'}
+      end
+    end
+
     r = @helper.double_call
     if r['statusCode'] == '000000'
       render :json => {:success => true}

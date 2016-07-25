@@ -48,44 +48,93 @@
                       = community
             .col-md-3.text-justify
               = link_to '详细信息...', agent_path(agent.id)
-javascript:
+- if session[:customer_mobile].nil?
+  javascript:
 
-  $('.agentcall').on('click', function () {
-    var $agent_id = $(this).attr('value');
-    swal({
-      title: '防骚扰电话',
-      text: '经纪人手机将显示随机座机号码，看不到您的手机号',
-      type: 'input',
-      showCancelButton: true,
-      closeOnConfirm: false,
-      animation: 'slide-from-top',
-      inputPlaceholder: '请输入您的电话号码',
-      confirmButtonText: "确认",
-      cancelButtonText: "取消",
-      showLoaderOnConfirm: true,
-    },
-    function(inputValue){
-     if (inputValue === false) return false;
-     if (inputValue === "") {
-       swal.showInputError("号码不能为空！");
-       return false;
-     }
-     $.ajax({
-       type: 'POST',
-       url: '/agents/call',
-       data: {from:inputValue,id:$agent_id},
-       dataType: 'json',
-       success: function(response) {
-         if (response.success) {
-           swal('呼叫成功', '正在接通您和经纪人的电话……', "success")
-         } else {
-           swal(response.errorCode,response.errorMsg,"warning")
-         }
-       },
-       error: function(XMLHttpRequest, textStatus, errorThrown) {
-         swal('O.o', textStatus+' '+errorThrown, "error");
-       }
-     });
-    }
-    );
-  });
+    $('.agentcall').on('click', function () {
+      var $agent_id = $(this).attr('value');
+      swal({
+        title: '防骚扰电话',
+        text: '经纪人手机将显示随机座机号码，看不到您的手机号',
+        type: 'input',
+        showCancelButton: true,
+        closeOnConfirm: false,
+        animation: 'slide-from-top',
+        inputPlaceholder: '请输入您的电话号码',
+        confirmButtonText: "确认",
+        cancelButtonText: "取消",
+        showLoaderOnConfirm: true,
+      },
+      function(inputValue){
+        if (inputValue === false) return false;
+        if (inputValue === "") {
+          swal.showInputError("号码不能为空！");
+          return false;
+        }
+        var mobile_number = inputValue;
+        $.ajax({
+          type: 'POST',
+          url: '/users/sms',
+          data: {mobile:mobile_number, type:"verify"},
+          dataType: 'json',
+          success: function(response) {
+            swal({
+              title: '防骚扰电话',
+              text: '请输入手机验证码',
+              type: 'input',
+              showCancelButton: true,
+              closeOnConfirm: false,
+              animation: 'slide-from-top',
+              inputPlaceholder: '请输入您收到的验号码',
+              confirmButtonText: "确认",
+              cancelButtonText: "取消",
+              showLoaderOnConfirm: true,
+            },
+            function(inputValue) {
+              $.ajax({
+                type: 'POST',
+                url: '/agents/call',
+                data: {from:mobile_number,id:$agent_id,code:inputValuex},
+                dataType: 'json',
+                success: function(response) {
+                  if (response.success) {
+                    swal('呼叫成功', '正在接通您和经纪人的电话……', "success")
+                  } else {
+                    swal(response.errorCode,response.errorMsg,"warning")
+                  }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  swal('O.o', textStatus+' '+errorThrown, "error");
+                }
+              });
+            });
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            swal('O.o', textStatus+' '+errorThrown, "error");
+          }
+        });
+      });
+    });
+
+- else
+  javascript:
+
+    $('.agentcall').on('click', function () {
+      var $agent_id = $(this).attr('value');
+      $.ajax({
+        type: 'POST',
+        url: '/agents/call',
+        data: {id:$agent_id},
+        dataType: 'json',
+        success: function(response) {
+          if (response.success) {
+            swal('呼叫成功', '正在接通您和经纪人的电话……', "success")
+          } else {
+            swal(response.errorCode,response.errorMsg,"warning")
+          }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          swal('O.o', textStatus+' '+errorThrown, "error");
+        }
+      });
+    });

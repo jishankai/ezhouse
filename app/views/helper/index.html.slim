@@ -49,7 +49,7 @@ javascript:
     $.ajax({
       type: 'POST',
       url: '/users/sms',
-      data: {mobile: mobile},
+      data: {mobile: mobile, type:'verify'},
       dataType: 'json',
       success: function(response) {
         $('#from').val(mobile);

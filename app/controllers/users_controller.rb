@@ -73,10 +73,22 @@ class UsersController < ApplicationController
       code = (1000+rand(8999)).to_s
       session[:code] = code
       session[:verify_time] = Time.now
+      case params[:type]
+      when 'register'
+        sign_name = '注册验证'
+        template_code = 'SMS_11440195'
+      when 'verify'
+        sign_name = '身份验证'
+        template_code = 'SMS_11440199'
+      else
+        sign_name = '身份验证'
+        template_code = 'SMS_11440199'
+      end
+
       options = {
         mobiles: mobile,
-        sign_name: '注册验证',
-        template_code: 'SMS_11440195',
+        sign_name: sign_name,
+        template_code: template_code,
         params: {
           code: code,
           product: '易房好介'
