@@ -1,8 +1,9 @@
 = form_for(@user, layout: :basic, url: "/users") do |f|
+  .alert.alert-danger[style='display:none']
   center
     .form-group
       .input-group
-        input.form-control#mobile[name='mobile' placeholder='手机号码' autofocus=true]
+        input.form-control#mobile[name="user[mobile]" placeholder="手机号码" autofocus=true]
         span.input-group-btn
           = button context: :info, id:"btn_verify", disabled: true, data:{'loading-text':'发送中...'} do
             | 发送验证码
@@ -13,33 +14,128 @@
   center
     = f.password_field :password_confirmation, use_label: false, autocomplete: "off", placeholder: "确认密码"
   center
-    = f.submit "注册", class:'btn-success btn-block'
+    = f.submit "注册", class:'btn-success btn-block', id: 'submit'
   .footer[style='margin:2% auto']
     p.pull-right
       = link_to "登录", users_sign_in_path
 
 javascript:
 
+  var isCount = 0;
   var regexp=/^1[358]\d{9}$/;
   $('#btn_verify').on('click', function () {
-    var $mobile = $('#mobile').val();
+    var count = 60;
+    isCount = 1;
+    var mobile = $('#mobile').val();
+    $('#btn_verify').prop('disabled', true);
+    $('#btn_verify').text("请在" + count + "秒内输入验证码");
+    timer = setInterval(countDown, 1000);
+    function countDown() {
+      if(count==0) {
+        isCount = 0;
+        clearInterval(timer);
+        $('#btn_verify').prop('disabled', false);
+        $('#btn_verify').text("重新发送验证码");
+      } else {
+        count--;
+        $('#btn_verify').text("请在" + count + "秒内输入验证码");
+      }
+    };
     $.ajax({
       type: 'POST',
       url: '/users/sms',
-      data: {mobile:$mobile},
+      data: {mobile: mobile},
       dataType: 'json',
       success: function(response) {
-        alert(JSON.stringify(response));
+        $('#submit').prop('disabled', false);
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         alert(textStatus+' '+errorThrown);
       }
     });
   });
+
   $('input#mobile').keyup(function(){
     if($('#btn_verify').is(':disabled') && regexp.test($(this).val())) {
       $('#btn_verify').prop('disabled', false);
     } else if(!$('#btn_verify').is(':disabled')) {
       $('#btn_verify').prop('disabled', true);
+    }
+  });
+
+  $('form').validate({
+    rules: {
+      "user[mobile]": {
+        required: true,
+        digits: true,
+        rangelength: [11,11],
+        remote: "/users/check_mobile"
+      },
+      "user[code]": {
+        required: true,
+        digits: true,
+        range: [1000, 9999],
+        remote: "/users/check_code"
+      },
+      "user[password]": {
+        required: true,
+        minlength: 6
+      },
+      "user[password_confirmation]": {
+        required: true,
+        equalTo: "#user_password"
+      },
+    },
+    messages: {
+      "user[mobile]": {
+        required: "手机号码不能为空",
+        digits: "号码格式不对",
+        rangelength: "号码格式不对",
+        remote: "该号码已被注册"
+      },
+      "user[code]": {
+        required: "验证码不能为空",
+        digits: "验证码格式不对",
+        range: "验证码格式不对",
+        remote: "验证码不准确"
+      },
+      "user[password]": {
+        required: "密码不能为空",
+        minlength: "密码至少包含6位字符",
+      },
+      "user[password_confirmation]": {
+        required: "确认密码不能为空",
+        equalTo: "确认密码与原密码不一致",
+      },
+    },
+    submitHandler: function(form) {
+      $.ajax({
+        type: 'POST',
+        url: $(form).attr('action'),
+        data: $(form).serialize(),
+        dataType: 'json',
+        success: function(response) {
+          if (response.success) {
+            swal('注册成功', '稍后将跳转到登录页面……', "success");
+            window.location.assign("/users/sign_in");
+          } else {
+            swal('注册失败',response.errorMsg, "warning")
+          }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          swal('O.o', textStatus+' '+errorThrown, "error");
+        }
+      });
+    },
+    errorElement: 'div',
+    errorLabelContainer: '.alert',
+    highlight: function(element, errorClass) {
+      $(element).closest('.form-group').addClass('has-error');
+      $(element).fadeOut(function() {
+        $(element).fadeIn()
+      })
+    },
+    unhighlight: function(element) {
+      $(element).closest('.form-group').removeClass('has-error');
     }
   });

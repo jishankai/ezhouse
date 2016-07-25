@@ -5,6 +5,7 @@
     "jquery-migrate": "~1.4.0",
     "coverflow": "latest",
     "sweetalert": "latest",
-    "fontawesome": "latest"
+    "fontawesome": "latest",
+    "jquery-validation": "latest"
   }
 }

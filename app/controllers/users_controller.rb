@@ -53,13 +53,14 @@ class UsersController < ApplicationController
       end
     end
   end
+
   api :POST, "/users/create", "创建用户"
   param_group :user
   def create
     @user = User.new(user_params)
     @user.save
 
-    redirect_to users_sign_in_url(format: :html)
+    render :json => {:success => true}
   end
 
   def edit
@@ -87,6 +88,20 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: {'result' => 1 }}
+    end
+  end
+
+  def check_mobile
+    @user = User.find_by mobile: params[:user][:mobile]
+
+    respond_to do |format|
+      format.json { render :json => !@user }
+    end
+  end
+
+  def check_code
+    respond_to do |format|
+      format.json { render :json => session[:verify_time].present? && Time.now - session[:verify_time] <= 60 && params[:user][:code] == session[:code]}
     end
   end
 

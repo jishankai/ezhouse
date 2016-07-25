@@ -68,9 +68,6 @@ javascript:
   });
 
   $('form').submit(function() {
-    var from = $('#from').val();
-    var to = $('#to').val();
-    var code = $('#code').val();
     $.ajax({
       type: 'POST',
       url: $(this).attr('action'),

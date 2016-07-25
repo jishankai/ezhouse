@@ -6,3 +6,4 @@ asset 'jquery-migrate', "~1.4.0"
 asset 'coverflow'
 asset 'sweetalert'
 asset 'fontawesome'
+asset 'jquery-validation'

@@ -21,4 +21,5 @@
 //= require jquery-migrate/jquery-migrate
 //= require coverflow/jquery.coverflow
 //= require sweetalert
+//= require jquery-validation
 //= require_tree .
