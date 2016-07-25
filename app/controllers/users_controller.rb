@@ -74,7 +74,7 @@ class UsersController < ApplicationController
       session[:code] = code
       session[:verify_time] = Time.now
       options = {
-        mobiles: '18611715161',
+        mobiles: mobile,
         sign_name: '注册验证',
         template_code: 'SMS_11440195',
         params: {
