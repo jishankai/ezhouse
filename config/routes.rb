@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'site/privacy' => 'site#privacy'
   get 'site/career' => 'site#career'
 
+  get 'apps/index' => 'apps#index'
+
   match 'users/sign_in' => 'users#login', via: [:get, :post]
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

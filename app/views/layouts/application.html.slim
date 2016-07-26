@@ -36,9 +36,7 @@ html
     = yield
     .container#footer-container[style='background-color:#373F53;']
       .footer
-        p.pull-right[style='color:#808CAB']
-          | © 2016 北京三岔口信息技术有限公司
-        p
+        .row-footer
           ul.list-inline[style='color:#4BB7FC']
             li
               = link_to "关于我们", site_aboutus_path
@@ -48,3 +46,5 @@ html
               = link_to "加入我们", site_career_path
             li
               = link_to "法律声明", site_privacy_path
+        .row-footer.pull-right[style='color:#808CAB']
+          | 京ICP备16037812号 © 2016 北京三岔口信息技术有限公司
