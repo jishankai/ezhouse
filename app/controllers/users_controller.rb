@@ -136,7 +136,7 @@ class UsersController < ApplicationController
 
   def check_code
     respond_to do |format|
-      format.json { render :json => session[:verify_time].present? && Time.now - session[:verify_time] <= 60 && params[:user][:code] == session[:code]}
+      format.json { render :json => session[:verify_time].present? && Time.now - session[:verify_time] <= 300 && params[:user][:code] == session[:code]}
     end
   end
 

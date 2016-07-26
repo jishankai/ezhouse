@@ -11,7 +11,7 @@ class HelperController < ApplicationController
       @helper.from = session[:customer_mobile]
       r = @helper.double_call
     else
-      if @helper.code.present? && session[:verify_time].present? && Time.now - session[:verify_time] <= 60 && @helper.code==session[:code]
+      if @helper.code.present? && session[:verify_time].present? && Time.now - session[:verify_time] <= 300 && @helper.code==session[:code]
         c = Customer.find_by mobile: params[:helper][:from]
         if c.nil?
           c = Customer.new( :mobile => params[:helper][:from] )

@@ -28,7 +28,7 @@ javascript:
     isCount = 1;
     var mobile = $('#mobile').val();
     $('#btn_verify').prop('disabled', true);
-    $('#btn_verify').text("请在" + count + "秒内输入验证码");
+    $('#btn_verify').text("" + count + "s");
     timer = setInterval(countDown, 1000);
     function countDown() {
       if(count==0) {
@@ -38,7 +38,7 @@ javascript:
         $('#btn_verify').text("重新发送验证码");
       } else {
         count--;
-        $('#btn_verify').text("请在" + count + "秒内输入验证码");
+        $('#btn_verify').text("" + count + "s");
       }
     };
     $.ajax({

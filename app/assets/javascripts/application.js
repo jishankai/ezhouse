@@ -12,14 +12,13 @@
 //
 //= require jquery
 //= require jquery-ujs
+//= require jquery-ui/jquery-ui
+//= require jquery-migrate/jquery-migrate
+//= require coverflow/jquery.coverflow
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-select
 //= require pace/pace
-// Bower packages
-//= require jquery-ui/jquery-ui
-//= require jquery-migrate/jquery-migrate
-//= require coverflow/jquery.coverflow
 //= require sweetalert
 //= require jquery-validation
 //= require_tree .
