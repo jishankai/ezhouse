@@ -11,8 +11,6 @@ class Message < ApplicationMailer
     mail(
       to:      'ehero.cc@qq.com',
       subject: "单身票报名#{@info}",
-    ) do |format|
-      format.html
-    end
+    )
   end
 end
