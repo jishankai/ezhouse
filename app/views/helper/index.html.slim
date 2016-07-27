@@ -19,7 +19,7 @@
 - else
   = form_for(:helper, layout: :basic, url: "/helper", remote: true) do |f|
     center
-      = f.hidden_field :from, id:"from"
+      = f.text_field :from, use_label: false, id:"from", value:session[:customer_mobile], disabled:true
     center
       = f.text_field :to, use_label: false, placeholder: "对方号码", id:"to"
     center

@@ -82,6 +82,9 @@ class UsersController < ApplicationController
     end
   end
 
+  api :POST, "/users/sms", "短信验证"
+  param :mobile, String, :desc => "用户电话", :required => true
+  example " 'result'=>1 "
   def sms
     if session[:verify_time].nil? || Time.now - session[:verify_time] > 60
       mobile = params[:mobile]
