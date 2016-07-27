@@ -6,6 +6,12 @@ class WechatsController < ActionController::Base
   #   request.reply.text "#{content}" # Just echo
   # end
 
+  on :text, with: /^[男|女]\+\d+\+\d+\+\d+$/ do |request|
+    request.reply.text "非常感谢参与抽奖，你猜的数一定很大吧？！
+
+把赠话剧票活动分享到朋友圈，让大家帮你早日达到目标，并与白富美或高富帅配对！"
+  end
+
   on :event, with: 'subscribe' do |request|
     request.reply.text "谢谢您关注我们的公众号！
 易房好介，为您推荐最匹配的房屋和经纪人！
