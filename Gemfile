@@ -83,6 +83,9 @@ gem 'kristin'
 # Mail
 gem 'mail'
 
+# Heroku
+gem 'informant-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
