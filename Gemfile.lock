@@ -278,6 +278,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   kaminari
   kristin
+  mail
   meta-tags
   mongoid (~> 5.0)
   mongoid-slug
