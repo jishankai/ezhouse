@@ -73,6 +73,7 @@ Rails.application.configure do
     port: 25,
     domain: 'ehero.cc',
     authentication: "plain",
+    openssl_verify_mode: 'none',
     user_name: ENV['mailer_server_username'],
     password: ENV['mailer_server_password']
   }
