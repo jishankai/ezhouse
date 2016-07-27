@@ -71,9 +71,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.qq.com",
     port: 25,
-    domain: 'ehero.cc',
+    domain: 'qq.com',
     authentication: "plain",
-    openssl_verify_mode: 'none',
     user_name: ENV['mailer_server_username'],
     password: ENV['mailer_server_password']
   }
