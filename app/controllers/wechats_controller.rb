@@ -9,7 +9,7 @@ class WechatsController < ActionController::Base
   on :text, with: /^[男|女]\ \d+\ \d{11}\ \d+$/ do |request|
     #Message.tickets(request[:Content]).deliver_now
     Mail.deliver do
-      to 'ehero.cc@qq.com'
+      to ENV['marketing_mail_address']
       from 'marketing@ehero.cc'
       subject "单身狗报名 #{request[:Content]}"
       body "#{request[:Content]}"
