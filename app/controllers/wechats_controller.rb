@@ -10,7 +10,7 @@ class WechatsController < ActionController::Base
     #Message.tickets(request[:Content]).deliver_now
     Mail.deliver do
       to 'ehero.cc@qq.com'
-      from 'ehero.cc@qq.com'
+      from 'marketing@ehero.cc'
       subject "单身狗报名 #{request[:Content]}"
       body "#{request[:Content]}"
     end
