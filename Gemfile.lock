@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:madaarya/mongoid_commentable.git
+  remote: https://github.com/madaarya/mongoid_commentable.git
   revision: 0e6741e1f202a43806d3e6c1814f7663cee588fe
   specs:
     mongoid_commentable (0.0.6)
