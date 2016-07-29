@@ -5,6 +5,10 @@ class Agent
   include Mongoid::Slug
   include Mongoid::Attributes::Dynamic
   #include Mongoid::Search
+  include Mongoid::Commentable
+
+  field :author
+  field :content
 
   belongs_to :user
 

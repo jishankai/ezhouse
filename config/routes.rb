@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   scope :module => 'buttercms' do
     get '/categories/:slug' => 'categories#show', :as => :buttercms_category
     get '/author/:slug' => 'authors#show', :as => :buttercms_author
@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       get 'asearch'
       get 'intro'
     end
+    resources :comments
   end
   resources :users do
     collection do

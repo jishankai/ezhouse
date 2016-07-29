@@ -87,6 +87,10 @@ gem 'mail'
 gem 'informant-rails'
 gem 'buttercms-rails'
 
+# Comments
+gem 'mongoid_commentable', :git => 'git@github.com:madaarya/mongoid_commentable.git'
+gem 'responders', '~> 2.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

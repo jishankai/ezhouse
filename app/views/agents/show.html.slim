@@ -66,9 +66,13 @@
         .tab-pane.active#nice[role='tabpanel']
           .row.text-center
             | 暂无评价
+          .row.text-center
+            = link_to "Leave a comment", new_agent_comment_path(:agent_id => @agent.id.to_s)
         .tab-pane#common[role='tabpanel']
           .row.text-center
             | 暂无评价
+          .row.text-center
+            = link_to "Leave a comment", new_agent_comment_path(:agent_id => @agent.id.to_s)
           /   .col-md-4.text-center
           /     | 18611715161
           /   .col-md-8
@@ -76,6 +80,8 @@
         .tab-pane#bad[role='tabpanel']
           .row.text-center
             | 暂无评价
+          .row.text-center
+            = link_to "Leave a comment", new_agent_comment_path(:agent_id => @agent.id.to_s)
 
 javascript:
 

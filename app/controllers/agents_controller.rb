@@ -101,4 +101,9 @@ class AgentsController < ApplicationController
       render :json => {:errorCode => r['statusCode'], :errorMsg => r['statusMsg'], :success => false}
     end
   end
+
+  def edit
+    @agent = Agent.find(params[:id])
+  end
+
 end
