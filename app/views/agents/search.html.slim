@@ -94,7 +94,7 @@
               $.ajax({
                 type: 'POST',
                 url: '/agents/call',
-                data: {from:mobile_number,id:$agent_id,code:inputValuex},
+                data: {from:mobile_number,id:$agent_id,code:inputValue},
                 dataType: 'json',
                 success: function(response) {
                   if (response.success) {

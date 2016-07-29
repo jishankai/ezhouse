@@ -211,8 +211,6 @@ GEM
       redis-store (~> 1.1.0)
     redis-store (1.1.7)
       redis (>= 2.2)
-    responders (2.2.0)
-      railties (>= 4.2.0, < 5.1)
     rest-client (2.0.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -313,7 +311,6 @@ DEPENDENCIES
   redis-namespace
   redis-rack-cache
   redis-rails
-  responders (~> 2.0)
   rubyzip
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
