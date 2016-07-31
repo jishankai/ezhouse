@@ -138,14 +138,15 @@ class UsersController < ApplicationController
   end
 
   def check_code
-    if params[:user][:code].present?
+    if params[:user].present?
       code = params[:user][:code]
-    elsif params[:helper][:code].present?
+    elsif params[:helper].present?
       code = params[:helper][:code]
-    elsif parmas[:comment][:code].present?
+    elsif parmas[:comment].present?
       code = params[:comment][:code]
     else
     end
+
     respond_to do |format|
       format.json { render :json => session[:verify_time].present? && Time.now - session[:verify_time] <= 300 && code == session[:code]}
     end
