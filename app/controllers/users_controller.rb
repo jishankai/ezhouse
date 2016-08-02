@@ -142,7 +142,7 @@ class UsersController < ApplicationController
       code = params[:user][:code]
     elsif params[:helper].present?
       code = params[:helper][:code]
-    elsif parmas[:comment].present?
+    elsif params[:comment].present?
       code = params[:comment][:code]
     else
     end

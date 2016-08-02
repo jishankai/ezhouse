@@ -6,7 +6,7 @@ hr.devider
   center
     .form-group
       .input-group
-        input.form-control#author[name='author' placeholder='我的号码' autofocus=true]
+        input.form-control#mobile[name='mobile' placeholder='我的号码' autofocus=true]
         span.input-group-btn
           = button context: :info, id:"btn_verify", disabled: true, data:{'loading-text':'发送中...'} do
             | 发送验证码
@@ -25,10 +25,22 @@ hr.devider
       = f.hidden_field :author, id:"author"
     center
       = f.text_field :code, use_label: false, autofocus: true, placeholder: "验证码", id:"code"
-    center
-    /  = f.radio_button("comment", "type", "nice")
-    /  = f.radio_button("comment", "type", "common")
-    /  = f.radio_button("comment", "type", "bad")
+    .row
+      .radio-inline
+        .form-group
+          .radio
+            label
+              input#comment_kind_nice[type='radio' name="comment[kind]" value="nice"] 好评
+      .radio-inline
+        .form-group
+          .radio
+            label
+              input#comment_kind_common[type='radio' name="comment[kind]" value="common"] 中评
+      .radio-inline
+        .form-group
+          .radio
+            label
+              input#comment_kind_bad[type='radio' name="comment[kind]" value="bad"] 差评
     center
       = f.text_area :text, use_label: false, placeholder: "评价内容", id:"text"
     center
@@ -48,9 +60,22 @@ hr.devider
     center
       = f.text_field :author, use_label: false, id:"author", value:session[:customer_mobile], disabled:true
     center
-    /  = f.radio_button("comment", "type", "nice")
-    /  = f.radio_button("comment", "type", "common")
-    /  = f.radio_button("comment", "type", "bad")
+    .row
+      .radio-inline
+        .form-group
+          .radio
+            label
+              input#comment_kind_nice[type='radio' name="comment[kind]" value="nice"] 好评
+      .radio-inline
+        .form-group
+          .radio
+            label
+              input#comment_kind_common[type='radio' name="comment[kind]" value="common"] 中评
+      .radio-inline
+        .form-group
+          .radio
+            label
+              input#comment_kind_bad[type='radio' name="comment[kind]" value="bad"] 差评
     center
       = f.text_area :text, use_label: false, placeholder: "评价内容", id:"text"
     center
@@ -63,7 +88,7 @@ javascript:
   $('#btn_verify').on('click', function () {
     var count = 60;
     isCount = 1;
-    var mobile = $('#author').val();
+    var mobile = $('#mobile').val();
     $('#btn_verify').prop('disabled', true);
     $('#btn_verify').text("" + count + "s");
     timer = setInterval(countDown, 1000);
@@ -84,14 +109,14 @@ javascript:
       data: {mobile: mobile, type:'verify'},
       dataType: 'json',
       success: function(response) {
-        $('#from').val(mobile);
+        $('#author').val(mobile);
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         alert(textStatus+' '+errorThrown);
       }
     });
   });
-  $('input#author').keyup(function(){
+  $('input#mobile').keyup(function(){
     if($('#btn_verify').is(':disabled') && regexp.test($(this).val()) && !isCount) {
       $('#btn_verify').prop('disabled', false);
     } else if(!$('#btn_verify').is(':disabled')) {
@@ -116,26 +141,7 @@ javascript:
         remote: "验证码不准确"
       },
     },
-    submitHandler: function(form) {
-      $('#btn_submit').button('loading');
-      $.ajax({
-        type: 'POST',
-        url: $(form).attr('action'),
-        data: $(form).serialize(),
-        dataType: 'json',
-        success: function(response) {
-          $('#btn_submit').button('reset');
-          if (response.success) {
-            swal('评价成功', '正在跳转回经纪人页面……', "success")
-          } else {
-            swal(response.errorCode,response.errorMsg,"warning")
-          }
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          swal('O.o', textStatus+' '+errorThrown, "error");
-        }
-      });
-    },
+
     errorElement: 'div',
     errorLabelContainer: '.alert',
     highlight: function(element, errorClass) {

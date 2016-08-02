@@ -88,8 +88,8 @@ gem 'informant-rails'
 gem 'buttercms-rails'
 
 # Comments
-#gem 'mongoid_commentable', :git => 'https://github.com/madaarya/mongoid_commentable.git'
-#gem 'responders', '~> 2.0'
+gem 'mongoid_commentable', :git => 'https://github.com/skji/mongoid_commentable.git'
+gem 'responders', '~> 2.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -103,6 +103,9 @@ gem 'buttercms-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry-byebug'
+  gem 'did_you_mean'
+  gem 'rails-footnotes', '~> 4.0'
 end
 
 group :development do

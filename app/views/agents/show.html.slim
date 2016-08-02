@@ -57,31 +57,52 @@
   .row.card_wrapper
     = progress_bar percentage:@agent.percentile, label:"综合评分#{@agent.percentile}", id:'percentile'
     hr.devider
+    - nice_comments = @agent.comments.where("kind"=>"nice")
+    - common_comments = @agent.comments.where("kind"=>"common")
+    - bad_comments = @agent.comments.where("kind"=>"bad")
     .row
       = nav layout: :justified do
-        = link_to '好评', '#nice', 'aria-controls':"nice", role:"tab", 'data-toggle':"tab"
-        = link_to '中评', '#common', 'aria-controls':"common", role:"tab", 'data-toggle':"tab"
-        = link_to '差评', '#bad', 'aria-controls':"bad", role:"tab", 'data-toggle':"tab"
+        = link_to "好评（#{nice_comments.length}）", '#nice', 'aria-controls':"nice", role:"tab", 'data-toggle':"tab"
+        = link_to "中评（#{common_comments.length}）", '#common', 'aria-controls':"common", role:"tab", 'data-toggle':"tab"
+        = link_to "差评（#{bad_comments.length}）", '#bad', 'aria-controls':"bad", role:"tab", 'data-toggle':"tab"
       .tab-content
         .tab-pane.active#nice[role='tabpanel']
           .row.text-center
-            | 暂无评价
-          .row.text-center
-            = link_to "Leave a comment", new_agent_comment_path(:agent_id => @agent.id.to_s)
+            - if nice_comments.nil?
+              | 暂无评价
+            - else
+              - nice_comments.each do |comment|
+                .col-md-4.text-center
+                  = comment.author
+                .col-md-8
+                  = comment.text
         .tab-pane#common[role='tabpanel']
           .row.text-center
-            | 暂无评价
-          .row.text-center
-            = link_to "Leave a comment", new_agent_comment_path(:agent_id => @agent.id.to_s)
+            - if common_comments.nil?
+              | 暂无评价
+            - else
+              - common_comments.each do |comment|
+                .col-md-4.text-center
+                  = comment.author
+                .col-md-8
+                  = comment.text
           /   .col-md-4.text-center
           /     | 18611715161
           /   .col-md-8
           /     | 一般！
         .tab-pane#bad[role='tabpanel']
           .row.text-center
-            | 暂无评价
-          .row.text-center
-            = link_to "Leave a comment", new_agent_comment_path(:agent_id => @agent.id.to_s)
+            - if bad_comments.nil?
+              | 暂无评价
+            - else
+              - bad_comments.each do |comment|
+                .col-md-4.text-center
+                  = comment.author
+                .col-md-8
+                  = comment.text
+    hr.devider
+    .col-md-offset-4.col-md-4
+      = link_to "发布你的评价", new_agent_comment_path(:agent_id => @agent.id.to_s), class:"btn btn-success btn-block btn-xs"
 
 javascript:
 
