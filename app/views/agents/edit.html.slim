@@ -1,1 +1,10 @@
-| 32r23
+= form_for @agent, :url => agent_path(@agent),  layout: :basic, method: :patch do |f|
+  = f.url_field  :tx, use_label: false, placeholder: ""
+  = f.text_field :name, use_label: false, placeholder: "姓名"
+  = f.text_field :company, use_label: false, placeholder: "公司名（链家，麦田，我爱我家等）"
+  = f.text_field :city, use_label: false, placeholder: "城市"
+  = f.text_field :district, use_label: false, placeholder: "地区"
+  = f.text_field :region, use_label: false, placeholder: "板块"
+  = f.text_field :community, use_label: false, placeholder: "小区（小区之间用空格间隔开）"
+  center
+    = f.submit "更新", class: 'btn-success btn-block'

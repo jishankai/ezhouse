@@ -6,6 +6,7 @@
     "coverflow": "latest",
     "sweetalert": "latest",
     "fontawesome": "latest",
-    "jquery-validation": "latest"
+    "jquery-validation": "latest",
+    "slick-carousel": "latest"
   }
 }

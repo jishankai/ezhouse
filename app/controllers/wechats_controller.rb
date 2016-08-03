@@ -20,10 +20,10 @@ class WechatsController < ActionController::Base
   end
 
   on :text, with: '北漂' do |request|
-    request.reply.image('wfjD9PAgZwMe__i0uqLCnvg-9yhkCGMhhjJMnD8BoZE')
+    request.reply.image('wfjD9PAgZwMe__i0uqLCnpilFopjs_iCmH7Fgn6iYx4')
   end
   on :text, with: '大学生' do |request|
-    request.reply.image('wfjD9PAgZwMe__i0uqLCnjinACcdGbbZpHs4RzrsEEo')
+    request.reply.image('wfjD9PAgZwMe__i0uqLCnpilFopjs_iCmH7Fgn6iYx4')
   end
   on :text, with: '地区' do |request|
     request.reply.text "请访问http://ehero-info.sxl.cn获取地区群二维码列表"

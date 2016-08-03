@@ -21,4 +21,5 @@
 //= require pace/pace
 //= require sweetalert
 //= require jquery-validation
+//= require slick-carousel
 //= require_tree .

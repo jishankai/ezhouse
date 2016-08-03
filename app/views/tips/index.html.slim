@@ -1,0 +1,37 @@
+.container
+  .row
+    .col-md-3
+      .row
+        ul.list-unstyled
+          li 东城
+          li 海淀
+          li 朝阳
+          li 西城
+          li 丰台
+          li 昌平
+          li 房山
+          li 顺义
+          li 大兴
+          li 怀柔
+          li 密云
+          li 延庆
+          li 石景山
+          li 门头沟
+          li 通州
+      .row
+        = image_tag("http://placehold.it/160x160")
+    .col-md-9
+      .slider
+        .slider_element
+          = image_tag('village.jpg', class:'img-responsive')
+        .slider_element
+          = image_tag('ucenter.jpg', class:'img-responsive')
+  .row
+    | 所有锦囊
+
+javascript:
+
+  $(".slider").slick({
+    autoplay: true,
+    dots: true,
+  });

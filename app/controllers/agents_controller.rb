@@ -1,5 +1,7 @@
 # coding: utf-8
 class AgentsController < ApplicationController
+  layout "users", :only =>  :edit
+
   def_param_group :agent do
   end
   def intro
@@ -51,12 +53,12 @@ class AgentsController < ApplicationController
 
   api!
   def update
-    if current_user.agent.update_attributes(params[:agent])
+    if current_user.agent.update_attributes(agent_params)
       flash[:success] = "更新成功！"
-      redirect_to user_path
+      redirect_to agent_path
     else
       flash[:error] = "更新失败！"
-      redirect_to user_path
+      redirect_to agent_path
     end
   end
 
@@ -104,6 +106,10 @@ class AgentsController < ApplicationController
 
   def edit
     @agent = Agent.find(params[:id])
+  end
+
+  def agent_params
+    params.require(:agent).permit(:tx, :name, :company, :city, :district, :region, :community)
   end
 
 end
