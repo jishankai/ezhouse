@@ -1,3 +1,4 @@
+# coding: utf-8
 class TipsController < ApplicationController
   def index
     set_meta_tags title: '租房锦囊'

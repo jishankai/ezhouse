@@ -4,35 +4,35 @@
       .row.tips
         ul.list-unstyled
           li.blue
-            a[href="#dc"] 东城  （13）
+            a[href="#dc"] 东城（13）
           li.blue
-            a[href="#hd"] 海淀  （12）
+            a[href="#hd"] 海淀（12）
           li.blue
-            a[href="#cy"] 朝阳  （14）
+            a[href="#cy"] 朝阳（14）
           li.blue
-            a[href="#xc"] 西城  （13）
+            a[href="#xc"] 西城（13）
           li.blue
-            a[href="#ft"] 丰台  （7）
+            a[href="#ft"] 丰台（7）
           li.blue
-            a[href="#cp"] 昌平  （4）
+            a[href="#cp"] 昌平（4）
           li.blue
-            a[href="#fs"] 房山  （3）
+            a[href="#fs"] 房山（3）
           li.blue
-            a[href="#sy"] 顺义  （2）
+            a[href="#sy"] 顺义（2）
           li.blue
-            a[href="#dx"] 大兴  （4）
+            a[href="#dx"] 大兴（4）
           li.blue
-            a[href="#hr"] 怀柔  （1）
+            a[href="#hr"] 怀柔（1）
           li.blue
-            a[href="#my"] 密云  （1）
+            a[href="#my"] 密云（1）
           li.blue
-            a[href="#yq"] 延庆  （0）
-          li.blue
-            a[href="#tz"] 通州  （3）
+            a[href="#yq"] 延庆（0）
           li.blue
             a[href="#sjs"] 石景山（4）
           li.blue
             a[href="#mtg"] 门头沟（1）
+          li.blue
+            a[href="#tz"] 通州（3）
     .col-md-10
       .slider
         .slider_element
@@ -47,226 +47,346 @@
         | 东城
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'东城').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#hd
       .title
         | 海淀
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'海淀').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#cy
       .title
         | 朝阳
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'朝阳').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#xc
       .title
         | 西城
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'西城').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#ft
       .title
         | 丰台
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'丰台').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#cp
       .title
         | 昌平
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'昌平').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#fs
       .title
         | 房山
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'房山').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#sy
       .title
         | 顺义
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'顺义').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#dx
       .title
         | 大兴
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'大兴').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#hr
       .title
         | 怀柔
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'怀柔').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#my
       .title
         | 密云
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'密云').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#yq
       .title
         | 延庆
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'延庆').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#sjs
       .title
         | 石景山
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'石景山').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#mtg
       .title
         | 门头沟
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'门头沟').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
     .tips_row#tz
       .title
         | 通州
       hr.devider
       .content
-        .block
-          ul.list-unstyled
+        ul.block.list-inline
+          - @tips.where(:district=>'通州').each do |tip|
             li
-              = image_tag("http://placehold.it/120x180", size:"120x180")
-            li 望京
-            li 作者
-            li 下载次数
-            li 更新时间
-            li
-              a[href="/tips/download?file_name=望京.pdf"] 下载
+              ul.list-unstyled
+                li
+                  = image_tag(tip.thumb, size:"120x180")
+                li = tip.name
+                li
+                  | 作者：#{tip.author}
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.updated_at}
+                li
+                  - if tip.available == 1
+                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                  - else
+                    a[href="#"] 未上架
 
 javascript:
 
