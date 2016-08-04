@@ -63,6 +63,9 @@ Rails.application.routes.draw do
   end
 
   resources :tips do
+    collection do
+      get 'download'
+    end
   end
 
   # Example resource route with options:
