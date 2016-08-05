@@ -1,5 +1,7 @@
 # coding: utf-8
 class UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [sms]
+
   def_param_group :user do
     param :user, Hash do
       param :mobile, String

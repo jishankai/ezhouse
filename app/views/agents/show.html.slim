@@ -100,9 +100,10 @@
                   = comment.author
                 .col-md-8
                   = comment.text
-    hr.devider
-    .col-md-offset-4.col-md-4
-      = link_to "发布你的评价", new_agent_comment_path(:agent_id => @agent.id.to_s), class:"btn btn-success btn-block btn-xs"
+    - if session[:user_id].nil?
+      hr.devider
+      .col-md-offset-4.col-md-4
+        = link_to "发布你的评价", new_agent_comment_path(:agent_id => @agent.id.to_s), class:"btn btn-success btn-block btn-xs"
 
 javascript:
 
