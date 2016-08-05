@@ -98,7 +98,6 @@ class AgentsController < ApplicationController
       end
     end
 
-    r = @helper.double_call
     if r['statusCode'] == '000000'
       render :json => {:success => true}
     else
