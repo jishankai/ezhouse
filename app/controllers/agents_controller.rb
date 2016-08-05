@@ -83,9 +83,9 @@ class AgentsController < ApplicationController
       r = @helper.double_call
     else
       if params[:code].present? && session[:verify_time].present? && Time.now - session[:verify_time] <= 300 && params[:code]==session[:code]
-        c = Customer.find_by mobile: params[:mobile]
+        c = Customer.find_by mobile: params[:from]
         if c.nil?
-          c = Customer.new( :mobile => params[:mobile] )
+          c = Customer.new( :mobile => params[:from] )
           c.save
         end
         session[:customer_id] = c.id
