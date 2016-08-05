@@ -72,7 +72,7 @@ class AgentsController < ApplicationController
   end
 
   api :POST, "/agents/call", "呼叫经纪人"
-  param :mobile, String, :desc => "用户电话（可选）"
+  param :from, String, :desc => "用户电话（可选）"
   param :id, String, :desc => "经纪人id", :required => true
   param :code, String, :desc => '验证码'
   example " 'success':true, 'statusMsg':'成功'"
