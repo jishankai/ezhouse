@@ -1,5 +1,6 @@
 # coding: utf-8
 class AgentsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:call]
   layout "users", :only =>  :edit
 
   def_param_group :agent do
@@ -73,6 +74,7 @@ class AgentsController < ApplicationController
   api :POST, "/agents/call", "呼叫经纪人"
   param :mobile, String, :desc => "用户电话（可选）"
   param :id, String, :desc => "经纪人id", :required => true
+  param :code, String, :desc => '验证码'
   example " 'success':true, 'statusMsg':'成功'"
   def call
     if session[:customer_mobile].present?
