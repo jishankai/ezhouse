@@ -63,7 +63,7 @@ Rails.application.routes.draw do
   end
 
   resources :tips do
-    collection do
+    member do
       get 'download'
     end
   end

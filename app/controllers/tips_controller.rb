@@ -15,8 +15,10 @@ class TipsController < ApplicationController
   end
 
   def download
-    filepath = Rails.root.join('public/documents',params[:file_name])
+    tip = Tip.find(params[:id])
+    tip.update(:clicks=>tip.clicks+1)
+    filepath = Rails.root.join('public/documents',tip.route)
     stat = File::stat(filepath)
-    send_file(filepath, :filename => params[:file_name], :length => stat.size)
+    send_file(filepath, :filename => tip.route, :length => stat.size)
   end
 end

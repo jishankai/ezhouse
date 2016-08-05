@@ -48,7 +48,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'东城').each do |tip|
+          - @tips.where(:district=>'东城', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -59,10 +59,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#hd
@@ -71,7 +73,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'海淀').each do |tip|
+          - @tips.where(:district=>'海淀', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -82,10 +84,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#cy
@@ -94,7 +98,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'朝阳').each do |tip|
+          - @tips.where(:district=>'朝阳', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -105,10 +109,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#xc
@@ -117,7 +123,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'西城').each do |tip|
+          - @tips.where(:district=>'西城', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -128,10 +134,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#ft
@@ -140,7 +148,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'丰台').each do |tip|
+          - @tips.where(:district=>'丰台', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -151,10 +159,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#cp
@@ -163,7 +173,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'昌平').each do |tip|
+          - @tips.where(:district=>'昌平', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -174,10 +184,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#fs
@@ -186,7 +198,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'房山').each do |tip|
+          - @tips.where(:district=>'房山', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -197,10 +209,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#sy
@@ -209,7 +223,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'顺义').each do |tip|
+          - @tips.where(:district=>'顺义', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -220,10 +234,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#dx
@@ -232,7 +248,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'大兴').each do |tip|
+          - @tips.where(:district=>'大兴', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -243,10 +259,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#hr
@@ -255,7 +273,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'怀柔').each do |tip|
+          - @tips.where(:district=>'怀柔', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -266,10 +284,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#my
@@ -278,7 +298,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'密云').each do |tip|
+          - @tips.where(:district=>'密云', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -289,10 +309,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#yq
@@ -301,7 +323,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'延庆').each do |tip|
+          - @tips.where(:district=>'延庆', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -312,10 +334,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#sjs
@@ -324,7 +348,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'石景山').each do |tip|
+          - @tips.where(:district=>'石景山', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -335,10 +359,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#mtg
@@ -347,7 +373,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'门头沟').each do |tip|
+          - @tips.where(:district=>'门头沟', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -358,10 +384,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
     .tips_row#tz
@@ -370,7 +398,7 @@
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'通州').each do |tip|
+          - @tips.where(:district=>'通州', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -381,10 +409,12 @@
                 li
                   | 下载次数：#{tip.clicks}
                 li
-                  | 更新时间：#{tip.updated_at}
-                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
                   - if tip.available == 1
-                    a[href="/tips/download?file_name=#{tip.route}"] 下载
+                    = link_to "打开", "/documents/#{tip.route}"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
 

@@ -12,6 +12,6 @@ class Tip
   field :description, type: String
   field :author, type: String
   field :version, type: String
-  field :available, type: Boolean
+  field :available, type: Integer
   field :clicks, type: Integer
 end
