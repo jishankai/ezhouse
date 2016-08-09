@@ -101,6 +101,15 @@ Rails.application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
+  namespace :api, format: 'json' do
+    namespace :v1 do
+      resources :users
+      resources :agents
+      resources :customers
+      resources :tips
+      resources :comments
+    end
+  end
   # Example resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController

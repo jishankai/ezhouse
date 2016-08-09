@@ -7,25 +7,26 @@ namespace :agents do
     @transactions_sorted = Agent.lianjia.order_by(:transactions => -1).pluck(:transactions)
     @visits_sorted = Agent.lianjia.order_by(:visits => -1).pluck(:visits)
     @rates_sorted = Agent.lianjia.order_by(:rates => -1).pluck(:rates)
-    @comments_sorted = Agent.lianjia.order_by(:comments => -1).pluck(:comments)
+    @reviews_sorted = Agent.lianjia.order_by(:reviews => -1).pluck(:reviews)
 
     @agents_size = @commissions_sorted.size
-    Agent.lianjia.each do |agent|
+    Agent.lianjia.no_timeout.each do |agent|
       commissions_index = @commissions_sorted.index(agent.commissions)
       transactions_index = @transactions_sorted.index(agent.transactions)
       visits_index = @visits_sorted.index(agent.visits)
       rates_index = @rates_sorted.index(agent.rates)
-      comments_index = @comments_sorted.index(agent.comments)
+      reviews_index = @reviews_sorted.index(agent.reviews)
 
       commissions_index = commissions_index.nil? ? @agents_size : commissions_index
       transactions_index = transactions_index.nil? ? @agents_size : transactions_index
       visits_index = visits_index.nil?  ? @agents_size : visits_index
       rates_index = rates_index.nil?  ? @agents_size : rates_index
-      comments_index = comments_index.nil? ?  @agents_size : comments_index
+      reviews_index = reviews_index.nil? ?  @agents_size : reviews_index
 
       # 50% 5% 15% 15% 15%
-      percentile = 100 - (commissions_index*50 + transactions_index*5 + visits_index*15 + rates_index*15 + comments_index*15)/@agents_size
+      percentile = 100 - (commissions_index*50 + transactions_index*5 + visits_index*15 + rates_index*15 + reviews_index*15)/@agents_size
       agent.update(percentile: percentile)
+      puts "#{agent.name} #{agent.company} #{agent.region}"
     end
 
     $redis.set('lianjia_agents', Agent.lianjia.order_by(:percentile => -1).as_json)
@@ -38,7 +39,7 @@ namespace :agents do
     @clicks_sorted = Agent.wawj.order_by(:clicks => -1).pluck(:clicks)
 
     @agents_size = @sales_sorted.size
-    Agent.wawj.each do |agent|
+    Agent.wawj.no_timeout.each do |agent|
       sales_index = @sales_sorted.index(agent.sales)
       rents_index = @rents_sorted.index(agent.rents)
       rates_index = @rates_sorted.index(agent.rates)
@@ -54,6 +55,7 @@ namespace :agents do
       # 40% 35% 5% 10% 10%
       percentile = 100 - (sales_index*40 + rents_index*35 + rates_index*5 + followers_index*10 + clicks_index*10) / @agents_size
       agent.update(percentile: percentile)
+      puts "#{agent.name} #{agent.company} #{agent.region}"
     end
 
     $redis.set('wawj_agents', Agent.wawj.order_by(:percentile => -1).as_json)
@@ -68,7 +70,7 @@ namespace :agents do
     @stars_sorted = Agent.maitian.order_by(:stars => -1).pluck(:stars)
 
     @agents_size = @sales_sorted.size
-    Agent.maitian.each do |agent|
+    Agent.maitian.no_timeout.each do |agent|
       sales_index = @sales_sorted.index(agent.sales)
       rents_index = @rents_sorted.index(agent.rents)
       career_index = @career_sorted.index(agent.career)
@@ -88,6 +90,7 @@ namespace :agents do
       #30% 2% 10% 20% 30% 5% 3%
       percentile = 100 - (sales_index*30 + rents_index*2 + career_index*10 + customers_index*20 + commissions_index*30 + followers_index*5 + stars_index*3) / @agents_size
       agent.update(percentile: percentile)
+      puts "#{agent.name} #{agent.company} #{agent.region}"
     end
 
     $redis.set('maitian_agents', Agent.wawj.order_by(:percentile => -1).as_json)
