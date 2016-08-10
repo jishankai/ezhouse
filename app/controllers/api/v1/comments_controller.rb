@@ -19,7 +19,7 @@ module Api
 
       api :POST, "/api/v1/comments", "添加评论"
       param :agent_id, String, :desc => "被评论经纪人id", :required => true
-      param :comments, Hash, :desc => "评论数据", :required => true do
+      param :comment, Hash, :desc => "评论数据", :required => true do
         param :author, String, :desc => "用户电话", :required => true
         param :kind, ["好评", "中评", "差评"], :desc => "评论种类", :required => true
         param :text, String, :desc => "评论内容", :required => true
