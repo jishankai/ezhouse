@@ -19,14 +19,8 @@ class WechatsController < ActionController::Base
 把赠话剧票活动分享到朋友圈，让大家帮你早日达到目标，并与白富美或高富帅配对！"
   end
 
-  on :text, with: '北漂' do |request|
+  on :text, with: '群主' do |request|
     request.reply.image('wfjD9PAgZwMe__i0uqLCnpilFopjs_iCmH7Fgn6iYx4')
-  end
-  on :text, with: '大学生' do |request|
-    request.reply.image('wfjD9PAgZwMe__i0uqLCnpilFopjs_iCmH7Fgn6iYx4')
-  end
-  on :text, with: '地区' do |request|
-    request.reply.text "请访问http://ehero-info.sxl.cn获取地区群二维码列表"
   end
 
   on :event, with: 'subscribe' do |request|
@@ -38,11 +32,7 @@ class WechatsController < ActionController::Base
 
 【租房微信群】
 
-回复“北漂”，进入【北漂租房群】
-
-回复“大学生”，进入【大学生租房群】
-
-回复“地区”，进入【按商区划分租房群】"
+回复“群主”，进入【大学生］，［北漂］或［地区］租房群"
   end
 
   on :click, with: 'ABOUTUS' do |request, key|
