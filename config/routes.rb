@@ -104,7 +104,7 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     namespace :v1 do
       resources :users do
-        post 'check_code', on: :collection
+        get 'check_code', on: :collection
       end
       resources :agents
       resources :customers
