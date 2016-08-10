@@ -85,7 +85,7 @@
   /   .row
   /     hr.devider
   .marketing[style="margin-top:24px; padding-bottom: 100px;"]
-    .coverflow
+    .coverflow[style="height:343px" tabindex="-1"]
       .cover
         center.card_wrapper
           = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,q_90,w_320/v1/9344/Img423785208_foh5cj.jpg', size:'120x120', class:'img-circle img-responsive')
@@ -108,6 +108,26 @@
             | “我一直想买一套魏公村附近的房子，因为孩子马上就要在附近上初中。在网上找了好几个月，但是到处都是假房源，所以效率很低。易房好介网推荐了链家魏公村店的小王。一有什么好的房源，小王就会用微信第一时间跟进。终于在一个月后我们买到了称心的两室。感谢小王，感谢易房好介网！”
       .cover
         center.card_wrapper
+          = image_tag('volunteer1.jpg', size:'120x120', class:'img-circle img-responsive')
+          h4.text-muted
+            | 姚同学
+          h5.text-primary
+            | 租房：北京市 海淀区
+          hr.devider
+          p.text-justify
+            | “租房成了大学毕业在社会上的第一课。之前听很多学长学姐说因为经验不足被黑中介骗，不仅服务差还乱收费，刚毕业的北漂大学生成了黑中介的提款机。“易房好介”给这个问题提出来极好的解决方案，可以看出开发人员真的很懂我们租房学生的痛点，非常感谢！（PS. 易房好介推介的我爱我家租房经纪人庞存辉带我看的红杉国际，经纪人自己雇人保养业主的房子，质量极好，价格还帮我砍了500块/月，力荐!）”
+      .cover
+        center.card_wrapper
+          = image_tag('volunteer0.jpg', size:'120x120', class:'img-circle img-responsive')
+          h4.text-muted
+            | 火神小疙瘩
+          h5.text-primary
+            | 租房：北京市朝阳区褡裢坡
+          hr.devider
+          p.text-justify
+            | “我是一名艺术生，毕业在北京做新媒体，15年7月和闺蜜一起来北京租房，因为实习工资很低，图便宜没找大中介而是找到了某S房地产经纪公司。没想到和黑中介的斗智斗勇成了北漂的第一段经历，扣压定金、业主不交物业费、要求提前退房等等。我一直在尝试走法律途径维权，无奈时间精力有限。在这里用我亲身经历提醒各位租房的亲，千万千万不要上了黑中介的贼船！所谓“便宜”的中介费最终会被他们一点一点地抠出来，没必要为此劳神费钱！”
+      .cover
+        center.card_wrapper
           = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,q_90,w_320/v1/9344/6ce25f384bac4901a236287d48eb3c80_lfgwyb.jpg', size:'120x120', class:'img-circle img-responsive')
           h4.text-muted
             | 张雪琴
@@ -121,11 +141,8 @@ javascript:
 
   $(function() {
       $('.coverflow').coverflow({
-          index:1,
-          density:6,
-          innerOffset:65,
-          innerScale:.85,
-          innerAngle:0,
+          index:2,
+
       });
   });
   $('#btn_search').on('click', function () {
