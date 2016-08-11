@@ -8,7 +8,7 @@ module Api
       api :POST, "/api/v1/customers/call", "免扰电话"
       param :helper, Hash, :desc => "电话数据", :required => true do
         param :from, String, :desc => "用户电话", :required => true
-        param :code, :desc => "验证码（若已验证过号码则可留空）"
+        param :code, String, :desc => "验证码（若已验证过号码则可留空）"
         param :to, String, :desc => "对方号码", :required => true
       end
       def call
