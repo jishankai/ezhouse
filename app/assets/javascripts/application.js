@@ -12,9 +12,8 @@
 //
 //= require jquery
 //= require jquery-ujs
-//= require jquery-ui/jquery-ui
 //= require jquery-migrate/jquery-migrate
-//= require coverflow/jquery.coverflow
+//= require coverflowjs/dist/coverflow
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-select

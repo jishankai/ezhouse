@@ -84,8 +84,8 @@
   /             h4[style='color:white'] 卖家 房东
   /   .row
   /     hr.devider
-  .marketing[style="margin-top:24px; padding-bottom: 100px;"]
-    .coverflow[style="height:343px" tabindex="-1"]
+  .marketing[style="margin:24px 0 24px 0; height:360px;"]
+    .coverflow[tabindex="-1"]
       .cover
         center.card_wrapper
           = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,q_90,w_320/v1/9344/Img423785208_foh5cj.jpg', size:'120x120', class:'img-circle img-responsive')
@@ -141,7 +141,7 @@ javascript:
 
   $(function() {
       $('.coverflow').coverflow({
-          index:2,
+          active:2,
 
       });
   });

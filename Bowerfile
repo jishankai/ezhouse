@@ -3,7 +3,7 @@
 
 asset 'jquery-ujs'
 asset 'jquery-migrate', "~1.4.0"
-asset 'coverflow'
+asset 'coverflowjs'
 asset 'sweetalert'
 asset 'fontawesome'
 asset 'jquery-validation'

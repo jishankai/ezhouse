@@ -1,0 +1,14 @@
+{
+  "name": "coverflowjs",
+  "homepage": "https://github.com/coverflowjs/coverflow",
+  "version": "3.0.2",
+  "_release": "3.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.0.2",
+    "commit": "44d0755c4f2ade12c1577170638e310685ca789c"
+  },
+  "_source": "https://github.com/coverflowjs/coverflow.git",
+  "_target": "*",
+  "_originalSource": "coverflowjs"
+}

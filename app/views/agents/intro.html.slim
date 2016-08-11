@@ -41,7 +41,7 @@
   .row
     hr.devider
 
-  .agents[style="margin-top:24px; padding-bottom: 100px;"]
+  .agents[style="margin:24px,0,24px,0; height:360px"]
     .coverflow
       .cover
         center.card_wrapper
@@ -87,11 +87,9 @@ javascript:
 
   $(function() {
       $('.coverflow').coverflow({
-          index:1,
-          density:6,
-          innerOffset:65,
-          innerScale:.85,
-          innerAngle:0,
+          active:1,
+          overlap:.1,
+          angle:10,
       });
   });
 
