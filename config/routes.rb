@@ -107,7 +107,9 @@ Rails.application.routes.draw do
         get 'check_code', on: :collection
       end
       resources :agents
-      resources :customers
+      resources :customers do
+        post 'call', on: :collection
+      end
       resources :tips
       resources :comments
     end
