@@ -31,6 +31,8 @@ html
           = link_to '经纪人', intro_agents_path
           = link_to '锦囊', tips_path
           = link_to '免扰电话', helper_index_path
+          = link_to '常见问答', site_faq_path
+
           - if current_user
             = link_to '个人资料', user_path(current_user)
             = link_to '注销', logout_users_path

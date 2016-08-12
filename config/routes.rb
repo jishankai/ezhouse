@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get 'site/contactus' => 'site#contact'
   get 'site/privacy' => 'site#privacy'
   get 'site/career' => 'site#career'
-
+  get 'site/faq' => 'site#faq'
   get 'apps/index' => 'apps#index'
 
   match 'users/sign_in' => 'users#login', via: [:get, :post]
