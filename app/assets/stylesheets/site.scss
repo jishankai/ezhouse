@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+    font-family: "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei", 微软雅黑, "Segoe UI", Tahoma, verdana, arial, helvetica, sans-serif!important;
+}
+
 .site_bg {
     background:image-url('buy_success.jpg') no-repeat center scroll;
     background-size:cover;
