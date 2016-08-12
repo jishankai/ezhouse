@@ -3,14 +3,53 @@ html
   head
     = display_meta_tags site: '易房好介'
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    /= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     meta name='viewport' content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
   body
-    .container-fluid.ubg
+    = navbar position: :static do
+      = vertical do
+        = image_tag('brand_blue_horizontal.png', height:'32', style:'margin:9px auto')
+      = horizontal do
+        = nav class: 'navbar-left' do
+          = link_to ('#') do
+            |  北京
+          / li.dropdown[role="presentation"]
+          /   a.dropdown-toggle[data-target="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"]
+          /     | 选择城市
+          /     span.caret
+          /   ul.dropdown-menu
+          /     li
+          /       a[href="#"]
+          /         | 北京
+          /     li
+          /       a[href="#"]
+          /         | 上海
+        = nav class: 'navbar-right' do
+          = link_to '买卖/租赁', root_path
+          = link_to '经纪人', intro_agents_path
+          = link_to '锦囊', tips_path
+          = link_to '免扰电话', helper_index_path
+          - if current_user
+            = link_to '个人资料', user_path(current_user)
+            = link_to '注销', logout_users_path
+    .container-fluid.ubg[style='margin-top:-20px']
       .col-md-offset-4.col-md-4.wrapper
         center.row.logo
-          = image_tag('brand_green_horizontal.png', size:'160x64', class:'img-responsive')
+          = image_tag('brand_blue_horizontal.png', size:'160x64', class:'img-responsive')
         .row[style='margin:24px auto']
           = yield
+    .container-fluid#footer-container[style='background-color:#373F53;']
+      .footer
+        .row-footer
+          ul.list-inline[style='color:#4BB7FC']
+            li
+              = link_to "关于我们", site_aboutus_path
+            li
+              = link_to "联系我们", site_contactus_path
+            li
+              = link_to "加入我们", site_career_path
+            li
+              = link_to "法律声明", site_privacy_path
+        .row-footer.pull-right[style='color:#808CAB']
+          | 京ICP备16037812号 © 2016 北京三岔口信息技术有限公司
