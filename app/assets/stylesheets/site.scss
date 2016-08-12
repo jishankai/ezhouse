@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-    font-family: "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei", 微软雅黑, "Segoe UI", Tahoma, verdana, arial, helvetica, sans-serif!important;
+    font-family: "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei", 微软雅黑, "Segoe UI", Tahoma, verdana, arial, helvetica, sans-serif !important;
 }
 
 .site_bg {
@@ -53,4 +53,21 @@ body {
 
 .row-footer {
     margin: 12px 0 6px 0;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #fff !important;
+    background-color: #4bb7fc !important;
+}
+
+.navbar-static-top {
+    z-index: 1000;
+    border-width: 0 !important;
+}
+
+.navbar-nav > li > a {
+    padding-top: 23px !important;
+    padding-bottom: 23px !important;
 }

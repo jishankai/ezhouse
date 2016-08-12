@@ -5,11 +5,12 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = analytics_init if GoogleAnalytics.valid_tracker?
     meta name='viewport' content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
   body
     = navbar position: :static do
       = vertical do
-        = image_tag('brand_blue_horizontal.png', height:'32', style:'margin:9px auto')
+        = image_tag('brand_blue_horizontal.png', height:'48', style:'margin:9px auto')
       = horizontal do
         = nav class: 'navbar-left' do
           = link_to ('#') do
