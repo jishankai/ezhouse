@@ -15,7 +15,7 @@
     center
       = f.text_field :to, use_label: false, placeholder: "对方号码", id:"to"
     center
-      = f.submit "呼叫", class: 'btn-success btn-block'
+      = f.submit "呼叫", class: 'btn-success btn-block', id:"btn_submit", data:{'loading-text':'呼叫中...'}
 - else
   = form_for(:helper, layout: :basic, url: "/helper", remote: true) do |f|
     center
@@ -96,6 +96,7 @@ javascript:
           $('#btn_submit').button('reset');
           if (response.success) {
             swal('呼叫成功', '正在接通您和经纪人的电话……', "success")
+            $('#btn_submit').button('reset');
           } else {
             swal(response.errorCode,response.errorMsg,"warning")
           }
