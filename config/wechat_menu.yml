@@ -12,22 +12,22 @@ button:
   name: "其他功能"
   sub_button:
    -
-    type: "click"
+    type: "view"
     name: "锦囊"
-    key:  "GUIDES"
+    url:  "http://ehero.cc/tips"
    -
     type: "click"
     name: "微信群"
     key:  "GROUPS"
    -
-    type: "view"
+    type: "click"
     name: "评价"
-    url:  "http://ehero.cc/comment"
+    key:  "COMMENT"
    -
-    type: "click"
+    type: "view"
     name: "帮助"
-    key:  "HELP"
+    url:  "http://ehero.cc/faq"
    -
-    type: "click"
+    type: "view"
     name: "关于我们"
-    key:  "ABOUTUS"
+    url:  "http://ehero.cc/site/aboutus"
