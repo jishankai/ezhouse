@@ -26,7 +26,7 @@ button:
    -
     type: "view"
     name: "帮助"
-    url:  "http://ehero.cc/faq"
+    url:  "http://ehero.cc/site/faq"
    -
     type: "view"
     name: "关于我们"
