@@ -1,16 +1,20 @@
-.container#main-container
-  - if @agents.nil?
+.container#main-container[style="min-height:81%"]
+  - if !@agents.present?
     center.row
       h4.text-danger 未匹配到任何结果！
+      small.text-success
+        = link_to "返回上一页...", :back
   - else
     - @agents.each do |agent|
       .row.card_wrapper
         .col-md-2
-          = image_tag(agent.tx, size:'120x160', class:'img-responsive')
+          = link_to agent_path(agent) do
+            = image_tag(agent.tx, size:'120x160', class:'img-responsive')
         .col-md-10
           .row
             .col-md-2[style='font-size:18px']
-              = agent.name
+              = link_to agent_path(agent) do
+                = agent.name
             .col-md-2
               span.jobtitle
                 = agent.position

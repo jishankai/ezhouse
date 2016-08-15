@@ -10,7 +10,7 @@ class AgentsController < ApplicationController
     set_meta_tags default_meta_tags
   end
   def index
-    @agents = params[:agents]
+    @agents = Agent.all
   end
   api :GET, "/agents/search", "搜索地区"
   param :address, String

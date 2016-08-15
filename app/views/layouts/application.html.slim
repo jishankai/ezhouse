@@ -10,10 +10,11 @@ html
   body.bg
     = navbar position: :static do
       = vertical do
-        = image_tag('brand_blue_horizontal.png', height:'48', style:'margin:9px auto')
+        = link_to root_path do
+          = image_tag('brand_blue_horizontal.png', height:'48', style:'margin:9px auto')
       = horizontal do
         = nav class: 'navbar-left' do
-          = link_to ('#') do
+          = link_to root_path do
             |  北京
           / li.dropdown[role="presentation"]
           /   a.dropdown-toggle[data-target="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"]

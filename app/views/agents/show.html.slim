@@ -1,4 +1,4 @@
-.container
+.container[style="min-height:81%"]
   .row.card_wrapper
     .col-md-2
       = image_tag(@agent.tx, size:'120x160', class:'img-responsive')
@@ -12,9 +12,10 @@
         .col-md-1.vdevider
           | |
         .col-md-2[style='line-height:2']
-          | 从业:
-          = @agent.career.nil? ? '未知' : @agent.career
-          | 年
+          - if @agent.career.present?
+            | 从业:
+            = @agent.career
+            | 年
         .col-md-offset-2.col-md-3
           a.btn.btn-block.btn-xs#agentcall[href='#' role='button' value='#{@agent.id}']
             /= icon :phone, library: :font_awesome, style: 'color:white'
@@ -37,6 +38,16 @@
       .row
         .col-md-9
           .blue
+            | 奖项：
+        .col-md-3
+          .blue
+            | 公司内排名：
+            span[style='color:black']
+              strong[style='margin:auto 12px; padding:auto 12px'] = @agent.percentile
+              | %
+      .row
+        .col-md-9
+          .blue
             | 标签：
             - if @agent.label.present?
               - @agent.label.split(/ /).each do |label|
@@ -55,8 +66,8 @@
                 .text-center
                   = community
   .row.card_wrapper
-    = progress_bar percentage:@agent.percentile, label:"综合评分#{@agent.percentile}", id:'percentile'
-    hr.devider
+    / = progress_bar percentage:@agent.percentile, label:"综合评分#{@agent.percentile}", id:'percentile'
+    / hr.devider
     - nice_comments = @agent.comments.where("kind"=>"nice")
     - common_comments = @agent.comments.where("kind"=>"common")
     - bad_comments = @agent.comments.where("kind"=>"bad")
@@ -105,44 +116,93 @@
       .col-md-offset-4.col-md-4
         = link_to "发布你的评价", new_agent_comment_path(:agent_id => @agent.id.to_s), class:"btn btn-success btn-block btn-xs"
 
-javascript:
+- if session[:customer_mobile].nil?
+  javascript:
 
-  $('#agentcall').on('click', function () {
-    var $agent_id = $(this).attr('value');
-    swal({
-      title: '免骚扰电话',
-      text: '经纪人手机将显示随机座机号码，看不到您的手机号',
-      type: 'input',
-      showCancelButton: true,
-      closeOnConfirm: false,
-      animation: 'slide-from-top',
-      inputPlaceholder: '请输入您的电话号码',
-      confirmButtonText: "确认",
-      cancelButtonText: "取消",
-      showLoaderOnConfirm: true,
-    },
-    function(inputValue){
-     if (inputValue === false) return false;
-     if (inputValue === "") {
-       swal.showInputError("号码不能为空！");
-       return false;
-     }
-     $.ajax({
-       type: 'POST',
-       url: '/agents/call',
-       data: {from:inputValue,id:$agent_id},
-       dataType: 'json',
-       success: function(response) {
-         if (response.success) {
-           swal('呼叫成功', '正在接通您和经纪人的电话……', "success")
-         } else {
-           swal(response.errorCode,response.errorMsg,"warning")
-         }
-       },
-       error: function(XMLHttpRequest, textStatus, errorThrown) {
-         alert(textStatus+' '+errorThrown);
-       }
-     });
-    }
-    );
-  });
+    $('#agentcall').on('click', function () {
+      var $agent_id = $(this).attr('value');
+      swal({
+        title: '防骚扰电话',
+        text: '经纪人手机将显示随机座机号码，看不到您的手机号',
+        type: 'input',
+        showCancelButton: true,
+        closeOnConfirm: false,
+        animation: 'slide-from-top',
+        inputPlaceholder: '请输入您的电话号码',
+        confirmButtonText: "确认",
+        cancelButtonText: "取消",
+        showLoaderOnConfirm: true,
+      },
+      function(inputValue){
+        if (inputValue === false) return false;
+        if (inputValue === "") {
+          swal.showInputError("号码不能为空！");
+          return false;
+        }
+        var mobile_number = inputValue;
+        $.ajax({
+          type: 'POST',
+          url: '/users/sms',
+          data: {mobile:mobile_number, type:"verify"},
+          dataType: 'json',
+          success: function(response) {
+            swal({
+              title: '防骚扰电话',
+              text: '请输入手机验证码',
+              type: 'input',
+              showCancelButton: true,
+              closeOnConfirm: false,
+              animation: 'slide-from-top',
+              inputPlaceholder: '请输入您收到的验号码',
+              confirmButtonText: "确认",
+              cancelButtonText: "取消",
+              showLoaderOnConfirm: true,
+            },
+            function(inputValue) {
+              $.ajax({
+                type: 'POST',
+                url: '/agents/call',
+                data: {from:mobile_number,id:$agent_id,code:inputValue},
+                dataType: 'json',
+                success: function(response) {
+                  if (response.success) {
+                    swal('呼叫成功', '正在接通您和经纪人的电话……', "success")
+                  } else {
+                    swal(response.errorCode,response.errorMsg,"warning")
+                  }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  swal('O.o', textStatus+' '+errorThrown, "error");
+                }
+              });
+            });
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            swal('O.o', textStatus+' '+errorThrown, "error");
+          }
+        });
+      });
+    });
+
+- else
+  javascript:
+
+    $('#agentcall').on('click', function () {
+      var $agent_id = $(this).attr('value');
+      $.ajax({
+        type: 'POST',
+        url: '/agents/call',
+        data: {id:$agent_id},
+        dataType: 'json',
+        success: function(response) {
+          if (response.success) {
+            swal('呼叫成功', '正在接通您和经纪人的电话……', "success")
+          } else {
+            swal(response.errorCode,response.errorMsg,"warning")
+          }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          swal('O.o', textStatus+' '+errorThrown, "error");
+        }
+      });
+    });
