@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  layout "apps"
   prepend_before_action :get_model
   before_action :get_comment, :only => [:show, :edit, :update, :destroy]
 
