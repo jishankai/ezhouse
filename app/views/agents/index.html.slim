@@ -29,14 +29,14 @@
                 | 公司：
                 span[style='color:black']
                   strong[style='margin:auto 12px; padding:auto 12px'] = agent.company
-            .col-md-3
+            .col-md-3.text-right
               .blue
                 | 公司内排名：
                 span[style='color:black']
                   strong[style='margin:auto 12px; padding:auto 12px'] = agent.percentile
                   | %
           .row
-            .col-md-12
+            .col-md-9
               .blue
                 | 板块：
                 - agent.region.split(/ /).each do |region|
@@ -50,7 +50,10 @@
                   - agent.community.split(/ /).each do |community|
                     span.region
                       = community
-            .col-md-3.text-justify
+            .col-md-3.text-right
+              - if agent.href.present?
+                = link_to '站外主页', agent.href
+                | &nbsp;&nbsp;
               = link_to '详细信息...', agent_path(agent.id)
 - if session[:customer_mobile].nil?
   javascript:

@@ -22,6 +22,7 @@ class Agent
   field :district, type: String
   field :region, type: String
   field :percentile, type: Integer
+  field :href, type: String
 
   slug :name
 
