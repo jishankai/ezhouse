@@ -1,22 +1,36 @@
 .container-fluid#main-container
   .row.site_bg[style='margin-top:-20px']
-    .row[style='margin-top:240px']
+    .row[style='margin-top:204px']
       .col-md-offset-3.col-md-6
         font[color='white']
           center
             h1[style='text-shadow:1px 1px black'] 为您找到最优秀的经纪人
             footer[style='text-shadow:1px 1px black'] 与黑中介和假房源说再见
     .row[style='margin:24px auto 320px auto']
-      .col-md-offset-3.col-md-6
-        .input-group
-          / .input-group-btn
-          /   select.selectpicker.show-menu-arrow[title="意向" data-width="auto"]
-          /     option = '出租'
-          /     option = '买卖'
-          input#address.form-control[type='text' placeholder='区域，商圈，小区名称' required]
-          span.input-group-btn
-            button#btn_search.btn.btn-success[type='button' data-loading-text='加载中...' style='background:#4bb7fc']
-              = icon :search
+      .col-md-offset-3.col-md-6#search_bar
+        = nav do
+          = link_to '买卖','#sale',  'aria-controls':"sale", role:"tab", 'data-toggle':"tab"
+          = link_to '租赁','#rent',  'aria-controls':"rent", role:"tab", 'data-toggle':"tab"
+          = link_to '经纪人','#agents',  'aria-controls':"agents", role:"tab", 'data-toggle':"tab"
+        .tab-content
+          .tab-pane.active#sale[role='tabpanel']
+            .input-group
+              input.search.form-control[type='text' placeholder='买卖区域，商圈，小区名称' required]
+              span.input-group-btn
+                button.btn_search.btn.btn-success[type='button' data-loading-text='加载中...' style='background:#4bb7fc']
+                  = icon :search
+          .tab-pane#rent[role='tabpanel']
+            .input-group
+              input.search.form-control[type='text' placeholder='租赁区域，商圈，小区名称' required]
+              span.input-group-btn
+                button.btn_search.btn.btn-success[type='button' data-loading-text='加载中...' style='background:#4bb7fc']
+                  = icon :search
+          .tab-pane#agents[role='tabpanel']
+            .input-group
+              input.search.form-control[type='text' placeholder='经纪人姓名，手机号码' required]
+              span.input-group-btn
+                button.btn_search.btn.btn-success[type='button' data-loading-text='加载中...' style='background:#4bb7fc']
+                  = icon :search
   .row[style='margin-top:24px']
     .col-xs-12.col-md-4
       center.card_wrapper
@@ -160,14 +174,15 @@
 javascript:
 
   $(function() {
+      $($('ul.nav-tabs > li')[0]).addClass('active');
       $('.coverflow').coverflow({
           active:2,
-
       });
   });
-  $('#btn_search').on('click', function () {
-      var $address = $('#address').val();
-      window.location.assign('/agents/search?address='+$address);
+  $('.btn_search').on('click', function () {
+      var arg = $(this).parent().prev().val();
+      var major = $(this).parents('.tab-pane').attr('id');
+      window.location.assign('/agents/index?arg='+arg+'&major='+major);
       // $.ajax({
       //   type: 'POST',
       //   url: '/agents/search',

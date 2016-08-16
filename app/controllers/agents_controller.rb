@@ -10,8 +10,34 @@ class AgentsController < ApplicationController
     set_meta_tags default_meta_tags
   end
   def index
-    @agents = Agent.all
+    set_meta_tags title: '推荐经纪人'
+    set_meta_tags default_meta_tags
+    case params[:major]
+    when "sale"
+      lianjia_agent = Agent.lianjia.or( {city: params[:arg]}, {district: /.*#{params[:arg]}.*/}, {region: /.*#{params[:arg]}.*/}, {community: /.*#{params[:arg]}.*/} ).and( {major: '买卖'}).order_by(:percentile => -1).first
+      wawj_agent = Agent.wawj.or( {city: params[:arg]}, {district: /.*#{params[:arg]}.*/}, {region: /.*#{params[:arg]}.*/}, {community: /.*#{params[:arg]}.*/} ).and( {major: '买卖'}).order_by(:percentile => -1).first
+      maitian_agent = Agent.maitian.or( {city: params[:arg]}, {district: /.*#{params[:arg]}.*/}, {region: /.*#{params[:arg]}.*/}, {community: /.*#{params[:arg]}.*/} ).and( {major: '买卖'}).order_by(:percentile => -1).first
+
+      @agents = [lianjia_agent, wawj_agent, maitian_agent].compact
+    when "rent"
+      lianjia_agent = Agent.lianjia.or( {city: params[:arg]}, {district: /.*#{params[:arg]}.*/}, {region: /.*#{params[:arg]}.*/}, {community: /.*#{params[:arg]}.*/} ).and( {major: '租赁'}).order_by(:percentile => -1).first
+      wawj_agent = Agent.wawj.or( {city: params[:arg]}, {district: /.*#{params[:arg]}.*/}, {region: /.*#{params[:arg]}.*/}, {community: /.*#{params[:arg]}.*/} ).and( {major: '租赁'}).order_by(:percentile => -1).first
+      maitian_agent = Agent.maitian.or( {city: params[:arg]}, {district: /.*#{params[:arg]}.*/}, {region: /.*#{params[:arg]}.*/}, {community: /.*#{params[:arg]}.*/} ).and( {major: '租赁'}).order_by(:percentile => -1).first
+
+      @agents = [lianjia_agent, wawj_agent, maitian_agent].compact
+    when "agents"
+      @agents = Agent.or( {mobile: params[:arg]}, {name: params[:arg]} )
+    else
+    end
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => @agents.to_json
+      }
+    end
   end
+
   api :GET, "/agents/search", "搜索地区"
   param :address, String
   def search

@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   resources :agents do
     collection do
       post 'call'
+      get 'index'
       get 'search'
       get 'asearch'
       get 'intro'
