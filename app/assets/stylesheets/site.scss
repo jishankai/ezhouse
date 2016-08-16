@@ -104,4 +104,17 @@ body {
     }
 }
 
+.navbar-default {
+    background-color: #fff !important;
+
+    ul.navbar-left > li.active > a {
+        background-color: #fff !important;
+        color: #777 !important;
+    }
+
+    ul.navbar-right > li > a {
+        color: #4bb7fc !important;
+    }
+}
+
 
