@@ -111,7 +111,9 @@ Rails.application.routes.draw do
       resources :customers do
         post 'call', on: :collection
       end
-      resources :tips
+      resources :tips do
+        get 'regions', on: :collection
+      end
       resources :comments
     end
   end

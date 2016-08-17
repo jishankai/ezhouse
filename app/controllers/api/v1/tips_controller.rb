@@ -8,6 +8,13 @@ module Api
       def index
         render json: Tip.all
       end
+
+      api!
+      def regions
+        regions = YAML.load(File.open(Rails.root.join("public/tips.yml")))
+
+        render json: regions
+      end
     end
   end
 end
