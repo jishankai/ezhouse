@@ -21,4 +21,6 @@
 //= require sweetalert
 //= require jquery-validation
 //= require slick-carousel
+//= require highcharts
+//= require chartkick
 //= require_tree .
