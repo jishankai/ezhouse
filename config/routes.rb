@@ -110,6 +110,7 @@ Rails.application.routes.draw do
       resources :agents
       resources :customers do
         post 'call', on: :collection
+        get 'groups', on: :collection
       end
       resources :tips do
         get 'regions', on: :collection

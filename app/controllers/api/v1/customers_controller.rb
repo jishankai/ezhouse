@@ -37,6 +37,13 @@ module Api
         end
       end
 
+      api!
+      def groups
+        groups = YAML.load(File.open(Rails.root.join("public/groups.yml")))
+
+        render json: groups
+      end
+
       private
 
       def helper_params
