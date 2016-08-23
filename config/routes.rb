@@ -106,6 +106,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users do
         get 'check_code', on: :collection
+        get 'slides', on: :collection
       end
       resources :agents
       resources :customers do

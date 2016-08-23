@@ -109,6 +109,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'did_you_mean'
   gem 'rails-footnotes', '~> 4.0'
+  gem 'rubycritic'
 end
 
 group :development do
