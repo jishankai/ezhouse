@@ -21,5 +21,4 @@
 //= require sweetalert
 //= require jquery-validation
 //= require slick-carousel
-//= require Chart.min
 //= require_tree .
