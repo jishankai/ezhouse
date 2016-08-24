@@ -108,7 +108,9 @@ Rails.application.routes.draw do
         get 'check_code', on: :collection
         get 'slides', on: :collection
       end
-      resources :agents
+      resources :agents do
+        post 'search', on: :collection
+      end
       resources :customers do
         post 'call', on: :collection
         get 'groups', on: :collection

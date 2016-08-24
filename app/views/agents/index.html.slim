@@ -54,7 +54,10 @@
                         = community
             .col-md-3.text-right
               - if agent.href.present?
-                = link_to '站外主页', agent.href
+                - if agent.company == '我爱我家'
+                  = link_to '站外主页', "http://bj.5i5j.com/#{agent.href}"
+                - else
+                  = link_to '站外主页', agent.href
                 | &nbsp;&nbsp;
               = link_to '详细信息...', agent_path(agent.id)
 - if session[:customer_mobile].nil?
