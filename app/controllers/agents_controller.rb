@@ -28,9 +28,9 @@ class AgentsController < ApplicationController
       wawj_agent = Agent.wawj.or( {city: params[:arg]}, {district: /.*#{params[:arg]}.*/}, {region: /.*#{params[:arg]}.*/}, {community: /.*#{params[:arg]}.*/} ).and( {major: '租赁'}).order_by(:percentile => -1).first
       maitian_agent = Agent.maitian.or( {city: params[:arg]}, {district: /.*#{params[:arg]}.*/}, {region: /.*#{params[:arg]}.*/}, {community: /.*#{params[:arg]}.*/} ).and( {major: '租赁'}).order_by(:percentile => -1).first
 
-      lianjia_agent.percentile = lianjia_agent.percentile*100/lianjia_1st.percentile
-      wawj_agent.percentile = wawj_agent.percentile*100/wawj_1st.percentile
-      maitian_agent.percentile = maitian_agent.percentile*100/maitian_1st.percentile
+      lianjia_agent.percentile = lianjia_agent.percentile*100/lianjia_1st.percentile if lianjia_agent.present?
+      wawj_agent.percentile = wawj_agent.percentile*100/wawj_1st.percentile if wawj_agent.present?
+      maitian_agent.percentile = maitian_agent.percentile*100/maitian_1st.percentile if maitian_agent.present?
 
       @agents = [lianjia_agent, wawj_agent, maitian_agent].compact
     when "agents"
