@@ -92,7 +92,7 @@ gem 'mongoid_commentable', :git => 'https://github.com/skji/mongoid_commentable.
 gem 'responders', '~> 2.0'
 
 # Chart
-gem 'chartjs-ror'
+#gem 'chartjs-ror'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
