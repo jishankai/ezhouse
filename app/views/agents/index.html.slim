@@ -28,28 +28,30 @@
               .blue
                 | 公司：
                 span[style='color:black']
-                  strong[style='margin:auto 12px; padding:auto 12px'] = agent.company
+                  strong[style='margin:auto 2px;'] = agent.company
             .col-md-3.text-right
               .blue
                 | 公司内排名：
                 span[style='color:black']
-                  strong[style='margin:auto 12px; padding:auto 12px'] = agent.percentile
+                  strong[style='margin:auto 2px;'] = agent.percentile
                   | %
           .row
             .col-md-9
               .blue
                 | 板块：
                 - agent.region.split(/ /).each do |region|
-                  span.region
-                    = region
+                  - if region != ''
+                    span.region
+                      = region
           .row
             .col-md-9
               .blue
                 | 小区：
                 - if agent.community.present?
                   - agent.community.split(/ /).each do |community|
-                    span.region
-                      = community
+                    - if community != ''
+                      span.region
+                        = community
             .col-md-3.text-right
               - if agent.href.present?
                 = link_to '站外主页', agent.href

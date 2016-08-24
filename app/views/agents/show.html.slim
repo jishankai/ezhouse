@@ -26,15 +26,16 @@
           .blue
             | 公司：
             span[style='color:black']
-              strong[style='margin:auto 12px; padding:auto 12px'] = @agent.company
+              strong[style='margin:auto 2px;'] = @agent.company
       .row
         .col-md-12
           .blue
             | 板块：
-            - @agent.region.present?
+            - if @agent.region.present?
               - @agent.region.split(/ /).each do |region|
-                span.region
-                  = region
+                - if region != ''
+                  span.region
+                    = region
       .row
         .col-md-9
           .blue
@@ -43,7 +44,7 @@
           .blue
             | 公司内排名：
             span[style='color:black']
-              strong[style='margin:auto 12px; padding:auto 12px'] = @agent.percentile
+              strong[style='margin:auto 12px;'] = @agent.percentile
               | %
       .row
         .col-md-9

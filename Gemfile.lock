@@ -77,7 +77,8 @@ GEM
     buttercms-ruby (1.0.1)
       rest-client
     byebug (9.0.4)
-    chartkick (2.0.2)
+    chartjs-ror (3.0.2)
+      rails (>= 3.1)
     chronic (0.10.2)
     codeclimate-engine-rb (0.3.1)
       virtus (~> 1.0)
@@ -357,7 +358,7 @@ DEPENDENCIES
   bson_ext
   buttercms-rails
   byebug
-  chartkick
+  chartjs-ror
   coffee-rails (~> 4.1.0)
   did_you_mean
   figaro
