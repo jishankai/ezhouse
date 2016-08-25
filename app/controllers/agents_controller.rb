@@ -1,7 +1,7 @@
 # coding: utf-8
 class AgentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:call]
-  layout "users", :only =>  :edit
+  layout "apps", :only =>  :edit
 
   def_param_group :agent do
   end
