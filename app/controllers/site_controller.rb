@@ -98,9 +98,9 @@ class SiteController < ApplicationController
       datasets: [{
                    data: [transactions_summary, commissions_summary, visits_summary],
                    backgroundColor: [
-                     "#4BC0C0",
                      "#FFCE56",
-                     "#FF6384",
+                     "#4BC0C0",
+                     "#36A2EB"
                    ],
                    label: '经纪人关键数据'
                  }],
