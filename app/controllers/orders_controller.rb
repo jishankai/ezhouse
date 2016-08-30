@@ -21,15 +21,15 @@ class OrdersController < ApplicationController
     order.save
     redirect_to Alipay::Service.create_direct_pay_by_user_url(
                   out_trade_no: order_number,
-                  subject: "易房好介充值 #{order_number}",
-                  total_fee: params[:order][:price],
-                  return_url: order_url,
-                  notify_url: notify_order_url,
+                  subject: order.subject,
+                  total_fee: order.total_fee,
+                  return_url: orders_url,
+                  notify_url: notify_orders_url,
                 )
   end
 
   def show
-    redirect_to agent_path(current_user)
+    redirect_to agent_path(current_user.agent)
   end
 
   def notify

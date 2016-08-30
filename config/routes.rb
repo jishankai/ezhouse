@@ -69,7 +69,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders do
+  resource :orders, only: [:show, :new, :create] do
+    member do
+      post 'notify'
+    end
   end
 
   # Example resource route with options:

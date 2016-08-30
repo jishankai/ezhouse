@@ -1,5 +1,5 @@
 .alert.alert-danger[style='display:none']
-= form_for(:order, layout: :basic, url: /orders) do |f|
+= form_for(:order, layout: :basic, url: '/orders') do |f|
   center
     = f.text_field :mobile, use_label: false, id:"mobile", value: current_user.mobile, disabled:true
   center
