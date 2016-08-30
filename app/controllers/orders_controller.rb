@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
       case params[:trade_status]
       when 'WAIT_BUYER_PAY'
       when 'TRADE_CLOSED'
-      when 'WAIT_SUCCESS'
+      when 'TRADE_SUCCESS'
         order = Order.find_by( :out_trade_no => params[:out_trade_no])
         if order.present?
           agent = Agent.find_by( :mobile => order.mobile )
