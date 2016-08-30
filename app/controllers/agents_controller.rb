@@ -46,46 +46,6 @@ class AgentsController < ApplicationController
     end
   end
 
-  api :GET, "/agents/search", "搜索地区"
-  param :address, String
-  def search
-    set_meta_tags title: '推荐经纪人'
-    set_meta_tags default_meta_tags
-
-    lianjia_agent = Agent.lianjia.or( {city: params[:address]}, {district: /.*#{params[:address]}.*/}, {region: /.*#{params[:address]}.*/}, {community: /.*#{params[:address]}.*/} ).order_by(:percentile => -1).first
-    wawj_agent = Agent.wawj.or( {city: params[:address]}, {district: /.*#{params[:address]}.*/}, {region: /.*#{params[:address]}.*/}, {community: /.*#{params[:address]}.*/} ).order_by(:percentile => -1).first
-    maitian_agent = Agent.maitian.or( {city: params[:address]}, {district: /.*#{params[:address]}.*/}, {region: /.*#{params[:address]}.*/}, {community: /.*#{params[:address]}.*/} ).order_by(:percentile => -1).first
-
-    @agents = [lianjia_agent, wawj_agent, maitian_agent].compact
-
-    respond_to do |format|
-      format.html
-      format.json {
-        render :json => @agents.to_json
-      }
-    end
-  end
-
-  api :GET, "/agents/asearch", "搜索经纪人"
-  param :arg, String
-  def asearch
-    set_meta_tags title: '搜索经纪人'
-    set_meta_tags default_meta_tags
-
-    @agents = Agent.or( {mobile: params[:arg]}, {name: params[:arg]} )
-
-    if @agents.size == 1
-      redirect_to agent_path(@agents.first)
-    else
-      respond_to do |format|
-        format.html
-        format.json {
-          render :json => @agents.to_json
-        }
-      end
-    end
-  end
-
   api!
   def update
     if current_user.agent.update_attributes(agent_params)

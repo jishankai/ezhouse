@@ -94,6 +94,9 @@ gem 'responders', '~> 2.0'
 # Chart
 gem 'chartjs-ror'
 
+# Alipay
+gem 'alipay', '~> 0.12.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

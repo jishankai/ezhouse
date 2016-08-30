@@ -1,0 +1,51 @@
+.alert.alert-danger[style='display:none']
+= form_for(:order, layout: :basic, url: /orders) do |f|
+  center
+    = f.text_field :mobile, use_label: false, id:"mobile", value: current_user.mobile, disabled:true
+  center
+    = f.text_field :money, use_label: false, id:"money", autofocus: true, placeholder: "充值金额"
+  center
+    = f.submit "支付宝充值", class:'btn-success btn-block', id: 'submit'
+
+javascript:
+
+  $('form').validate({
+    rules: {
+      "user[money]": {
+        required: true,
+        digits: true,
+        range: [0, 100000000],
+      },
+    },
+    messages: {
+      "user[money]": {
+        required: "充值金额不能为空",
+        digits: "充值金额必须是数字",
+        range: "充值金额必须是大于0的数字",
+      },
+    },
+    submitHandler: function(form) {
+      swal({
+        title: '充值',
+        text: '确认前往支付宝充值页面，取消轻按取消键',
+        type: 'info,
+        showCancelButton: true,
+        closeOnConfirm: false,
+        disableButtonOnConfirm: true,
+        confirmLoadingButtonColor: '#DD6B55',
+      }, function() {
+        this.submit
+      });
+    },
+    errorElement: 'div',
+    errorLabelContainer: '.alert',
+    highlight: function(element, errorClass) {
+      $(element).closest('.form-group').addClass('has-error');
+      $(element).fadeOut(function() {
+        $(element).fadeIn()
+      })
+    },
+    unhighlight: function(element) {
+      $(element).closest('.form-group').removeClass('has-error');
+    }
+  });

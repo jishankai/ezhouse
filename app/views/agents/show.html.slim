@@ -22,11 +22,21 @@
             = icon :earphone, style: 'color:white'
       hr.devider
       .row
-        .col-md-12
+        .col-md-6
           .blue
             | 公司：
             span[style='color:black']
               strong[style='margin:auto 2px;'] = @agent.company
+        - if current_user and current_user.agent.id==@agent.id
+          .col-md-3
+            .blue
+              | 账户余额：
+              span[style='color:black']
+              strong[style='margin:auto 2px;']
+                = @agent.money
+                | 元
+          .col-md-3
+            a.btn.info.btn-block[href=new_order_path role='button'] 支付宝充值
       .row
         .col-md-9
           .blue
@@ -58,12 +68,12 @@
               - @agent.label.split(/ /).each do |label|
                 span.border
                   = label
-        - if current_user and current_user.id==@agent.id
+        - if current_user and current_user.agent.id==@agent.id
           .col-md-3
             a.btn.info.btn-block[href=edit_agent_path role='button'] 编辑
   .row.card_wrapper
     .col-md-offset-3.col-md-6
-      = radar_chart @radar_data, @options
+      = radar_chart @radar_data, @options if @radar_data.present?
   center.row.card_wrapper[style='padding-bottom: 0px']
     ul.list-inline
       - if @agent.community.present?

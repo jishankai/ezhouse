@@ -17,7 +17,9 @@ class Agent
   field :tx, type: String
   field :name, type: String
   field :mobile, type: Integer
+  field :money, type: Float
   field :company, type: String
+  field :major, type: String
   field :city, type: String
   field :district, type: String
   field :region, type: String
