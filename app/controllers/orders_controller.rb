@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
       when 'TRADE_SUCCESS'
         order = Order.find_by( :out_trade_no => params[:out_trade_no])
         if order.present?
-          agent = Agent.find_by( :mobile => order.mobile )
+          agent = Agent.find_by( :mobile => order.user_mobile )
           if agent.present?
             agent.update( :money => agent.money+order.total_fee )
           else
