@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
           logger.info "Agent user_id #{order.user_id}"
           if agent.present?
             logger.info "Agent id #{agent.id}"
-            agent.update( :money => agent.money+order.total_fee )
+            agent.inc( money: order.total_fee )
           end
           order.trade_no = params[:trade_no]
           order.notify_time = params[:notify_time]
