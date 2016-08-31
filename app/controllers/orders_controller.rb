@@ -43,11 +43,11 @@ class OrdersController < ApplicationController
       when 'TRADE_SUCCESS'
         order = Order.find_by( :out_trade_no => params[:out_trade_no])
         if order.present?
-          agent = Agent.find_by( :mobile => order.user_mobile )
+          agent = Agent.find_by( :user_id => order.user_id )
+          logger.info "Agent user_id #{order.user_id}"
           if agent.present?
+            logger.info "Agent id #{agent.id}"
             agent.update( :money => agent.money+order.total_fee )
-          else
-            render text: 'fail'
           end
           order.trade_no = params[:trade_no]
           order.notify_time = params[:notify_time]
@@ -57,8 +57,6 @@ class OrdersController < ApplicationController
           order.buyer_id = params[:buyer_id]
           order.trade_status = params[:trade_status]
           order.save
-        else
-          render text: 'fail'
         end
       when 'TRADE_PENDING'
       when 'TRADE_FINISHED'
