@@ -123,6 +123,7 @@ Rails.application.routes.draw do
       end
       resources :tips do
         get 'regions', on: :collection
+        get 'recommend', on: :collection
       end
       resources :comments
     end
