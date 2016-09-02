@@ -4,9 +4,9 @@
       .row.tips
         ul.list-unstyled
           li.purple
-            a[href="#dc"] 东城（13）
-          li.purple
             a[href="#hd"] 海淀（12）
+          li.purple
+            a[href="#dc"] 东城（13）
           li.purple
             a[href="#cy"] 朝阳（14）
           li.purple
@@ -42,13 +42,13 @@
   hr.devider
   .row
     p 所有锦囊
-    .tips_row#dc
+    .tips_row#hd
       .title
-        | 东城
+        | 海淀
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'东城', :available=>1).each do |tip|
+          - @tips.where(:district=>'海淀', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
@@ -65,13 +65,13 @@
                     = link_to "下载", download_tip_path(tip)
                   - else
                     a[href="#"] 未上架
-    .tips_row#hd
+    .tips_row#dc
       .title
-        | 海淀
+        | 东城
       hr.devider
       .content
         ul.block.list-inline
-          - @tips.where(:district=>'海淀', :available=>1).each do |tip|
+          - @tips.where(:district=>'东城', :available=>1).each do |tip|
             li
               ul.list-unstyled
                 li
