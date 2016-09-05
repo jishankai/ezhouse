@@ -13,7 +13,7 @@ module Api
       def recommend
         tips = []
         Tip.where( :available => 1 ).limit(5).desc(:clicks).each do |tip|
-          tip.thumb = "http://#{request.host_with_port}/thumbs/#{tip.name}.png"
+          tip.thumb = "http://#{request.host_with_port}/thumbs/#{tip.name}.jpg"
           tip.route = "http://#{request.host_with_port}/documents/#{tip.route}"
           tips << tip
         end
