@@ -116,6 +116,7 @@ Rails.application.routes.draw do
       end
       resources :agents do
         post 'search', on: :collection
+        get 'average', on: :collection
       end
       resources :customers do
         post 'call', on: :collection

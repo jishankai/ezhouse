@@ -57,14 +57,6 @@ class AgentsController < ApplicationController
     end
   end
 
-  api!
-  def show
-    set_meta_tags title: '经纪人资料'
-    set_meta_tags default_meta_tags
-
-    @agent = Agent.find(params[:id])
-  end
-
   api :POST, "/agents/call", "呼叫经纪人"
   param :from, String, :desc => "用户电话（可选）"
   param :id, String, :desc => "经纪人id", :required => true
@@ -100,9 +92,11 @@ class AgentsController < ApplicationController
   end
 
   def show
+    set_meta_tags title: '经纪人资料'
+    set_meta_tags default_meta_tags
     @agent = Agent.find(params[:id])
 
-    if @agent.rates.present? and @agent.followers.present?
+    if @agent.rates.present? or @agent.followers.present?
       case @agent.company
       when '链家'
         # lianjia_commissions_max = Rails.cache.fetch('lianjia_commissions_max', :expires_in => 24.hours) { Agent.lianjia.where(:commissions.gte=>0, :commissions.lte=>100000).max(:commissions) }
