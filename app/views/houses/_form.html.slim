@@ -1,0 +1,71 @@
+.row.text-center
+  | 请编辑房源信息
+hr.devider
+  = form_for [model, house], layout: :basic do |f|
+    - if model.errors.any?
+      #error_explanation
+        h2
+          = pluralize(model.errors.count, "error")
+          |  无法存储此房源:
+        ul
+          - model.errors.full_messages.each do |msg|
+            li
+              = msg
+      = f.hidden_field :parent, :value => house.parent
+    center
+      = f.text_field :thumbs, id:"thumbs", use_label: false, autofocus: true, placeholder: "房源图片地址，使用空格分隔"
+    center
+      = f.text_field :title, id:"title", use_label: false, autofocus: true, placeholder: "题目"
+    center
+      = f.text_field :price, id:"price", use_label: false, autofocus: true, placeholder: "价格"
+    center
+      = f.text_area :description, id:"description", use_label: false, autofocus: true, placeholder: "详情"
+    center
+      = f.text_field :model, id:"model", use_label: false, autofocus: true, placeholder: "户型"
+    center
+      = f.text_field :area, id:"area", use_label: false, autofocus: true, placeholder: "面积"
+    center
+      = f.text_field :toward, id:"toward", use_label: false, autofocus: true, placeholder: "朝向"
+    center
+      = f.text_field :type, id:"type", use_label: false, autofocus: true, placeholder: "买卖or租赁"
+    center
+      = f.text_field :floor, id:"floor", use_label: false, autofocus: true, placeholder: "楼层"
+    center
+      = f.text_field :unit_price, id:"unit_price", use_label: false, autofocus: true, placeholder: "每平米单价"
+    center
+      = f.text_field :location, id:"location", use_label: false, autofocus: true, placeholder: "位置"
+    center
+      = f.submit "提交", class: 'btn-success btn-block'
+
+javascript:
+
+  $('form').validate({
+    rules: {
+      "house[code]": {
+        required: true,
+        digits: true,
+        range: [1000, 9999],
+        remote: "/users/check_code"
+      },
+    },
+    messages: {
+      "house[code]": {
+        required: "验证码不能为空",
+        digits: "验证码格式不对",
+        range: "验证码格式不对",
+        remote: "验证码不准确"
+      },
+    },
+
+    errorElement: 'div',
+    errorLabelContainer: '.alert',
+    highlight: function(element, errorClass) {
+      $(element).closest('.form-group').addClass('has-error');
+      $(element).fadeOut(function() {
+        $(element).fadeIn()
+      })
+    },
+    unhighlight: function(element) {
+      $(element).closest('.form-group').removeClass('has-error');
+    }
+  });

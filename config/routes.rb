@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       get 'intro'
     end
     resources :comments
+    resources :houses
   end
   resources :users do
     collection do
@@ -67,6 +68,9 @@ Rails.application.routes.draw do
     member do
       get 'download'
     end
+  end
+
+  resources :houses do
   end
 
   resource :orders, only: [:show, :new, :create] do
@@ -127,6 +131,9 @@ Rails.application.routes.draw do
         get 'recommend', on: :collection
       end
       resources :comments
+      resources :houses do
+        get 'recommend', on: :collection
+      end
     end
   end
   # Example resource route within a namespace:

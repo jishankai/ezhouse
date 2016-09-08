@@ -7,10 +7,8 @@ class Agent
   #include Mongoid::Search
   include Mongoid::Commentable
 
-  field :author
-  field :content
-
   belongs_to :user
+  embeds_many :houses
 
   store_in collection: "agents"
 
@@ -36,7 +34,6 @@ class Agent
   field :transactions, type:Integer
   field :visits, type:Integer
   field :rates, type:Integer
-  field :comments, type:Integer
   field :community, type: String
   field :label, type: String
 

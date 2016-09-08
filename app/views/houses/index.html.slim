@@ -1,0 +1,6 @@
+- @model.houses_list.each do |house|
+  p
+    - if house.deleted
+      strong
+        | 已删除
+    = house.text
