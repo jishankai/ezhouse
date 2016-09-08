@@ -1,49 +1,56 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>出错啦</title>
-    <style>
-.div-a{ float:left;width:40%;border:1px solid #FFF}
-.div-b{ float:left;width:59%;border:1px solid #FFF}
-</style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
+<html>
+<head>
+  <title>The page you were looking for doesn't exist (404)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <style>
+  body {
+    background-color: #eef5fa;
+    margin: 0;
+    padding:0;
+  }
+#wrap{
+  position: relative;
+  width:1288px; margin:0 auto; 
+  margin-top:15%;
+}
+ #image{
+position: absolute;
+z-index: 100;
+  }
+ #message{
+position: absolute;
+left:560px;
+top:175px;
+font-size: 40px;
+    z-index:101;
+  }
+#line{
+  position: absolute;
+  left:410px;
+  top:320px;
+}
+ 
+  </style>
+</head>
 
-  <body>
-    <div style="background: rgba(246,246,246,1.0)">
-        <div style="margin-top:-10px">
-   <div class="navbar-header">
-    <div class="navbar-header">
-      <div style="margin-left:100px">
-      </div>
-        </div>
-      </div>
+<body>
+  <!-- This file lives in public/404.html -->
+<div id="wrap">
+    <div id="image" align="center" style="float:center; width:100%">
+    <img src="/assets/500.png"/">
     </div>
+    <div id="message" align="center" style="float:center; width:50%">
+    <pre style="font-family:'Microsoft Yahei';">网 页 出 现 错 误</pre>
+
+    </div>
+    <div id="line" align="center" style="float:center; width:70%">>
+    <hr color=#000000 SIZE=6 />
+    </div>   
   </div>
-
-    <div class="div-a">
-      <div style="margin-left:260px">
-        <div style="margin-top:30px">
-      </div></div>
-    </div>
-
-      <div class="div-b">
-      <div style="margin-top:40px">
-        <h1>服务器出现未知错误！</h1></div>
-      <div style="margin-left:30px">
-        <p></p>
-      </div>
-
-      <div style="margin-left:50px">
-        <br>
-        <p>我们的工作人员正在飞速检查中....</p>
-      </div>
-      <div style="margin-left:400px">
-
-
-    </div> <!-- /container -->
-
-  </body>
+     
+    
+ 
+</body>
 </html>
