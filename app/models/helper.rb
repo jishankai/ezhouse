@@ -9,7 +9,10 @@ class Helper
   def double_call
     params = {
       :from => from,
-      :to => to
+      :to => to,
+      :customerSerNum => '18201693782',
+      :fromSerNum => '18201693782',
+      :needRecord => '1',
     }
 
     YunTongXun::Voice.double_call(params)

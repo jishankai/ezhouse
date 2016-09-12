@@ -73,6 +73,8 @@ Rails.application.routes.draw do
   resources :houses do
   end
 
+  resources :apps
+
   resource :orders, only: [:show, :new, :create] do
     member do
       post 'notify'
