@@ -6,7 +6,13 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def index
-        render json: Tip.all
+        tips = []
+        Tip.where( :available => 1 ).desc(:clicks).each do |tip|
+          tip.thumb = "http://#{request.host_with_port}/thumbs/#{tip.name}.jpg"
+          tip.route = "http://#{request.host_with_port}/documents/#{tip.route}"
+          tips << tip
+        end
+        render json: tips
       end
 
       api!
