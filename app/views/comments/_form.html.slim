@@ -25,6 +25,8 @@ hr.devider
       = f.hidden_field :author, id:"author"
     center
       = f.text_field :code, use_label: false, autofocus: true, placeholder: "验证码", id:"code"
+    center
+      = f.text_field :community, use_label: false, id:"community", placeholder: "带看小区"
     .row
       .radio-inline
         .form-group
@@ -59,6 +61,8 @@ hr.devider
       = f.hidden_field :parent, :value => comment.parent
     center
       = f.text_field :author, use_label: false, id:"author", value:session[:customer_mobile], disabled:true
+    center
+      = f.text_field :community, use_label: false, id:"community", placeholder: "带看小区"
     center
     .row
       .radio-inline
