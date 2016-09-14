@@ -22,7 +22,7 @@ module Api
       param :comment, Hash, :desc => "评论数据", :required => true do
         param :author, String, :desc => "用户电话", :required => true
         param :community, String, :desc => "带看小区"
-        param :kind, ["好评", "中评", "差评"], :desc => "评论种类", :required => true
+        param :kind, ["nice", "common", "bad"], :desc => "评论种类", :required => true
         param :text, String, :desc => "评论内容", :required => true
       end
       def create
