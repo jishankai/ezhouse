@@ -31,34 +31,35 @@
               span.input-group-btn
                 button.btn_search.btn.btn-success[type='button' data-loading-text='加载中...' style='background:#4bb7fc']
                   = icon :search
+.container
   .row[style='margin-top:24px; padding:0 4%']
     .col-xs-12.col-md-4
       center.card_wrapper
-        .row[style='margin-bottom:12px']
-          = image_tag('search.png', class:'img-responsive')
         .row
           h4.bluefont 搜索
-        .row-justify.text-justify
-          | 告诉我们您的基本信息。
-          | 买房还是卖方？求租还是出租？什么地方？什么价位？
+        .row-justify.text-center
+          p 告诉我们您的基本信息。
+          p 地方价位、买房／卖房、求租／出租？
+        .row[style='margin-bottom:12px']
+          = image_tag('search.png', class:'img-responsive')
     .col-xs-12.col-md-4
       center.card_wrapper
-        .row[style='margin-bottom:12px']
-          = image_tag('match.png', class:'img-responsive')
         .row
           h4.bluefont 匹配
-        .row-justify.text-justify
-          | 大数据帮您选出最优秀，最匹配的经纪人。
-          | 我们有最严格的反刷单机制。
+        .row-justify.text-center
+          p 我们有最严格的反刷单机制。
+          p 大数据帮您选出最优秀，最匹配的经纪人。
+        .row[style='margin-bottom:12px']
+          = image_tag('match.png', class:'img-responsive')
     .col-xs-12.col-md-4
       center.card_wrapper
-        .row[style='margin-bottom:12px']
-          = image_tag('service.png', class:'img-responsive')
         .row
           h4.bluefont 服务
-        .row-justify.text-justify
-          | 用户使用完全免费。
-          | 您可以点评满意的经纪人，让更多朋友享受他的服务。
+        .row-justify.text-center
+          p 用户使用完全免费。
+          p 经纪人点评机制，让更多人享受他的服务。
+        .row[style='margin-bottom:12px']
+          = image_tag('service.png', class:'img-responsive')
   .row
     hr.devider
   / .row
@@ -99,78 +100,91 @@
   /   .row
   /     hr.devider
   .row.chart[style="margin:24px 0; padding:0 4%"]
-    .col-md-4
+    .col-md-5
+      h4.bluefont.text-center 经纪人来源分布
       = pie_chart @agents_data, @agents_options
-    .col-md-4
+    .col-md-5.col-md-offset-2
+      h4.bluefont.text-center 锦囊下载量分布
       = bar_chart @tips_data, @tips_options
-    .col-md-4
-      = doughnut_chart @summary_data, @summary_options
-  .slick
-    center.slick_wrapper
-      = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,q_90,w_320/v1/9344/Img423785208_foh5cj.jpg', size:'120x120', class:'img-circle img-responsive')
-      h4.text-muted
-        | 白雪
-      h5.text-primary
-        | 租房：北京市 朝阳区
-      hr.devider
-      p.text-justify
-        | “最近刚搬来望京，在外企上班，平常很忙，没时间找房。在网上看了一些房子，但也只能零零星星地晚上下班去看，很没效率。易房好介网推荐了麦田的胡月小姐。在我们电话沟通后，她一个周六就带我看了8套房子。我第二天就跟房东签约了。省了我不少时间！”
-    center.slick_wrapper
-      = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,w_320/v1/9344/u_3231927390_1752915971_fm_11_gp_0_y2uvwr.jpg', size:'120x120', class:'img-circle img-responsive')
-      h4.text-muted
-        | 许天
-      h5.text-primary
-        | 买房：北京市 海淀区
-      hr.devider
-      p.text-justify
-        | “我一直想买一套魏公村附近的房子，因为孩子马上就要在附近上初中。在网上找了好几个月，但是到处都是假房源，所以效率很低。易房好介网推荐了链家魏公村店的小王。一有什么好的房源，小王就会用微信第一时间跟进。终于在一个月后我们买到了称心的两室。感谢小王，感谢易房好介网！”
-    center.slick_wrapper
-      = image_tag('volunteer1.jpg', size:'120x120', class:'img-circle img-responsive')
-      h4.text-muted
-        | 姚同学
-      h5.text-primary
-        | 租房：北京市 海淀区
-      hr.devider
-      p.text-justify
-        | “租房成了大学毕业在社会上的第一课。之前听很多学长学姐说因为经验不足被黑中介骗，不仅服务差还乱收费，刚毕业的北漂大学生成了黑中介的提款机。“易房好介”给这个问题提出来极好的解决方案，可以看出开发人员真的很懂我们租房学生的痛点，非常感谢！（PS. 易房好介推介的我爱我家租房经纪人庞存辉带我看的红杉国际，经纪人自己雇人保养业主的房子，质量极好，价格还帮我砍了500块/月，力荐!）”
-    center.slick_wrapper
-      = image_tag('volunteer0.jpg', size:'120x120', class:'img-circle img-responsive')
-      h4.text-muted
-        | 火神小疙瘩
-      h5.text-primary
-        | 租房：北京市朝阳区褡裢坡
-      hr.devider
-      p.text-justify
-        | “我是一名艺术生，毕业在北京做新媒体，15年7月和闺蜜一起来北京租房，因为实习工资很低，图便宜没找大中介而是找到了某S房地产经纪公司。没想到和黑中介的斗智斗勇成了北漂的第一段经历，扣压定金、业主不交物业费、要求提前退房等等。我一直在尝试走法律途径维权，无奈时间精力有限。在这里用我亲身经历提醒各位租房的亲，千万千万不要上了黑中介的贼船！所谓“便宜”的中介费最终会被他们一点一点地抠出来，没必要为此劳神费钱！”
-    center.slick_wrapper
-      = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,q_90,w_320/v1/9344/6ce25f384bac4901a236287d48eb3c80_lfgwyb.jpg', size:'120x120', class:'img-circle img-responsive')
-      h4.text-muted
-        | 张雪琴
-      h5.text-primary
-        | 卖房：北京市 海淀区
-      hr.devider
-      p.text-justify
-        | “我家在华清嘉园有一套三居，想出手有一阵了。易房好介网推荐了我爱我家的杨店长。杨店长在海淀这片有十几年的的买卖经验。杨店长认为我定价过于保守，在他的建议下我们把出售价多加了40万，因为现在是卖家市场。杨店长的店面重点主打我的户型，三周内就以非常理想的价格卖出了！”
+    / .col-md-4
+    /   = doughnut_chart @summary_data, @summary_options
+.container-fluid
+  .app[style="height:705px"]
+  / .slick
+  /   center.slick_wrapper
+  /     = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,q_90,w_320/v1/9344/Img423785208_foh5cj.jpg', size:'120x120', class:'img-circle img-responsive')
+  /     h4.text-muted
+  /       | 白雪
+  /     h5.text-primary
+  /       | 租房：北京市 朝阳区
+  /     hr.devider
+  /     p.text-justify
+  /       | “最近刚搬来望京，在外企上班，平常很忙，没时间找房。在网上看了一些房子，但也只能零零星星地晚上下班去看，很没效率。易房好介网推荐了麦田的胡月小姐。在我们电话沟通后，她一个周六就带我看了8套房子。我第二天就跟房东签约了。省了我不少时间！”
+  /   center.slick_wrapper
+  /     = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,w_320/v1/9344/u_3231927390_1752915971_fm_11_gp_0_y2uvwr.jpg', size:'120x120', class:'img-circle img-responsive')
+  /     h4.text-muted
+  /       | 许天
+  /     h5.text-primary
+  /       | 买房：北京市 海淀区
+  /     hr.devider
+  /     p.text-justify
+  /       | “我一直想买一套魏公村附近的房子，因为孩子马上就要在附近上初中。在网上找了好几个月，但是到处都是假房源，所以效率很低。易房好介网推荐了链家魏公村店的小王。一有什么好的房源，小王就会用微信第一时间跟进。终于在一个月后我们买到了称心的两室。感谢小王，感谢易房好介网！”
+  /   center.slick_wrapper
+  /     = image_tag('volunteer1.jpg', size:'120x120', class:'img-circle img-responsive')
+  /     h4.text-muted
+  /       | 姚同学
+  /     h5.text-primary
+  /       | 租房：北京市 海淀区
+  /     hr.devider
+  /     p.text-justify
+  /       | “租房成了大学毕业在社会上的第一课。之前听很多学长学姐说因为经验不足被黑中介骗，不仅服务差还乱收费，刚毕业的北漂大学生成了黑中介的提款机。“易房好介”给这个问题提出来极好的解决方案，可以看出开发人员真的很懂我们租房学生的痛点，非常感谢！（PS. 易房好介推介的我爱我家租房经纪人庞存辉带我看的红杉国际，经纪人自己雇人保养业主的房子，质量极好，价格还帮我砍了500块/月，力荐!）”
+  /   center.slick_wrapper
+  /     = image_tag('volunteer0.jpg', size:'120x120', class:'img-circle img-responsive')
+  /     h4.text-muted
+  /       | 火神小疙瘩
+  /     h5.text-primary
+  /       | 租房：北京市朝阳区褡裢坡
+  /     hr.devider
+  /     p.text-justify
+  /       | “我是一名艺术生，毕业在北京做新媒体，15年7月和闺蜜一起来北京租房，因为实习工资很低，图便宜没找大中介而是找到了某S房地产经纪公司。没想到和黑中介的斗智斗勇成了北漂的第一段经历，扣压定金、业主不交物业费、要求提前退房等等。我一直在尝试走法律途径维权，无奈时间精力有限。在这里用我亲身经历提醒各位租房的亲，千万千万不要上了黑中介的贼船！所谓“便宜”的中介费最终会被他们一点一点地抠出来，没必要为此劳神费钱！”
+  /   center.slick_wrapper
+  /     = image_tag('http://res.cloudinary.com/hrscywv4p/image/upload/c_fill,f_auto,g_faces:center,h_320,q_90,w_320/v1/9344/6ce25f384bac4901a236287d48eb3c80_lfgwyb.jpg', size:'120x120', class:'img-circle img-responsive')
+  /     h4.text-muted
+  /       | 张雪琴
+  /     h5.text-primary
+  /       | 卖房：北京市 海淀区
+  /     hr.devider
+  /     p.text-justify
+  /       | “我家在华清嘉园有一套三居，想出手有一阵了。易房好介网推荐了我爱我家的杨店长。杨店长在海淀这片有十几年的的买卖经验。杨店长认为我定价过于保守，在他的建议下我们把出售价多加了40万，因为现在是卖家市场。杨店长的店面重点主打我的户型，三周内就以非常理想的价格卖出了！”
   .row[style='margin: 24px 0 48px 0; padding: 0 4%']
     .col-xs-12.col-md-4
       center.card_wrapper
         .row
-          h4.bluefont 海量交易数据
-        .row-justify.text-justify
-          | αHero智能系统使用多因子线性回归分析，支持向量机等多个算法进行自我学习，不断修正参数以到达更好的推荐效果。
-          | 现阶段αHero日信息处理量达到4万条，可实现房产经纪人数据的实时更新与实时反馈。
-    .col-xs-12.col-md-4
-      center.card_wrapper
+          = icon "file-text-o", library: :font_awesome, class: 'fa-2x'
         .row
           h4.bluefont 多方信息点评
-        .row-justify.text-justify
-          | 数据来源覆盖各大经纪公司及房屋信息平台，包括并不仅限于链家网、我爱我家、58同城、安居客、自如寓等。
+        .row-justify.text-center
+          p 数据来源覆盖各大经纪公司及房屋信息平台，
+          p 包括并不仅限于链家网、我爱我家、58同城、安居客、自如寓等。
     .col-xs-12.col-md-4
       center.card_wrapper
         .row
+          = icon :diamond, library: :font_awesome, class: 'fa-2x'
+        .row
+          h4.bluefont 海量交易数据
+        .row-justify.text-center
+          p αHero智能系统使用多因子线性回归分析，
+          p 支持向量机等多个算法进行自我学习，不断修正参数以到达更好的推荐效果。
+          p 现阶段αHero日信息处理量达到4万条，可实现房产经纪人数据的实时更新与实时反馈。
+    .col-xs-12.col-md-4
+      center.card_wrapper
+        .row
+          = icon :shield, library: :font_awesome, class: 'fa-2x'
+        .row
           h4.bluefont 深度用户反馈
-        .row-justify.text-justify
-          | 积极跟进用户使用情况，将用户反馈作为经纪人服务第一评价标准。
+        .row-justify.text-center
+          p 积极跟进用户使用情况，
+          p 将用户反馈作为经纪人服务第一评价标准。
 
 javascript:
 

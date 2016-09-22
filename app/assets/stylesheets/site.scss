@@ -11,6 +11,11 @@ body {
     background-size:cover;
     height:100%
 }
+.app {
+    background:image-url('app_banner.jpg') no-repeat center scroll;
+    background-size:cover;
+    height:100%
+}
 .buyer {
     background:image-url("bg_root.jpg") no-repeat right scroll;
     background-size:cover;
@@ -23,7 +28,7 @@ body {
 }
 
 .bg {
-    background: #eef5fa;
+    background: #fff;
     width: 100%;
     height: 100vh
 }
