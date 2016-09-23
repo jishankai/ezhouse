@@ -36,11 +36,11 @@ html
           - if current_user
             = link_to '个人资料', user_path(current_user)
             = link_to '注销', logout_users_path
-    .container-fluid.ubg[style='margin-top:-20px']
-      .col-md-offset-4.col-md-4.wrapper
+    .container-fluid.ubg#bg_helper[style='margin-top:-20px;padding-bottom:200px;']
+      .col-md-offset-4.col-md-4.wrapper#wrappernew
         center.row.logo
           = image_tag('brand_blue_horizontal.png', size:'160x64', class:'img-responsive')
-        .row[style='margin:24px auto']
+        .row[style='margin:24px auto;']
           = yield
     .container-fluid#footer-container[style='background-color:#373F53;']
       .footer
