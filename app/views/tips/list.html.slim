@@ -1,0 +1,347 @@
+.container
+  .row
+    .tips_row#hd
+      .title
+        | 海淀
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'海淀', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#dc
+      .title
+        | 东城
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'东城', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#cy
+      .title
+        | 朝阳
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'朝阳', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#xc
+      .title
+        | 西城
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'西城', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#ft
+      .title
+        | 丰台
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'丰台', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#cp
+      .title
+        | 昌平
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'昌平', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#fs
+      .title
+        | 房山
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'房山', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#sy
+      .title
+        | 顺义
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'顺义', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#dx
+      .title
+        | 大兴
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'大兴', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#hr
+      .title
+        | 怀柔
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'怀柔', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#my
+      .title
+        | 密云
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'密云', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#yq
+      .title
+        | 延庆
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'延庆', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#sjs
+      .title
+        | 石景山
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'石景山', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#mtg
+      .title
+        | 门头沟
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'门头沟', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
+    .tips_row#tz
+      .title
+        | 通州
+      hr.devider
+      .content
+        ul.block.list-inline
+          - @tips.where(:district=>'通州', :available=>1).each do |tip|
+            li
+              ul.list-unstyled
+                li
+                  = image_tag("/thumbs/#{tip.name}.jpg", size:"120x180")
+                li = tip.name
+                li
+                  | 下载次数：#{tip.clicks}
+                li
+                  | 更新时间：#{tip.created_at}
+                li[data-no-turbolink]
+                  - if tip.available == 1
+                    = link_to "打开", "/documents/#{tip.name}.html"
+                    | |
+                    = link_to "下载", download_tip_path(tip)
+                  - else
+                    a[href="#"] 未上架
