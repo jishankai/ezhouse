@@ -5,12 +5,93 @@
     background:image-url('success.jpg') no-repeat center scroll;
     background-size:cover
 }
+.agent_pre{
+    background:image-url('city.jpg') no-repeat center scroll;
+    background-size:cover
+}
+.slick1{
+    background:image-url('a-liangjie.jpg') no-repeat;
+    background-size:100%;
+    background-color: white;
 
+}
+.slick2{
+    background:image-url('a-zhangli.jpg') no-repeat;
+    background-size:100%;
+    background-color: white;
+
+}
+.slick3{
+    background:image-url('a-xuwenbo.jpg') no-repeat;
+    background-size:100%;
+    background-color: white;
+
+}
+.slick4{
+    background:image-url('a-zhaohongfei.jpg') no-repeat;
+    background-size:100%;
+    background-color: white;
+
+}
+.slick5{
+    background:image-url('a-zhangxue.jpg') no-repeat;
+    background-size:100%;
+    background-color: white;
+
+}
+.agent_title{
+    color:#fff;
+    font-size:30px;
+    text-align: center;
+    margin-top: 55px;
+}
+
+.agent_subheading{
+    color:#fff;
+    font-size:16px;
+    text-align: center;
+    margin-bottom: 25px;
+}
 .card {
     background: #fff;
     margin: auto auto 2% auto;
     padding: 2% 2%;
     box-shadow: 0 1px 14px rgba(0, 0, 0, 0.3);
+}
+#text{
+    color:#676767;
+}
+.text-mutedv{
+    color:white;
+    margin-top: 44%;
+}
+.text-primaryv{
+    color: white;
+    font-size: 12px;
+    margin-top:-5px;
+}
+.text-subheading1{
+    margin-top:12%;
+    font-size: 14px;
+}
+.text-subheading2{
+    margin-top: -8px;
+    font-size: 14px;
+
+}
+.text-justifyv{
+    margin-top: 7%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.subheading{
+    color:#c4c4c4;
+    margin-top: -2px;
+
+}
+.subheading2{
+    color:#c4c4c4;
+    margin-top:-10px;
 }
 
 .jobtitle {
@@ -42,7 +123,9 @@
     margin: auto 2px;
     padding: 2px 4px;
 }
-
+#slickb{
+    margin-bottom: 300px;
+}
 #percentile {
     background-color: #4bb7fc;
 }
@@ -79,4 +162,7 @@
     filter: blur(1px);
 
     filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+}
+#login{
+    margin-top:6px;
 }

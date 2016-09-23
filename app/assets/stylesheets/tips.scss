@@ -9,38 +9,125 @@
 }
 .tips li { width: 300px; height: 30px;  margin: 0 0 7px 0; }
 
-.tips li a {
-    display: block;
-    width: 160px;
-    height: 30px;
-    margin: 0 0 7px 0;
-    background: #F7F5F2;
-    font-size: 14px;
-    color: #333;
-    padding: 0 0 0 20px;
-    text-decoration: none;
+.tips_bg {
+    background:image-url('bag.jpg') no-repeat center scroll;
+    background-size:cover;
+    height:100%
 }
 
-.tips li a:hover { background-color: #EFEFEF; }
 
-.orange { border-left: 5px solid #F5876E; }
-
-.green{ border-left: 5px solid #8EBD40; }
-
-.purple { border-left: 5px solid #988CC3; }
-
-.gold { border-left: 5px solid #D8C86E; }
-
-.tips_row {
-    background: #fff;
-    padding-bottom: 15px;
-    margin-bottom: 15px
+.btn {
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  height:40px;
+  
 }
 
-.tips_row .title {
-    padding: 18px 0 0 20px;
+.SearchForm{
+
+    margin-bottom:30px;
+    
+
+}
+#col4
+{
+    position: relative;
+    min-height: 1px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left:0px;
+    margin-right:0px;
 }
 
-.tips_row .content {
-    padding: 0 0 0 20px;
+
+#select1 {
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  border:1px solid #ccc;
+  background:rgba(255,255,255,0.7);
+  margin: 0;
+  padding-left:10px;
+ 
+  width:100%;
+  height:40px;
+
+ color:#5a5a5a;
+ 
+
 }
+
+
+select::-ms-expand { display: none; }
+
+
+
+
+
+#w0{
+    font-family: "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei", 微软雅黑, "Segoe UI", Tahoma, verdana, arial, helvetica, sans-serif !important;
+    font-size:24px;
+    text-align:center;
+    color:#5a5a5a;
+}
+#t1{
+    background:image-url('t-1.jpg') no-repeat center scroll;
+    height:280px;      
+}
+#t2{
+    background:image-url('t-2.jpg') no-repeat center scroll;
+    height:280px;
+   
+}
+#t3{
+
+    background:image-url('t-3.jpg') no-repeat center scroll;
+    height:280px;
+   
+   
+}
+#more{
+    position:relative;
+    top:48%;
+    left:44%;
+    font-size:20px;
+    color:#fdfefe;
+    
+}
+#t4{
+    background:image-url('t-4.jpg') no-repeat center scroll;
+    height:280px;
+}
+#t5{
+    background:image-url('t-5.jpg') no-repeat center scroll;
+    height:280px;
+}
+#t6{
+    background:image-url('t-6.jpg') no-repeat center scroll;
+    height:280px;
+}
+#w1{
+    position:absolute;
+    font-size:50px;
+    left:120px;
+    top:220px;
+
+}
+#w2{
+    position:absolute;
+    left:30px;
+    top:160px;
+    font-size:100px;
+}
+
+
+#tip_button{
+ margin-top: 5%; 
+ display: block; 
+ width: 260px; 
+ height: 42px; line-height: 45px; color: #767676; font-size: 16px; z-index: 102; border: 1px solid #767676; text-align: center; 
+}
+
+
+
