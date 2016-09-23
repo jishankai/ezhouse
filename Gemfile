@@ -27,6 +27,7 @@ gem 'bootstrap-select-rails'
 # HTML&CSS
 gem 'html2slim'
 gem 'slim-rails'
+gem "font-awesome-rails"
 
 # Pagination
 gem 'kaminari'
