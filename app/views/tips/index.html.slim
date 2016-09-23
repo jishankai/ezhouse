@@ -5,40 +5,58 @@
         font[color='white']
           center
             h1[style='text-shadow:1px 1px black;margin-bottom:20px;'] 为您寻找最舒适的生活环境
-        
            
-            .SearchForm.row[role="search" data-reactid=".3"]
-                    form[action="/s" method="get" data-reactid=".3.0"]
-                      .SearchForm__inputs-wrapper.col-md-10[data-reactid=".3.0.0"]
-                    .row.col-md-4#col4[data-reactid=".3.0.0.0"]                  
-                        .select[data-reactid=".3.0.0.0.2.1"]
-                          select#select1[name="guests" data-reactid=".3.0.0.0.2.1.0"]
-                            option#w3[selected=""]
-                              | 选择城市
-                            option[value="1" data-reactid=".3.0.0.0.2.1.0.$1"]
-                              | 北京
-                            option[value="2" data-reactid=".3.0.0.0.2.1.0.$2"]
-                              | 上海
-                    .row.col-md-4#col4
-                        .select[data-reactid=".3.0.0.0.2.1"]
-                          select#select1[name="guests" data-reactid=".3.0.0.0.2.1.0"]
-                            option[selected=""]
-                              | 选择地区
-                            option[value="1" data-reactid=".3.0.0.0.2.1.0.$1"]
-                              | 海淀区
-                            option[value="2" data-reactid=".3.0.0.0.2.1.0.$2"]
-                              | 东城区
-                            option[value="3" data-reactid=".3.0.0.0.2.1.0.$3"]
-                              | 朝阳区                            
-                    .row.col-md-4#col4
-                      button.btn.btn-default.btn-large.btn-block[type="submit" data-reactid=".3.0.2.0"]
-                        span.SearchForm__submit-text[data-reactid=".3.0.2.0.0"]
-                          span[data-reactid=".3.0.2.0.0.0" style="color:#5a5a5a;"]
-                            | 搜索
-
-
-
-
+            .SearchForm.row[role="search"]
+              form[action="/tips/list" method="get"]
+                .row.col-md-4#col4
+                  .select
+                    select.select_wrapper#city[name="city"]
+                      option#w3[selected="北京"]
+                        | 选择城市
+                      option[value="北京"]
+                        | 北京
+                      / option[value="2"]
+                        /   | 上海
+                .row.col-md-4#col4
+                  .select
+                    select.select_wrapper#district[name="district"]
+                      option[selected=""]
+                        | 选择地区
+                      option[value="hd"]
+                        | 海淀区
+                      option[value="dc"]
+                        | 东城区
+                      option[value="cy"]
+                        | 朝阳区
+                      option[value="xc"]
+                        | 西城区
+                      option[value="ft"]
+                        | 丰台区
+                      option[value="cp"]
+                        | 昌平区
+                      option[value="fs"]
+                        | 房山区
+                      option[value="sy"]
+                        | 顺义区
+                      option[value="dx"]
+                        | 大兴区
+                      option[value="hr"]
+                        | 怀柔区
+                      option[value="my"]
+                        | 密云区
+                      option[value="yq"]
+                        | 延庆区
+                      option[value="sjs"]
+                        | 石景山区
+                      option[value="mtg"]
+                        | 门头沟区
+                      option[value="tz"]
+                        | 通州区
+                .row.col-md-4#col4
+                  button.btn.btn-default.btn-large.btn-block[type="submit"]
+                    span.SearchForm__submit-text
+                      span[style="color:#5a5a5a;"]
+                        | 搜索
 
             
 .container
@@ -52,7 +70,7 @@
     .col-md-3
       #t3
         #more
-          | 更多
+          = link_to "更多", list_tips_path, :style=>'color:white !important'
 
   .row.tips_block2[style='margin-top:30px;']
     .col-md-3
@@ -68,11 +86,13 @@
   .row
     div[align="center" style="margin-top:70px;margin-bottom:50px;"]
         #tip_button
-          | 查看所有锦囊
+          = link_to "查看所有锦囊", list_tips_path
 
+javascript:
 
+  $('form').submit(function(event) {
+    var district = this.district.value;
+    window.location.assign('/tips/list#'+district);
+    event.preventDefault();
+  });
 
-
-  
-    
-  

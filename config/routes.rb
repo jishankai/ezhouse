@@ -68,6 +68,9 @@ Rails.application.routes.draw do
     member do
       get 'download'
     end
+    collection do
+      get 'list'
+    end
   end
 
   resources :houses do

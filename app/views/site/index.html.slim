@@ -108,7 +108,7 @@
       = bar_chart @tips_data, @tips_options
     / .col-md-4
     /   = doughnut_chart @summary_data, @summary_options
-.container-fluid
+.container-fluid[style="padding:0 0"]
   .app[style="height:705px"]
   / .slick
   /   center.slick_wrapper
@@ -156,6 +156,7 @@
   /     hr.devider
   /     p.text-justify
   /       | “我家在华清嘉园有一套三居，想出手有一阵了。易房好介网推荐了我爱我家的杨店长。杨店长在海淀这片有十几年的的买卖经验。杨店长认为我定价过于保守，在他的建议下我们把出售价多加了40万，因为现在是卖家市场。杨店长的店面重点主打我的户型，三周内就以非常理想的价格卖出了！”
+.container-fluid
   .row[style='margin: 24px 0 48px 0; padding: 0 4%']
     .col-xs-12.col-md-4
       center.card_wrapper
@@ -165,7 +166,7 @@
           h4 多方信息点评
         .row-justify.text-center.text-muted[style="line-height:12px; margin-top:12px"]
           p 数据来源覆盖各大经纪公司及房屋信息平台，
-          p 包括并不仅限于链家网、我爱我家、58同城、安居客、自如寓等。
+          p 包括并不仅限于链家网、我爱我家、58同城等。
     .col-xs-12.col-md-4
       center.card_wrapper
         .row
@@ -174,7 +175,7 @@
           h4 海量交易数据
         .row-justify.text-center.text-muted[style="line-height:12px; margin-top:12px"]
           p αHero智能系统使用多因子线性回归分析，
-          p 支持向量机等多个算法进行自我学习，不断修正参数以到达更好的推荐效果。
+          p 多个算法进行自我学习，不断修正参数以到达更好效果。
           / p 现阶段αHero日信息处理量达到4万条，可实现房产经纪人数据的实时更新与实时反馈。
     .col-xs-12.col-md-4
       center.card_wrapper
