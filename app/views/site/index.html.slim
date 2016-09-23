@@ -1,12 +1,12 @@
 .container-fluid#main-container
   .row.site_bg[style='margin-top:-20px']
-    .row[style='margin-top:204px']
+    .row[style='margin-top:320px']
       .col-md-offset-3.col-md-6
         font[color='white'; face="微软雅黑"]
           center
             h1[style='text-shadow:1px 1px black'] 为您找到最优秀的经纪人
             footer[style='text-shadow:1px 1px black'] 与黑中介和假房源说再见
-    .row[style='margin:24px auto 320px auto']
+    .row[style='margin:24px auto 204px auto']
       .col-md-offset-3.col-md-6#search_bar
         = nav do
           = link_to '买卖','#sale',  'aria-controls':"sale", role:"tab", 'data-toggle':"tab"
@@ -36,30 +36,30 @@
     .col-xs-12.col-md-4
       center.card_wrapper
         .row
-          h4.bluefont 搜索
-        .row-justify.text-center
+          h4 搜索
+        .row-justify.text-center.text-muted[style="line-height:12px; margin-top:12px"]
           p 告诉我们您的基本信息。
           p 地方价位、买房／卖房、求租／出租？
         .row[style='margin-bottom:12px']
-          = image_tag('search.png', class:'img-responsive')
+          = image_tag('search.jpg', class:'img-responsive')
     .col-xs-12.col-md-4
       center.card_wrapper
         .row
-          h4.bluefont 匹配
-        .row-justify.text-center
+          h4 匹配
+        .row-justify.text-center.text-muted[style="line-height:12px; margin-top:12px"]
           p 我们有最严格的反刷单机制。
           p 大数据帮您选出最优秀，最匹配的经纪人。
         .row[style='margin-bottom:12px']
-          = image_tag('match.png', class:'img-responsive')
+          = image_tag('match.jpg', class:'img-responsive')
     .col-xs-12.col-md-4
       center.card_wrapper
         .row
-          h4.bluefont 服务
-        .row-justify.text-center
+          h4 服务
+        .row-justify.text-center.text-muted[style="line-height:12px; margin-top:12px"]
           p 用户使用完全免费。
           p 经纪人点评机制，让更多人享受他的服务。
         .row[style='margin-bottom:12px']
-          = image_tag('service.png', class:'img-responsive')
+          = image_tag('service.jpg', class:'img-responsive')
   .row
     hr.devider
   / .row
@@ -101,10 +101,10 @@
   /     hr.devider
   .row.chart[style="margin:24px 0; padding:0 4%"]
     .col-md-5
-      h4.bluefont.text-center 经纪人来源分布
+      h4.text-center 经纪人来源分布
       = pie_chart @agents_data, @agents_options
     .col-md-5.col-md-offset-2
-      h4.bluefont.text-center 锦囊下载量分布
+      h4.text-center 锦囊下载量分布
       = bar_chart @tips_data, @tips_options
     / .col-md-4
     /   = doughnut_chart @summary_data, @summary_options
@@ -162,8 +162,8 @@
         .row
           = icon "file-text-o", library: :font_awesome, class: 'fa-2x'
         .row
-          h4.bluefont 多方信息点评
-        .row-justify.text-center
+          h4 多方信息点评
+        .row-justify.text-center.text-muted[style="line-height:12px; margin-top:12px"]
           p 数据来源覆盖各大经纪公司及房屋信息平台，
           p 包括并不仅限于链家网、我爱我家、58同城、安居客、自如寓等。
     .col-xs-12.col-md-4
@@ -171,18 +171,18 @@
         .row
           = icon :diamond, library: :font_awesome, class: 'fa-2x'
         .row
-          h4.bluefont 海量交易数据
-        .row-justify.text-center
+          h4 海量交易数据
+        .row-justify.text-center.text-muted[style="line-height:12px; margin-top:12px"]
           p αHero智能系统使用多因子线性回归分析，
           p 支持向量机等多个算法进行自我学习，不断修正参数以到达更好的推荐效果。
-          p 现阶段αHero日信息处理量达到4万条，可实现房产经纪人数据的实时更新与实时反馈。
+          / p 现阶段αHero日信息处理量达到4万条，可实现房产经纪人数据的实时更新与实时反馈。
     .col-xs-12.col-md-4
       center.card_wrapper
         .row
           = icon :shield, library: :font_awesome, class: 'fa-2x'
         .row
-          h4.bluefont 深度用户反馈
-        .row-justify.text-center
+          h4 深度用户反馈
+        .row-justify.text-center.text-muted[style="line-height:12px; margin-top:12px"]
           p 积极跟进用户使用情况，
           p 将用户反馈作为经纪人服务第一评价标准。
 
