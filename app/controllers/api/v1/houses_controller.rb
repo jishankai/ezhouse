@@ -2,7 +2,7 @@
 module Api
   module V1
     class HousesController < ApplicationController
-      prepend_before_action :get_model, :except => [:recommend]
+      prepend_before_action :get_model, :except => [:recommend, :search]
       before_action :get_house, :only => [:show, :edit, :update, :destroy]
 
       skip_before_action :verify_authenticity_token
@@ -41,6 +41,12 @@ module Api
 
       def recommend
         @houses = Agent.where(:houses.exists => true)
+
+        render json: @houses
+      end
+
+      def search
+        @houses = Agent.where("houses.title": /.*#{params[:arg]}.*/).order_by(:created_at => -1)
 
         render json: @houses
       end

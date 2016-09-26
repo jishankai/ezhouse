@@ -138,6 +138,7 @@ Rails.application.routes.draw do
       end
       resources :comments
       resources :houses do
+        get 'search', on: :collection
         get 'recommend', on: :collection
       end
     end
