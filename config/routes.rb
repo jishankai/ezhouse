@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'site/career' => 'site#career'
   get 'site/faq' => 'site#faq'
   get 'apps/index' => 'apps#index'
+  get 'eagent/index'=>'ezhongjie#index'
 
   match 'users/sign_in' => 'users#login', via: [:get, :post]
 

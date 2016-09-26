@@ -1,0 +1,44 @@
+// Place all the styles related to the ezhongjie controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.wrap_e{
+	background:image-url('eagent.jpg') no-repeat center scroll;
+    background-size:100%;
+	margin-top: -20px;
+}
+#logo{
+	position:relative;
+	margin-top:23%;
+
+	text-align: center;
+	font-size: 34px;
+
+}
+#logo_s{
+	position:relative;	
+    margin-top: -18px;
+	text-align: center;
+	font-size: 22px;
+
+}
+
+#user_e{
+
+	text-align: center;
+	font-size:22px;
+}
+#intro{
+	margin-top:30px;
+	padding-left: 23%;
+	font-size:20px;
+}
+#intro_s{
+	padding-left: 23%;
+	font-size:16px;
+	color:#989898;
+}
+#e_button{
+ display: block; 
+ width: 320px; 
+ height: 40px; line-height: 40px; color: #767676; font-size: 16px;  border: 1px solid #989898; text-align: center; 
+}
