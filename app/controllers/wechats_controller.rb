@@ -20,7 +20,7 @@ class WechatsController < ActionController::Base
   end
 
   on :text, with: '群主' do |request|
-    request.reply.image('wfjD9PAgZwMe__i0uqLCnpilFopjs_iCmH7Fgn6iYx4')
+    request.reply.image('wfjD9PAgZwMe__i0uqLCnpyLQYZ5a3wJap4GhWGfIJg')
   end
 
   on :event, with: 'subscribe' do |request|
