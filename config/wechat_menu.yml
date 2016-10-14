@@ -21,8 +21,8 @@ button:
     key:  "GROUPS"
    -
     type: "click"
-    name: "评价"
-    key:  "COMMENT"
+    name: "APP下载"
+    key:  "APP"
    -
     type: "view"
     name: "帮助"

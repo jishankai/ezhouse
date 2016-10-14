@@ -39,8 +39,8 @@ class WechatsController < ActionController::Base
     request.reply.text "我们是一家互联网房地产创业公司，致力于帮助客户找到最匹配的房屋与经纪人。"
   end
 
-  on :click, with: 'COMMENT' do |request, key|
-    request.reply.text "请前去我们的网站ehero.cc搜索经纪人并做出评价哦～"
+  on :click, with: 'APP' do |request, key|
+    request.reply.image("K-J-wJ-o3NlCf6QCW1AcVUMjex2PCDBDbAV8t9i6jm7OeXosOuCx779TRhVf0nt-")
   end
 
   on :click, with: 'GROUPS' do |request, key|
