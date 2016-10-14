@@ -7,7 +7,7 @@ task :update_tips => :environment do
 end
 
 desc "发送广告邮件"
-task :mail_advrt do
+task :mail_advrt => :environment do
   arr_of_arrs = CSV.read('lib/tasks/mails.csv', headers: true)
 
   arr_of_arrs.each do |data|
