@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'site/privacy' => 'site#privacy'
   get 'site/career' => 'site#career'
   get 'site/faq' => 'site#faq'
+  get 'site/advert'=> 'site#advert'
   get 'apps/index' => 'apps#index'
   get 'eagent/index'=>'ezhongjie#index'
 

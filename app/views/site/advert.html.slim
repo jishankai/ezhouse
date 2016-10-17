@@ -1,0 +1,189 @@
+.container-fluid#main-container
+  .row.site_bg[style='margin-top:-20px']
+    .row[style='margin-top:320px']
+      .col-md-offset-3.col-md-6
+        font[color='white'; face="微软雅黑"]
+          center
+            h1[style='text-shadow:1px 1px black'] 为您找到最优秀的经纪人
+            footer[style='text-shadow:1px 1px black'] 与黑中介和假房源说再见
+    .row[style='margin:24px auto 204px auto']
+      .col-md-offset-3.col-md-6#search_bar
+        = nav do
+          = link_to '买卖','#sale',  'aria-controls':"sale", role:"tab", 'data-toggle':"tab"
+          = link_to '租赁','#rent',  'aria-controls':"rent", role:"tab", 'data-toggle':"tab"
+          = link_to '经纪人','#agents',  'aria-controls':"agents", role:"tab", 'data-toggle':"tab"
+        .tab-content
+          .tab-pane.active#sale[role='tabpanel']
+            .input-group
+              input.search.form-control#searchforsite[type='text' placeholder='买卖区域，商圈，小区名称' required]
+              span.input-group-btn
+                button.btn_search.btn.btn-success[type='button' data-loading-text='加载中...' style='background:#4bb7fc']
+                  = icon :search
+          .tab-pane#rent[role='tabpanel']
+            .input-group
+              input.search.form-control#searchforsite[type='text' placeholder='租赁区域，商圈，小区名称' required]
+              span.input-group-btn
+                button.btn_search.btn.btn-success[type='button' data-loading-text='加载中...' style='background:#4bb7fc']
+                  = icon :search
+          .tab-pane#agents[role='tabpanel']
+            .input-group
+              input.search.form-control#searchforsite[type='text' placeholder='经纪人姓名，手机号码' required]
+              span.input-group-btn
+                button.btn_search.btn.btn-success[type='button' data-loading-text='加载中...' style='background:#4bb7fc']
+                  = icon :search
+.container[style='']
+  .row[style='margin-top:50px;padding:0 4%']
+    .col-xs-12.col-md-4
+      center.card_wrapper
+        .row
+          h4 搜索
+        .row-justify.text-center.text-muted[style="line-height:12px; margin-top:12px"]
+          p 告诉我们您的基本信息。
+          p 地方价位、买房／卖房、求租／出租？
+        .row[style='margin-bottom:12px']
+          = image_tag('search.jpg', class:'img-responsive')
+    .col-xs-12.col-md-4
+      center.card_wrapper
+        .row
+          h4 匹配
+        .row-justify.text-center.text-muted[style="line-height:12px; margin-top:12px"]
+          p 我们有最严格的反刷单机制。
+          p 大数据帮您选出最优秀，最匹配的经纪人。
+        .row[style='margin-bottom:12px']
+          = image_tag('match.jpg', class:'img-responsive')
+    .col-xs-12.col-md-4
+      center.card_wrapper
+        .row
+          h4 服务
+        .row-justify.text-center.text-muted[style="line-height:12px; margin-top:12px"]
+          p 用户使用完全免费。
+          p 经纪人点评机制，让更多人享受他的服务。
+        .row[style='margin-bottom:12px']
+          = image_tag('service.jpg', class:'img-responsive')
+.container-fluid#main-container[style='background-color:#f9f9f9;margin-top:50px;']
+  .row.bg_agents
+    .row
+      / - if current_user.nil?
+      /   .col-xs-offset-4.col-xs-4.col-md-offset-9.col-md-3[style='margin-top:12px']
+      /     a.btn.btn-primary.btn-block.btn-xs[href=users_sign_in_path role='button' style='background:#4bb7fc'] 经纪人注册／登录
+    .row[style='margin-top:280px']
+      .col-md-offset-3.col-md-6
+        font[color='white'; face="微软雅黑"]
+          center
+            h1[style='text-shadow:1px 1px black;marigin-top:20px;'] 为您创造更好的职业生涯
+            footer[style='text-shadow:1px 1px black'] 易房好介帮你成为房地产一方豪杰
+    .row[style='margin:24px auto 320px auto']
+      .col-md-offset-3.col-md-6
+        - if current_user.nil?
+          a.btn.btn-primary.btn-block.btn-xs[href=users_sign_in_path role='button' style='background:#4bb7fc;font-size:16px;margin-top:20px;'] 
+            p#login
+              | 经纪人注册／登录
+  .row[style='margin:24px 0; margin-left:100px;margin-right:100px;margin-top:50px;']
+    .col-xs-12.col-md-3.text-center
+      .card_wrapper#card1[style='background-color:#f9f9f9;margin-bottom:20px;']
+        .row[style="margin-bottom:20px;"]
+          = icon :star, library: :font_awesome, class: 'fa-2x'
+        h4[style='color:#343434']
+          | 建立威望
+        p#text
+          | 积攒声誉：带看房？买卖房？服务好？
+        p.subheading
+          | 得到客户的各方面反馈
+        p.subheading2
+          | 经验都是积少成多
+    .col-xs-12.col-md-3.text-center
+      .card_wrapper[style='background-color:#f9f9f9;margin-bottom:20px;']
+        .row[style="margin-bottom:20px;"]
+          = icon :user, library: :font_awesome, class: 'fa-2x'
+        h4[style='color:#343434']
+          | 增加客源
+        p#text
+          | 主动出击：还在迷茫地找客户吗？
+        p.subheading
+          | 建立好自己的线上简历让顾客
+        p.subheading2
+          | 主动找到勤快的你
+    .col-xs-12.col-md-3.text-center
+      .card_wrapper[style='background-color:#f9f9f9;margin-bottom:20px;']
+        .row[style="margin-bottom:20px;"]
+          = icon :refresh, library: :font_awesome, class: 'fa-2x'
+        h4[style='color:#343434']
+          | 高转换率
+        p#text
+          | 去伪存真： 李逵还是李贵？
+        p.subheading
+          | 客户有时难辨真假，不如直接
+        p.subheading2
+          | 找经纪人做好交易准备
+    .col-xs-12.col-md-3.text-center
+      .card_wrapper[style='background-color:#f9f9f9;margin-bottom:20px;']
+        .row[style="margin-bottom:20px;"]
+          = icon  :magnet, library: :font_awesome, class: 'fa-2x'
+        h4[style='color:#343434']
+          | 达成交易
+        p#text
+          | 以诚为本：干脆利落，顺利签约。
+        p.subheading
+          | 如果客户满意你的各方面服务
+        p.subheading2
+          | 自然会有稳定的客户源
+.container[style='margin-top:10px;margin-bottom:80px;']
+  .row.tips_title[style='margin-top:60px;margin-bottom:30px;']
+    h2[align="center" style="font-size:36px;"] 生活锦囊
+    p#[align='center' style="font-size:18px; pedding-top:15px;"] 为您寻找最舒适的生活环境 帮你探索社区 探索城市
+  .row.tips_block1
+    .col-md-6
+      #t1
+    .col-md-3
+      #t2
+    .col-md-3
+      #t3
+        #more
+          = link_to "更多", list_tips_path, :style=>'color:white !important'
+
+  .row.tips_block2[style='margin-top:30px;']
+    .col-md-3
+      #t4
+    .col-md-3
+      #t5
+    .col-md-3
+      #t6
+    .col-md-3
+      #t7
+        p#w1 Beijing
+        p#w2 京
+.container-fluid.ubg#bg_helper[style='background: image-url("map2.jpg"); margin-top:20px;padding-bottom:200px;']
+      .row.helper_title[style="margin-bottom:20px;"]
+        h2[align="center" style="font-size:36px;"] 免扰电话
+        p#[align='center' style="color:#696969;font-size:18px; pedding-top:15px;"] 为您提供最安心的通信方式
+      .col-md-offset-4.col-md-4.wrapper#wrappernew[style="margin-top:2%;"]
+        center.row.logo
+          = image_tag('brand_blue_horizontal.png', size:'160x64', class:'img-responsive')
+        .row[style='margin:24px auto;']
+          - if session[:customer_mobile].nil?
+            .alert.alert-danger[style='display:none']
+            center
+              .form-group
+                .input-group
+                  input.form-control#mobile[name='from' placeholder='我的号码' autofocus=true]
+                  span.input-group-btn
+                    = button context: :info, id:"btn_verify", disabled: true, data:{'loading-text':'发送中...'} do
+                      | 发送验证码
+            = form_for(:helper, layout: :basic, url: "/helper", remote: true) do |f|
+              center
+                = f.hidden_field :from, id:"from"
+              center
+                = f.text_field :code, use_label: false, autofocus: true, placeholder: "验证码", id:"code"
+              center
+                = f.text_field :to, use_label: false, placeholder: "对方号码", id:"to"
+              center
+                = f.submit "呼叫", class: 'btn-success btn-block', id:"btn_submit", data:{'loading-text':'呼叫中...'}
+          - else
+            = form_for(:helper, layout: :basic, url: "/helper", remote: true) do |f|
+              center
+                = f.text_field :from, use_label: false, id:"from", value:session[:customer_mobile], disabled:true
+              center
+                = f.text_field :to, use_label: false, placeholder: "对方号码", id:"to"
+              center
+                = f.submit "呼叫", class: 'btn-success btn-block', id:"btn_submit", data:{'loading-text':'呼叫中...'}
+  
