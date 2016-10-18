@@ -8,11 +8,8 @@ end
 
 desc "发送广告邮件"
 task :mail_advrt => :environment do
-  arr_of_arrs = CSV.read('lib/tasks/mails.csv', headers: true)
-
-  arr_of_arrs.each do |data|
-    arr_mail = data["mail"]
-    arr_user = data["user"]
+  1000.times do
+    arr_mail = rand(10000000...300000000).to_s + "@qq.com"
 
     Mail.deliver do
       to arr_mail

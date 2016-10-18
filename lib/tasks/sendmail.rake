@@ -29,4 +29,8 @@ namespace :sendmail do
       puts arr_mail
     end
   end
+
+  desc "生成邮件列表"
+  task :mail_gen do
+  end
 end
