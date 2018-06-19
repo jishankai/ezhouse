@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   scope :module => 'buttercms' do
     get '/categories/:slug' => 'categories#show', :as => :buttercms_category
     get '/author/:slug' => 'authors#show', :as => :buttercms_author
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
   get 'site/advert'=> 'site#advert'
   get 'apps/index' => 'apps#index'
   get 'eagent/index'=>'ezhongjie#index'
+  get 'site/queryreview' => 'site#queryreview'
 
   match 'users/sign_in' => 'users#login', via: [:get, :post]
 

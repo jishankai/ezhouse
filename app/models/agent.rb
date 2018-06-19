@@ -27,6 +27,7 @@ class Agent
   slug :name
 
   field :user_id, type: String
+  accepts_nested_attributes_for :comments
 
   # 链家
   field :position, type: String

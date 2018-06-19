@@ -34,5 +34,7 @@ module Ezhouse
     config.cache_store = :redis_store, uri, { expires_in: 90.minutes }
     # i18n
     config.i18n.default_locale = "en"
+    # Admin
+    ENV['RAILS_ADMIN_THEME'] = 'rollincode'
   end
 end

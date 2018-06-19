@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby "2.3.1"
+ruby "2.4.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.8'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -19,6 +19,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'json', github: 'flori/json', branch: 'v1.8'
+
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'autoprefixer-rails'
@@ -31,6 +33,7 @@ gem "font-awesome-rails"
 
 # Pagination
 gem 'kaminari'
+gem 'kaminari-mongoid'
 
 # Database
 gem 'mongoid', '~> 5.0'
@@ -107,13 +110,18 @@ gem 'alipay', '~> 0.12.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Admin
+gem 'rails_admin', '~> 1.2'
+gem 'rails_admin_rollincode', '~> 1.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry-byebug'
-  gem 'did_you_mean'
+  #gem 'did_you_mean'
   gem 'rails-footnotes', '~> 4.0'
   gem 'rubycritic'
+  gem 'railroady'
 end
 
 group :development do
@@ -122,6 +130,15 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'brakeman', :require => false
+  #gem 'query_reviewer'
+  gem 'rack-mini-profiler', :require => false
+  # For memory profiling
+  gem 'memory_profiler'
+
+  # For call-stack profiling flamegraphs
+  gem 'flamegraph'
+  gem 'stackprof'
 end
 
 group :production do
